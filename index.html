@@ -7,6 +7,7 @@
 <meta property="og:title" content="KITT Launcher">
 <meta property="og:description" content="Knight Rider themed Android car head-unit launcher: OBD-II scanner, AI co-pilot, directions and the red scanner light. Free APK download.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://tdater.github.io/KITT-Launcher-releases/screenshots/drive.webp">
 <meta property="og:url" content="https://tdater.github.io/KITT-Launcher-releases/">
 <meta name="theme-color" content="#0a0909">
 <title>KITT Launcher</title>
@@ -141,9 +142,39 @@
   .btn.ghost { background: var(--panel-2); border-color: var(--bezel); box-shadow: none; color: var(--text); }
   .download small { color: var(--muted); font: 13px var(--mono); flex-basis: 100%; }
 
+  /* Screenshot gallery */
+  .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .shot { margin: 0; display: grid; gap: 6px; align-content: start; }
+  .shot button, .theme-shot button {
+    all: unset; cursor: zoom-in; display: block; border: 1px solid var(--bezel); border-radius: 4px;
+    overflow: hidden; background: #000; line-height: 0;
+  }
+  .shot button:hover, .shot button:focus-visible, .theme-shot button:hover, .theme-shot button:focus-visible {
+    border-color: var(--red); box-shadow: 0 0 0 1px var(--red);
+  }
+  .shot img, .theme-shot img { width: 100%; height: auto; display: block; }
+  .shot figcaption { font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .shot figcaption b { display: block; color: var(--amber); font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; }
+  .theme-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .theme-shot { margin: 0; display: grid; gap: 4px; }
+  .theme-shot figcaption { font: 12px var(--mono); color: var(--muted); text-align: center; letter-spacing: .06em; }
+  .note { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; }
+  dialog.viewer {
+    border: 1px solid var(--red); border-radius: 4px; padding: 0; background: #000; max-width: min(92vw, 820px);
+    max-height: 94vh; overflow: auto;
+  }
+  dialog.viewer::backdrop { background: rgba(0,0,0,.85); }
+  dialog.viewer img { display: block; width: 100%; height: auto; }
+  dialog.viewer p { margin: 0; padding: 10px 14px; font-size: 14px; color: var(--text); background: var(--panel); }
+  dialog.viewer form { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: 6px; background: #000; }
+  dialog.viewer button { all: unset; cursor: pointer; font: 600 13px var(--display); letter-spacing: .12em; color: var(--text);
+    border: 1px solid var(--bezel); padding: 6px 12px; border-radius: 3px; }
+  @media (max-width: 860px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
   @media (max-width: 720px) {
     .grid { grid-template-columns: 1fr; }
     .readouts { grid-template-columns: repeat(2, 1fr); }
+    .theme-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .lede { font-size: 17px; }
   }
 </style>
@@ -174,6 +205,7 @@
 
 <nav aria-label="Sections">
   <ul>
+    <li><a href="#screens">Screens</a></li>
     <li><a href="#look">Look</a></li>
     <li><a href="#pages">Home pages</a></li>
     <li><a href="#kitt">KITT AI</a></li>
@@ -186,6 +218,62 @@
 </nav>
 
 <main class="wrap">
+
+  <section id="screens">
+    <h2>Screens <span class="tag">TAP TO ENLARGE</span></h2>
+    <p class="intro">KITT Launcher on a portrait head-unit screen.</p>
+    <div class="shots">
+      <figure class="shot">
+        <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="575" loading="lazy" alt="Drive page: The night map follows the car, with speed, tach and vehicle status underneath."></button>
+        <figcaption><b>Drive page</b>The night map follows the car, with speed, tach and vehicle status underneath.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/route.webp" aria-label="Enlarge: Map search"><img src="screenshots/route-thumb.webp" width="400" height="575" loading="lazy" alt="Map search: Search a place, then preview the route with distance, time and arrival."></button>
+        <figcaption><b>Map search</b>Search a place, then preview the route with distance, time and arrival.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/guidance.webp" aria-label="Enlarge: Turn-by-turn"><img src="screenshots/guidance-thumb.webp" width="400" height="575" loading="lazy" alt="Turn-by-turn: The next turn with arrow and distance; KITT says it aloud."></button>
+        <figcaption><b>Turn-by-turn</b>The next turn with arrow and distance; KITT says it aloud.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="575" loading="lazy" alt="KITT: Unfiltered KITT: instant commands and AI answers, with attitude."></button>
+        <figcaption><b>KITT</b>Unfiltered KITT: instant commands and AI answers, with attitude.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/gauges-thumb.webp" width="400" height="575" loading="lazy" alt="Gauges: A full wall of live OBD gauges. Shown here with no adapter connected."></button>
+        <figcaption><b>Gauges</b>A full wall of live OBD gauges. Shown here with no adapter connected.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diagnostics.webp" aria-label="Enlarge: Diagnostics"><img src="screenshots/diagnostics-thumb.webp" width="400" height="575" loading="lazy" alt="Diagnostics: Adapter link, protocol, manufacturer profiles, codes and tools."></button>
+        <figcaption><b>Diagnostics</b>Adapter link, protocol, manufacturer profiles, codes and tools.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/ai-thumb.webp" width="400" height="575" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
+        <figcaption><b>AI page</b>Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/stream.webp" aria-label="Enlarge: Stream window"><img src="screenshots/stream-thumb.webp" width="400" height="575" loading="lazy" alt="Stream window: Licensed free video and music sites over the map."></button>
+        <figcaption><b>Stream window</b>Licensed free video and music sites over the map.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/games.webp" aria-label="Enlarge: Games"><img src="screenshots/games-thumb.webp" width="400" height="575" loading="lazy" alt="Games: Browser games with controller support, in the shared browser."></button>
+        <figcaption><b>Games</b>Browser games with controller support, in the shared browser.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/apps.webp" aria-label="Enlarge: Apps"><img src="screenshots/apps-thumb.webp" width="400" height="575" loading="lazy" alt="Apps: App drawer with search, groups and an A–Z rail."></button>
+        <figcaption><b>Apps</b>App drawer with search, groups and an A–Z rail.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/quick-settings.webp" aria-label="Enlarge: Quick settings"><img src="screenshots/quick-settings-thumb.webp" width="400" height="575" loading="lazy" alt="Quick settings: Volume, brightness, night mode and shortcuts from the status strip."></button>
+        <figcaption><b>Quick settings</b>Volume, brightness, night mode and shortcuts from the status strip.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config.webp" aria-label="Enlarge: KITT Config"><img src="screenshots/config-thumb.webp" width="400" height="575" loading="lazy" alt="KITT Config: AI provider, models, personality and voice."></button>
+        <figcaption><b>KITT Config</b>AI provider, models, personality and voice.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Captured on a 12.1" portrait head-unit emulator in Los Angeles, with no OBD adapter connected, so the gauges show dashes. Live-data shots coming soon.</p>
+  </section>
 
   <section id="look">
     <h2>The look <span class="tag">DISPLAY</span></h2>
@@ -213,17 +301,17 @@
       </div>
       <div class="card wide">
         <h3>10 themes</h3>
-        <div class="themes">
-          <span class="chip">KITT</span>
-          <span class="chip">KARR</span>
-          <span class="chip">Night Vision</span>
-          <span class="chip">Super Pursuit</span>
-          <span class="chip">Retro VFD</span>
-          <span class="chip">Outrun</span>
-          <span class="chip">Stealth</span>
-          <span class="chip">Terminator</span>
-          <span class="chip">RoboCop</span>
-          <span class="chip">The Matrix</span>
+        <div class="theme-strip">
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-kitt.webp" aria-label="Enlarge: KITT theme"><img src="screenshots/theme-kitt-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KITT theme"></button><figcaption>KITT</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-karr.webp" aria-label="Enlarge: KARR theme"><img src="screenshots/theme-karr-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KARR theme"></button><figcaption>KARR</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-nightvision.webp" aria-label="Enlarge: Night Vision theme"><img src="screenshots/theme-nightvision-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Night Vision theme"></button><figcaption>Night Vision</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-superpursuit.webp" aria-label="Enlarge: Super Pursuit theme"><img src="screenshots/theme-superpursuit-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Super Pursuit theme"></button><figcaption>Super Pursuit</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-retrovfd.webp" aria-label="Enlarge: Retro VFD theme"><img src="screenshots/theme-retrovfd-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Retro VFD theme"></button><figcaption>Retro VFD</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-outrun.webp" aria-label="Enlarge: Outrun theme"><img src="screenshots/theme-outrun-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Outrun theme"></button><figcaption>Outrun</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-stealth.webp" aria-label="Enlarge: Stealth theme"><img src="screenshots/theme-stealth-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Stealth theme"></button><figcaption>Stealth</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-terminator.webp" aria-label="Enlarge: Terminator theme"><img src="screenshots/theme-terminator-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Terminator theme"></button><figcaption>Terminator</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-robocop.webp" aria-label="Enlarge: RoboCop theme"><img src="screenshots/theme-robocop-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the RoboCop theme"></button><figcaption>RoboCop</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-colorado.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/theme-colorado-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the The Matrix theme"></button><figcaption>The Matrix</figcaption></figure>
         </div>
         <ul class="list">
           <li><b>Film HUD themes</b> change much more than colours: fonts, panel shapes, the scanner, panel frames, a full-screen scanline effect and themed status text.
@@ -546,5 +634,22 @@
 
   <footer>KITT LAUNCHER · Android 7.0+ · Provided as-is, no support · © 2026 travisdater. All rights reserved.</footer>
 </main>
+<dialog class="viewer" id="viewer">
+  <form method="dialog"><button>Close ✕</button></form>
+  <img alt="">
+  <p></p>
+</dialog>
+<script>
+  // Tap a screenshot to see it full size.
+  const viewer = document.getElementById('viewer');
+  document.querySelectorAll('[data-full]').forEach((b) => b.addEventListener('click', () => {
+    const img = b.querySelector('img');
+    viewer.querySelector('img').src = b.dataset.full;
+    viewer.querySelector('img').alt = img.alt;
+    viewer.querySelector('p').textContent = img.alt;
+    viewer.showModal();
+  }));
+  viewer.addEventListener('click', (e) => { if (e.target === viewer) viewer.close(); });
+</script>
 </body>
 </html>
