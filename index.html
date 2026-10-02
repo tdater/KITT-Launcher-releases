@@ -169,7 +169,9 @@
   dialog.viewer form { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: 6px; background: #000; }
   dialog.viewer button { all: unset; cursor: pointer; font: 600 13px var(--display); letter-spacing: .12em; color: var(--text);
     border: 1px solid var(--bezel); padding: 6px 12px; border-radius: 3px; }
-  @media (max-width: 860px) { .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .shots.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .gallery-head { margin: 28px 0 12px; }
+  @media (max-width: 860px) { .shots, .shots.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
   @media (max-width: 720px) {
     .grid { grid-template-columns: 1fr; }
@@ -224,55 +226,115 @@
     <p class="intro">KITT Launcher on a portrait head-unit screen.</p>
     <div class="shots">
       <figure class="shot">
-        <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="575" loading="lazy" alt="Drive page: The night map follows the car, with speed, tach and vehicle status underneath."></button>
-        <figcaption><b>Drive page</b>The night map follows the car, with speed, tach and vehicle status underneath.</figcaption>
+        <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="Drive page: The night map follows the car, with speed, tach, vehicle status and the last trip underneath."></button>
+        <figcaption><b>Drive page</b>The night map follows the car, with speed, tach, vehicle status and the last trip underneath.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/route.webp" aria-label="Enlarge: Map search"><img src="screenshots/route-thumb.webp" width="400" height="575" loading="lazy" alt="Map search: Search a place, then preview the route with distance, time and arrival."></button>
+        <button type="button" data-full="screenshots/route.webp" aria-label="Enlarge: Map search"><img src="screenshots/route-thumb.webp" width="400" height="576" loading="lazy" alt="Map search: Search a place, then preview the route with distance, time and arrival."></button>
         <figcaption><b>Map search</b>Search a place, then preview the route with distance, time and arrival.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/guidance.webp" aria-label="Enlarge: Turn-by-turn"><img src="screenshots/guidance-thumb.webp" width="400" height="575" loading="lazy" alt="Turn-by-turn: The next turn with arrow and distance; KITT says it aloud."></button>
+        <button type="button" data-full="screenshots/guidance.webp" aria-label="Enlarge: Turn-by-turn"><img src="screenshots/guidance-thumb.webp" width="400" height="576" loading="lazy" alt="Turn-by-turn: The next turn with arrow and distance; KITT says it aloud."></button>
         <figcaption><b>Turn-by-turn</b>The next turn with arrow and distance; KITT says it aloud.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="575" loading="lazy" alt="KITT: Unfiltered KITT: instant commands and AI answers, with attitude."></button>
-        <figcaption><b>KITT</b>Unfiltered KITT: instant commands and AI answers, with attitude.</figcaption>
+        <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="576" loading="lazy" alt="KITT: Unfiltered KITT reading the fault codes, with attitude."></button>
+        <figcaption><b>KITT</b>Unfiltered KITT reading the fault codes, with attitude.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/gauges-thumb.webp" width="400" height="575" loading="lazy" alt="Gauges: A full wall of live OBD gauges. Shown here with no adapter connected."></button>
-        <figcaption><b>Gauges</b>A full wall of live OBD gauges. Shown here with no adapter connected.</figcaption>
+        <button type="button" data-full="screenshots/gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/gauges-thumb.webp" width="400" height="576" loading="lazy" alt="Gauges: A full wall of live OBD gauges."></button>
+        <figcaption><b>Gauges</b>A full wall of live OBD gauges.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/diagnostics.webp" aria-label="Enlarge: Diagnostics"><img src="screenshots/diagnostics-thumb.webp" width="400" height="575" loading="lazy" alt="Diagnostics: Adapter link, protocol, manufacturer profiles, codes and tools."></button>
-        <figcaption><b>Diagnostics</b>Adapter link, protocol, manufacturer profiles, codes and tools.</figcaption>
+        <button type="button" data-full="screenshots/codes.webp" aria-label="Enlarge: Fault codes"><img src="screenshots/codes-thumb.webp" width="400" height="576" loading="lazy" alt="Fault codes: Stored codes in plain English, emissions readiness and freeze frame."></button>
+        <figcaption><b>Fault codes</b>Stored codes in plain English, emissions readiness and freeze frame.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/ai-thumb.webp" width="400" height="575" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
+        <button type="button" data-full="screenshots/trips.webp" aria-label="Enlarge: Trip computer"><img src="screenshots/trips-thumb.webp" width="400" height="576" loading="lazy" alt="Trip computer: Distance, time, speeds and fuel economy for the last drive."></button>
+        <figcaption><b>Trip computer</b>Distance, time, speeds and fuel economy for the last drive.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/ai-thumb.webp" width="400" height="576" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
         <figcaption><b>AI page</b>Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/stream.webp" aria-label="Enlarge: Stream window"><img src="screenshots/stream-thumb.webp" width="400" height="575" loading="lazy" alt="Stream window: Licensed free video and music sites over the map."></button>
+        <button type="button" data-full="screenshots/stream.webp" aria-label="Enlarge: Stream window"><img src="screenshots/stream-thumb.webp" width="400" height="576" loading="lazy" alt="Stream window: Licensed free video and music sites over the map."></button>
         <figcaption><b>Stream window</b>Licensed free video and music sites over the map.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/games.webp" aria-label="Enlarge: Games"><img src="screenshots/games-thumb.webp" width="400" height="575" loading="lazy" alt="Games: Browser games with controller support, in the shared browser."></button>
+        <button type="button" data-full="screenshots/games.webp" aria-label="Enlarge: Games"><img src="screenshots/games-thumb.webp" width="400" height="576" loading="lazy" alt="Games: Browser games with controller support, in the shared browser."></button>
         <figcaption><b>Games</b>Browser games with controller support, in the shared browser.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/apps.webp" aria-label="Enlarge: Apps"><img src="screenshots/apps-thumb.webp" width="400" height="575" loading="lazy" alt="Apps: App drawer with search, groups and an A–Z rail."></button>
+        <button type="button" data-full="screenshots/apps.webp" aria-label="Enlarge: Apps"><img src="screenshots/apps-thumb.webp" width="400" height="576" loading="lazy" alt="Apps: App drawer with search, groups and an A–Z rail."></button>
         <figcaption><b>Apps</b>App drawer with search, groups and an A–Z rail.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/quick-settings.webp" aria-label="Enlarge: Quick settings"><img src="screenshots/quick-settings-thumb.webp" width="400" height="575" loading="lazy" alt="Quick settings: Volume, brightness, night mode and shortcuts from the status strip."></button>
+        <button type="button" data-full="screenshots/quick-settings.webp" aria-label="Enlarge: Quick settings"><img src="screenshots/quick-settings-thumb.webp" width="400" height="576" loading="lazy" alt="Quick settings: Volume, brightness, night mode and shortcuts from the status strip."></button>
         <figcaption><b>Quick settings</b>Volume, brightness, night mode and shortcuts from the status strip.</figcaption>
       </figure>
+    </div>
+
+    <h3 class="gallery-head">Diagnostics, every tab</h3>
+    <div class="shots compact">
       <figure class="shot">
-        <button type="button" data-full="screenshots/config.webp" aria-label="Enlarge: KITT Config"><img src="screenshots/config-thumb.webp" width="400" height="575" loading="lazy" alt="KITT Config: AI provider, models, personality and voice."></button>
-        <figcaption><b>KITT Config</b>AI provider, models, personality and voice.</figcaption>
+        <button type="button" data-full="screenshots/diag-gauges.webp" aria-label="Enlarge: Gauges tab"><img src="screenshots/diag-gauges-thumb.webp" width="300" height="432" loading="lazy" alt="Gauges tab: Your own dashboard: dial, LED bar, digital or graph, with warning limits."></button>
+        <figcaption><b>Gauges tab</b>Your own dashboard: dial, LED bar, digital or graph, with warning limits.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-data.webp" aria-label="Enlarge: Data"><img src="screenshots/diag-data-thumb.webp" width="300" height="432" loading="lazy" alt="Data: Live graphs of any sensor and CSV data logging."></button>
+        <figcaption><b>Data</b>Live graphs of any sensor and CSV data logging.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-codes.webp" aria-label="Enlarge: Codes"><img src="screenshots/diag-codes-thumb.webp" width="300" height="432" loading="lazy" alt="Codes: Stored, pending and permanent codes, readiness and freeze frame."></button>
+        <figcaption><b>Codes</b>Stored, pending and permanent codes, readiness and freeze frame.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-vehicle.webp" aria-label="Enlarge: Vehicle"><img src="screenshots/diag-vehicle-thumb.webp" width="300" height="432" loading="lazy" alt="Vehicle: VIN, battery and charging, fuel, fuel log and maintenance."></button>
+        <figcaption><b>Vehicle</b>VIN, battery and charging, fuel, fuel log and maintenance.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-tools.webp" aria-label="Enlarge: Tools"><img src="screenshots/diag-tools-thumb.webp" width="300" height="432" loading="lazy" alt="Tools: Performance timer, Mode 06, module scan and adapter tools."></button>
+        <figcaption><b>Tools</b>Performance timer, Mode 06, module scan and adapter tools.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-pids.webp" aria-label="Enlarge: PIDs"><img src="screenshots/diag-pids-thumb.webp" width="300" height="432" loading="lazy" alt="PIDs: Manufacturer PIDs, custom PIDs and every live sensor."></button>
+        <figcaption><b>PIDs</b>Manufacturer PIDs, custom PIDs and every live sensor.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/diag-link.webp" aria-label="Enlarge: Link"><img src="screenshots/diag-link-thumb.webp" width="300" height="432" loading="lazy" alt="Link: Adapter connection, manufacturer profile, protocol and polling."></button>
+        <figcaption><b>Link</b>Adapter connection, manufacturer profile, protocol and polling.</figcaption>
       </figure>
     </div>
-    <p class="note">Captured on a 12.1" portrait head-unit emulator in Los Angeles, with no OBD adapter connected, so the gauges show dashes. Live-data shots coming soon.</p>
+
+    <h3 class="gallery-head">KITT Config, every setting</h3>
+    <div class="shots compact">
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-1.webp" aria-label="Enlarge: AI core & personality"><img src="screenshots/config-1-thumb.webp" width="300" height="432" loading="lazy" alt="AI core & personality: Gemini or Perplexity, models, web search, Unfiltered or Classic KITT."></button>
+        <figcaption><b>AI core & personality</b>Gemini or Perplexity, models, web search, Unfiltered or Classic KITT.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-2.webp" aria-label="Enlarge: Voice & microphone"><img src="screenshots/config-2-thumb.webp" width="300" height="432" loading="lazy" alt="Voice & microphone: Neural or device voice, speech input and the mic takeover fix."></button>
+        <figcaption><b>Voice & microphone</b>Neural or device voice, speech input and the mic takeover fix.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-3.webp" aria-label="Enlarge: Listening & messages"><img src="screenshots/config-3-thumb.webp" width="300" height="432" loading="lazy" alt="Listening & messages: Default assistant, recognizer, "Hey KITT", messages read aloud."></button>
+        <figcaption><b>Listening & messages</b>Default assistant, recognizer, "Hey KITT", messages read aloud.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-4.webp" aria-label="Enlarge: Display & navigation"><img src="screenshots/config-4-thumb.webp" width="300" height="432" loading="lazy" alt="Display & navigation: Themes, accent colour, night mode, units, driving layout, shift light, map."></button>
+        <figcaption><b>Display & navigation</b>Themes, accent colour, night mode, units, driving layout, shift light, map.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-5.webp" aria-label="Enlarge: Home screen"><img src="screenshots/config-5-thumb.webp" width="300" height="432" loading="lazy" alt="Home screen: Status strip, icons, button sounds, weather and spoken directions, screensaver, start-up."></button>
+        <figcaption><b>Home screen</b>Status strip, icons, button sounds, weather and spoken directions, screensaver, start-up.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/config-6.webp" aria-label="Enlarge: Buttons, profiles & upkeep"><img src="screenshots/config-6-thumb.webp" width="300" height="432" loading="lazy" alt="Buttons, profiles & upkeep: Steering-wheel buttons, driver profiles, backup, problem reports, updates."></button>
+        <figcaption><b>Buttons, profiles & upkeep</b>Steering-wheel buttons, driver profiles, backup, problem reports, updates.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Captured on a 12.1" portrait head-unit emulator. Vehicle readings, the fault code and the trip are simulated with the app's demo mode, because no car was connected; on the road they come from your OBD adapter.</p>
   </section>
 
   <section id="look">
