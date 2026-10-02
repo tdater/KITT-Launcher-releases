@@ -8,6 +8,8 @@ streaming and AI chat, and the always-on red scanner light.
 
 **[Get the latest APK](https://github.com/tdater/KITT-Launcher-releases/releases/latest)** (under *Assets*).
 
+**[See everything it does](https://tdater.github.io/KITT-Launcher-releases/)**
+
 ## Install
 
 1. Download the `.apk` on the head unit (or copy it over on a USB stick).

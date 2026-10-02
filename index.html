@@ -1,0 +1,535 @@
+<title>KITT Launcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap">
+<style>
+  /* A deliberate single-look design: the launcher's own night console (KittBlack, ScannerRed, DashAmber, LedGreen). */
+  :root {
+    color-scheme: dark;
+    --black: #0a0909;
+    --panel: #141111;
+    --panel-2: #1b1716;
+    --bezel: #2e2725;
+    --text: #ece6e2;
+    --muted: #a39894;
+    --red: #ff2a1a;
+    --red-dim: #5a120c;
+    --amber: #ffb000;
+    --green: #3dff72;
+    --display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "Share Tech Mono", ui-monospace, Consolas, monospace;
+  }
+  html { background: var(--black); }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font: 16px/1.6 var(--body);
+    padding-inline: 16px;
+    padding-block: 0 64px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  /* Scanner */
+  .scanner {
+    position: relative; height: 14px; margin: 0 -16px;
+    background: #050404; border-bottom: 1px solid var(--bezel); overflow: hidden;
+  }
+  .scanner::before {
+    content: ""; position: absolute; inset: 3px auto 3px 0; width: 22%;
+    background: linear-gradient(90deg, transparent, var(--red-dim) 35%, var(--red) 80%, #ffd2c8 100%);
+    filter: drop-shadow(0 0 8px var(--red));
+    animation: sweep 2.4s cubic-bezier(.45,0,.55,1) infinite alternate;
+  }
+  @keyframes sweep { from { left: -4%; transform: scaleX(1); } to { left: 82%; transform: scaleX(-1); } }
+  @media (prefers-reduced-motion: reduce) { .scanner::before { animation: none; left: 39%; } }
+
+  header { padding-block: 48px 28px; display: grid; gap: 18px; }
+  .eyebrow { font: 14px var(--mono); color: var(--amber); letter-spacing: .14em; text-transform: uppercase; }
+  h1 {
+    font: 700 clamp(40px, 8vw, 76px)/1 var(--display); letter-spacing: .02em; margin: 0;
+    text-transform: uppercase; text-wrap: balance;
+  }
+  h1 span { color: var(--red); text-shadow: 0 0 18px rgba(255,42,26,.45); }
+  .lede { max-width: 64ch; color: var(--text); font-size: 18px; margin: 0; }
+  .lede + .lede { color: var(--muted); font-size: 16px; }
+
+  /* Readouts */
+  .readouts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-block: 8px 0; }
+  .readout {
+    background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px;
+    padding: 12px 14px; display: grid; gap: 2px;
+  }
+  .readout b { font: 34px/1 var(--mono); color: var(--amber); font-variant-numeric: tabular-nums; text-shadow: 0 0 10px rgba(255,176,0,.35); }
+  .readout small { font: 12px var(--mono); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+
+  /* Page tabs, like the launcher's own console buttons */
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2;
+    background: var(--black); border-bottom: 1px solid var(--bezel);
+    margin: 0 -16px; padding: 10px 16px; overflow-x: auto;
+  }
+  nav ul { list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 6px; max-width: 980px; }
+  nav a {
+    display: block; white-space: nowrap; text-decoration: none;
+    font: 600 13px var(--display); letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text); background: var(--panel-2); border: 1px solid var(--bezel); border-radius: 3px;
+    padding: 8px 12px;
+  }
+  nav a:hover, nav a:focus-visible { border-color: var(--red); color: #fff; outline: none; box-shadow: 0 0 0 1px var(--red); }
+
+  section { padding-block: 40px 8px; scroll-margin-top: 64px; }
+  h2 {
+    font: 700 26px/1.2 var(--display); text-transform: uppercase; letter-spacing: .06em;
+    margin: 0 0 6px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  h2 .tag { font: 13px var(--mono); color: var(--red); letter-spacing: .1em; }
+  .intro { color: var(--muted); max-width: 66ch; margin: 0 0 18px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px;
+    padding: 16px 18px; display: grid; gap: 8px; align-content: start;
+  }
+  .card.wide { grid-column: 1 / -1; }
+  h3 {
+    margin: 0; font: 600 15px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--amber);
+  }
+  ul.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  ul.list li::marker { color: var(--red); }
+  ul.list ul { margin-top: 6px; padding-left: 18px; display: grid; gap: 4px; color: var(--muted); }
+  li b { color: var(--text); font-weight: 600; }
+  code { font: 14px var(--mono); color: var(--green); background: #0c140e; padding: 1px 5px; border-radius: 2px; }
+
+  .hood {
+    border-left: 2px solid var(--green); background: #0b120d; padding: 10px 14px;
+    font: 14px/1.55 var(--mono); color: #b9e8c4; border-radius: 0 3px 3px 0;
+  }
+  .hood::before { content: "UNDER THE HOOD  "; color: var(--green); letter-spacing: .08em; }
+
+  .themes { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font: 13px var(--mono); padding: 4px 9px; border-radius: 2px; border: 1px solid var(--bezel); background: var(--panel-2);
+  }
+  .chip i { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 7px; vertical-align: 1px; }
+
+  .safety {
+    margin-top: 48px; border: 1px solid var(--red); border-radius: 4px; background: #1a0b09;
+    padding: 18px 20px; display: grid; gap: 10px;
+  }
+  .safety h2 { color: var(--red); font-size: 22px; margin: 0; }
+  footer { margin-top: 40px; color: var(--muted); font: 13px var(--mono); }
+
+  .download { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    display: inline-block; text-decoration: none; font: 700 15px var(--display); letter-spacing: .12em;
+    text-transform: uppercase; color: #fff; background: #3a0b07; border: 1px solid var(--red);
+    border-radius: 3px; padding: 12px 18px; box-shadow: 0 0 14px rgba(255,42,26,.35);
+  }
+  .btn:hover, .btn:focus-visible { background: #5a120c; outline: none; }
+  .btn.ghost { background: var(--panel-2); border-color: var(--bezel); box-shadow: none; color: var(--text); }
+  .download small { color: var(--muted); font: 13px var(--mono); flex-basis: 100%; }
+
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+    .readouts { grid-template-columns: repeat(2, 1fr); }
+    .lede { font-size: 17px; }
+  }
+</style>
+
+<div class="scanner" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Android head-unit launcher · Knight Industries 2000</div>
+    <h1>KITT <span>Launcher</span></h1>
+    <p class="lede">A Knight Rider home screen for Android car head units. It replaces the unit's stock home screen with a KITT-style dashboard, adds an OBD-II car scanner and an AI co-pilot named KITT that can see your truck's live data, and includes a browser for video, music, AI chat and games.</p>
+    <p class="lede">Built for a 12.1" portrait (9:16) Tesla-style head unit, and it adapts to landscape screens too. Native Kotlin and Jetpack Compose, Android 7.0 and up, with no Google Play Services and no analytics.</p>
+    <div class="download">
+      <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">Download the APK</a>
+      <a class="btn ghost" href="#install">How to install</a>
+      <small>Free. Android 7.0+. No support: shared as-is.</small>
+    </div>
+    <div class="readouts">
+      <div class="readout"><b>10</b><small>Themes</small></div>
+      <div class="readout"><b>7</b><small>Home pages</small></div>
+      <div class="readout"><b>7</b><small>Diagnostic tabs</small></div>
+      <div class="readout"><b>12</b><small>Maker profiles</small></div>
+    </div>
+  </header>
+</div>
+
+<nav aria-label="Sections">
+  <ul>
+    <li><a href="#look">Look</a></li>
+    <li><a href="#pages">Home pages</a></li>
+    <li><a href="#kitt">KITT AI</a></li>
+    <li><a href="#scanner">Car scanner</a></li>
+    <li><a href="#browser">Browser</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#safety">Safety</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <section id="look">
+    <h2>The look <span class="tag">DISPLAY</span></h2>
+    <p class="intro">The red scanner never stops sweeping, and every screen wears the theme you pick.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Scanner light</h3>
+        <ul class="list">
+          <li><b>Always on</b> across the top of the screen.</li>
+          <li><b>Over other apps</b> as a see-through strip that taps pass through.</li>
+          <li><b>Shift light:</b> flashes as the engine nears an RPM you choose (5,000 by default).</li>
+        </ul>
+        <div class="hood">a TYPE_APPLICATION_OVERLAY at 80% opacity, the most Android 12+ allows while passing touches through. One simulation engine (eased head, exponentially fading lamps) drives both scanners.</div>
+      </div>
+      <div class="card">
+        <h3>Display options</h3>
+        <ul class="list">
+          <li><b>Custom accent colour</b> on any theme.</li>
+          <li><b>Night mode:</b> Off, Auto or Always.</li>
+          <li><b>Units:</b> imperial or metric.</li>
+          <li><b>Status strip:</b> clock, compass heading, Wi-Fi, Bluetooth, OBD link and battery volts. Tap it for Quick Settings.</li>
+          <li><b>Icons:</b> button sounds, theme-tinted app icons, or ADW/Nova icon packs.</li>
+          <li><b>Screensaver</b> after a set number of idle minutes while parked.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>10 themes</h3>
+        <div class="themes">
+          <span class="chip">KITT</span>
+          <span class="chip">KARR</span>
+          <span class="chip">Night Vision</span>
+          <span class="chip">Super Pursuit</span>
+          <span class="chip">Retro VFD</span>
+          <span class="chip">Outrun</span>
+          <span class="chip">Stealth</span>
+          <span class="chip">Terminator</span>
+          <span class="chip">RoboCop</span>
+          <span class="chip">The Matrix</span>
+        </div>
+        <ul class="list">
+          <li><b>Film HUD themes</b> change much more than colours: fonts, panel shapes, the scanner, panel frames, a full-screen scanline effect and themed status text.
+            <ul>
+              <li><b>Terminator:</b> red vision overlay, 20-segment scanner, T-800 readouts like "THREAT ASSESSMENT: NONE".</li>
+              <li><b>RoboCop:</b> cold blue visor glow, targeting-bracket panel corners, visor scanner, the Prime Directives.</li>
+              <li><b>The Matrix:</b> green phosphor terminal with optional falling digital rain behind see-through panels.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pages">
+    <h2>Home screen pages <span class="tag">SWIPE</span></h2>
+    <p class="intro">Swipe left and right between pages or tap the page buttons. A swipe that starts at the left or right edge of the screen always changes page, even over a web page or the map. The Home button always returns you to Drive.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Drive</h3>
+        <ul class="list">
+          <li><b>Live map</b> (OpenStreetMap, centred on you) with your apps or vehicle status underneath. Side by side on wide screens.</li>
+          <li><b>Search and turn-by-turn directions</b> right on the map (below).</li>
+          <li><b>Stream window</b> can take over the map area.</li>
+          <li>Swiping pauses while you drag the map or a video.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Gauges · Media</h3>
+        <ul class="list">
+          <li><b>Gauges:</b> a full wall of your OBD gauges.</li>
+          <li><b>Media:</b> whatever any app is playing, with title, artist, artwork and controls. Needs notification access (reads the active MediaSession).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>AI · Games · Widgets</h3>
+        <ul class="list">
+          <li><b>AI:</b> Gemini, Claude and Perplexity websites in tabs, signed in with your own accounts.</li>
+          <li><b>Games:</b> your bookmarked browser-game sites (Internet Arcade, MS-DOS Games, Poki, CrazyGames and more), playable with a controller.</li>
+          <li><b>Widgets:</b> any regular Android home-screen widget.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Apps</h3>
+        <ul class="list">
+          <li>Search, an A–Z jump bar and most-used sorting.</li>
+          <li>Pin apps to the home grid, or hide them.</li>
+          <li>Automatic groups: Navigation, Music, Video, Car, Social, Tools.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>Map search &amp; directions</h3>
+        <ul class="list">
+          <li><b>Search:</b> tap Search on the map and type an address or place. Results come nearest first, and your recent destinations are one tap away.</li>
+          <li><b>Preview:</b> the route is drawn on the map with distance, drive time and arrival time. Start it, cancel it, or tap <b>Other app</b> to hand it to Google Maps, Waze or any navigation app.</li>
+          <li><b>Guidance:</b> the next turn shows at the top of the map with an arrow and distance. KITT speaks each turn twice, early and at the turn (earlier on faster roads), recalculates if you leave the route, and announces arrival.</li>
+          <li><b>By voice:</b> "navigate to the nearest Walmart", "take me to 1600 Main Street", "cancel the route".</li>
+          <li>Free, no account. Needs a data connection and location. Guidance runs while the launcher is on screen, and spoken directions can be switched off.</li>
+        </ul>
+        <div class="hood">place search uses Photon and routing uses OSRM (the openstreetmap.org routing server, with a fallback). The car's GPS position is matched to the route line, searching forward so roads that double back don't confuse it; three off-route fixes in a row trigger a new route.</div>
+      </div>
+      <div class="card wide">
+        <h3>Always there</h3>
+        <ul class="list">
+          <li><b>Dock</b> fixed at the bottom.</li>
+          <li><b>Driving layout</b> (optional, off by default): bigger, simpler controls while moving. It waits about 15 seconds of driving and 60 seconds stopped before switching, so it doesn't flicker in traffic.</li>
+          <li><b>Quick Settings:</b> brightness, sound, Wi-Fi, Bluetooth, night mode and a shortcut to Android Settings.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="kitt">
+    <h2>KITT, the AI co-pilot <span class="tag">VOICE</span></h2>
+    <p class="intro">Talk or type. Use the mic button, the steering-wheel voice button, or say "Hey KITT" if you turn that on. Every question includes your live readings, fault codes, vehicle identity and a 30-day driving summary, so "how's my coolant?" and "how was that drive?" just work.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Google Gemini</h3>
+        <ul class="list">
+          <li>A fast model for conversation and a smarter one for diagnostics, each selectable.</li>
+          <li>Optional Google Search grounding, skipped automatically on free-tier keys.</li>
+          <li>When Google retires a model, KITT switches to the newest equivalent on its own.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Perplexity Agent API</h3>
+        <ul class="list">
+          <li>Presets from <b>fast</b> to <b>high</b>, chosen separately for conversation and diagnostics.</li>
+          <li><b>Credit saving:</b> truck questions and chit-chat skip the paid web search. Weather, prices, recalls, scores and diagnostics still search.</li>
+          <li>Every answer shows what it cost.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Personality &amp; voice</h3>
+        <ul class="list">
+          <li><b>Unfiltered KITT</b> (default): savagely sarcastic and foul-mouthed. It swears in every reply and alert and roasts your driving and your vehicle, using your live data as ammunition. Even the turn-by-turn directions get roasted, with the turn itself always said plainly first. <b>Classic KITT:</b> the polite TV version. Both follow strict rules: don't make things up, don't distract the driver.</li>
+          <li><b>Voices:</b> Gemini neural voices, or device text-to-speech (also the offline fallback).</li>
+          <li>Music ducks while KITT speaks.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Listening</h3>
+        <ul class="list">
+          <li><b>Speech input:</b> Auto, KITT's own Gemini transcription, or a device recognizer you pick.</li>
+          <li><b>Mic takeover guard:</b> when the head unit hijacks the mic into its stock voice app, KITT notices. The Microphone fix section gives copy-paste ADB commands to stop it.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Instant voice commands</h3>
+        <ul class="list">
+          <li>Run right away, no AI needed:
+            <ul>
+              <li>"open Spotify", "show the gauges page"</li>
+              <li>"stream YouTube", "close the stream"</li>
+              <li>"navigate to …", "cancel the route"</li>
+              <li>"play", "pause", "next track", "previous track"</li>
+              <li>"read my codes", "open diagnostics"</li>
+              <li>"start logging", "stop logging"</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>KITT speaks up</h3>
+        <ul class="list">
+          <li>Greets you at start-up and when the vehicle connects.</li>
+          <li><b>Alerts:</b> overheating, charging problems, new fault codes and your gauge limits (a gauge must stay past its limit for 20 seconds). Each is spoken at most twice per drive, then shown silently.</li>
+          <li><b>Road weather:</b> freezing rain, black ice, heavy snow or rain, fog, storms, strong wind (Open-Meteo), each at most every 3 hours.</li>
+          <li><b>Maintenance reminders</b>, at most twice a day.</li>
+          <li><b>Messages read aloud:</b> off, sender only, or the whole message.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>Keys and subscriptions</h3>
+        <ul class="list">
+          <li>You bring your own API key. Web-grounded answers list their sources.</li>
+          <li>Paying for Gemini, Claude or Perplexity Pro? KITT hands the question to that official app, because consumer subscriptions can't be used through an API.</li>
+        </ul>
+        <div class="hood">keys are encrypted on the device with an Android Keystore AES-GCM key and never leave it except in requests to the provider you chose.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scanner">
+    <h2>Car scanner <span class="tag">OBD-II</span></h2>
+    <p class="intro">Plug in an ELM327-compatible adapter (a Bluetooth or Wi-Fi diagnostic dongle) and get Car Scanner-style diagnostics.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Adapters</h3>
+        <ul class="list">
+          <li><b>Bluetooth Classic</b> (SPP/RFCOMM, with a channel-1 fallback for picky adapters).</li>
+          <li><b>Bluetooth Low Energy</b>, finding the adapter's read/write channels automatically.</li>
+          <li><b>Wi-Fi</b> (TCP).</li>
+          <li>Saved adapters are tried in turn, with auto-reconnect.</li>
+          <li>Protocol auto-detect or manual, and a fast-polling switch.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Gauges · Data</h3>
+        <ul class="list">
+          <li><b>Gauges:</b> your own dashboard in four styles: Dial, LED bar, Digital, Graph. High and low warning limits on any gauge.</li>
+          <li><b>Data:</b> live graphs of any sensor, and CSV data logging while you keep using the launcher, exportable anywhere.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Codes</h3>
+        <ul class="list">
+          <li>Stored, pending and permanent fault codes.</li>
+          <li>Freeze-frame data and emissions readiness (would you pass inspection).</li>
+          <li><b>Ask KITT</b> about any code.</li>
+          <li>Clearing codes is a manual button with a warning. Nothing clears them automatically.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Vehicle</h3>
+        <ul class="list">
+          <li><b>VIN decoding:</b> built-in with check-digit validation, plus an NHTSA lookup.</li>
+          <li><b>Battery &amp; charging:</b> resting, cranking and running voltage.</li>
+          <li><b>Maintenance schedule</b> with due-soon and overdue status, plus odometer tracking.</li>
+          <li><b>Fuel log:</b> measured full-to-full economy, cost per mile, range.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Tools</h3>
+        <ul class="list">
+          <li><b>Performance timer:</b> 0–60 mph, 1/4 mile, 60–0 braking (indicative; OBD speed has limited precision).</li>
+          <li>Mode 06 on-board test results, module scan, adapter identification.</li>
+          <li>A raw command console that only sends read-only commands.</li>
+          <li>A connection log that names which layer failed: Bluetooth, adapter, ELM init, ECU or decoding.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>PIDs · Link · Trips</h3>
+        <ul class="list">
+          <li><b>PIDs:</b> every standard sensor, manufacturer profiles auto-detected from your VIN (GM, Ford, Toyota, Stellantis, Honda, Nissan, Hyundai/Kia, VW group, BMW, Mercedes, Subaru, Mazda), and custom PIDs with Torque-style formulas like <code>((A*256)+B)/4</code>.</li>
+          <li><b>Link:</b> find, pair and connect adapters, pick the profile and protocol.</li>
+          <li><b>Trips:</b> each drive is logged once a second. See distance, time, speed and fuel economy for your last drive and the week.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <div class="hood">commands to the ELM327 are serialised, so background polling and on-demand requests never collide. ISO-TP multi-frame responses are reassembled. Only sensors on screen are polled; on CAN it batches up to 6 PIDs per request and falls back to single PIDs automatically, using response-count suffixes and engine-specific CAN headers. Values are stored in metric and converted for display.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="browser">
+    <h2>Browser <span class="tag">STREAM · AI · GAMES</span></h2>
+    <p class="intro">One shared, tabbed browser powers the Stream window on the Drive page, the AI page and the Games page.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Stream window</h3>
+        <ul class="list">
+          <li>Video and music over the map area. It keeps playing while driving, by design.</li>
+          <li><b>Video:</b> YouTube, Tubi, Pluto TV, Plex, Roku Channel, Xumo Play, Crackle, Kanopy, Hoopla, PBS, Twitch and more.</li>
+          <li><b>Music:</b> YT Music, Spotify, SoundCloud, Pandora, iHeartRadio, TuneIn, Amazon Music, Deezer, Bandcamp, SomaFM, Radio Garden and more.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Sites &amp; pages</h3>
+        <ul class="list">
+          <li><b>Save any site</b> with ★ Save, or import and export bookmarks under My sites.</li>
+          <li><b>Per site:</b> desktop or mobile layout, dark pages, ad blocking (never on YouTube), text size. Google sign-in always opens as mobile, so signing in works in either mode.</li>
+          <li><b>Same toolbar on all three:</b> Stream, AI and Games. ▲ ▼ scroll chat sites too, and Back steps back through pages everywhere.</li>
+          <li><b>Tabs;</b> pop-ups you trigger open as new tabs. Links that try to launch other apps are blocked.</li>
+          <li><b>Separate sign-ins</b> for each page.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>Sound keeps playing</h3>
+        <ul class="list">
+          <li>A page playing music or video keeps playing when you swipe to another home page. Its tab shows ♪.</li>
+          <li><b>One thing at a time:</b> starting sound on another page, or pressing play in another app such as YouTube Music, pauses it. KITT's voice only lowers it, and after a call it picks up again.</li>
+        </ul>
+        <div class="hood">a playing WebView leaving the screen is parked in a 1×1 view that stays attached, so the site still sees a visible page. Pages report playback through a JavaScript bridge, and the playing page holds Android audio focus.</div>
+      </div>
+      <div class="card">
+        <h3>Userscripts</h3>
+        <ul class="list">
+          <li>Install Tampermonkey-style <code>.user.js</code> scripts from Greasy Fork, a link, or pasted code.</li>
+          <li>They run as the page starts loading.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Helpers</h3>
+        <ul class="list">
+          <li>Close on-page pop-ups, scroll buttons, full screen, reload, find-the-install-link.</li>
+          <li><b>Game controllers:</b> buttons map to the keys web emulators expect; the stick works as a D-pad.</li>
+          <li><b>Voice to AI:</b> a spoken question can be typed into every open AI tab.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="settings">
+    <h2>Launcher settings <span class="tag">CONFIG</span></h2>
+    <p class="intro">Everything else that makes it yours.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Steering-wheel buttons</h3>
+        <ul class="list">
+          <li>"Learn" any button the head unit sends, then assign it:
+            <ul>
+              <li>Talk to KITT, Diagnostics</li>
+              <li>Next page, previous page, Drive page</li>
+              <li>Stream window, play/pause</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Start-up &amp; drivers</h3>
+        <ul class="list">
+          <li><b>Start-up routine:</b> on start, or on wake after 5+ minutes asleep, open a chosen app and/or resume audio.</li>
+          <li><b>Driver profiles:</b> personal settings per driver. Truck data (adapters, odometer, service, fuel) stays shared.</li>
+          <li><b>Default assistant:</b> set KITT as Android's assistant so the voice button opens it.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>Upkeep</h3>
+        <ul class="list">
+          <li><b>Backup and restore</b> all settings in one file. API keys are deliberately left out.</li>
+          <li><b>Updates:</b> checks a GitHub repository for new releases and installs them.</li>
+          <li><b>Report a problem:</b> one text report with recent crashes, the OBD connection log, your settings (keys removed) and the app's own log.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install <span class="tag">APK</span></h2>
+    <p class="intro">KITT Launcher isn't on the Play Store. Install it straight from the APK.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>First install</h3>
+        <ul class="list">
+          <li>On the head unit, open the <a href="https://github.com/tdater/KITT-Launcher-releases/releases/latest" style="color:var(--amber)">latest release</a> and download the <code>.apk</code> under Assets (or copy it over on a USB stick).</li>
+          <li>Open it, and allow your browser or file manager to install unknown apps when Android asks.</li>
+          <li>Press Home and choose <b>KITT Launcher</b>, then <b>Always</b>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Updates &amp; keys</h3>
+        <ul class="list">
+          <li><b>Updates:</b> KITT Config → Updates finds and installs new versions.</li>
+          <li><b>AI:</b> KITT's answers need your own Gemini or Perplexity API key, entered in KITT Config.</li>
+          <li><b>OBD:</b> any ELM327-compatible Bluetooth or Wi-Fi adapter.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="safety" class="safety">
+    <h2>Privacy and safety</h2>
+    <ul class="list">
+      <li><b>API keys</b> are encrypted on the device and never included in backups or problem reports.</li>
+      <li><b>No analytics or tracking.</b> The app only connects to the AI service you chose, Open-Meteo weather, the NHTSA VIN lookup, map tiles, OpenStreetMap search and routing (only when you search or navigate), and the sites you open.</li>
+      <li><b>The car is read-only.</b> No clearing codes, ECU changes or write commands unless you press the button for that exact action.</li>
+    </ul>
+  </section>
+
+  <footer>KITT LAUNCHER · Android 7.0+ · Provided as-is, no support · © 2026 travisdater. All rights reserved.</footer>
+</main>
