@@ -17,6 +17,8 @@ streaming and AI chat, and the always-on red scanner light.
 3. Press Home and choose **KITT Launcher**, then **Always**, to make it the home screen.
 
 Requires Android 7.0 or newer. Built for a 12.1" portrait head unit; landscape screens work too.
+For a 7" to 10" landscape head unit, get **[KITT Launcher.2](https://github.com/tdater/KITT-Launcher.2-releases)** instead
+([which one?](https://tdater.github.io/KITT-Launcher-releases/#editions)).
 
 ## Updates
 

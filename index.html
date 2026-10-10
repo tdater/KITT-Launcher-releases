@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="A Knight Rider (KITT) themed Android launcher for car head units: OBD-II scanner, a sarcastic AI co-pilot that sees your live vehicle data, map directions, streaming and the red scanner light.">
+<meta name="description" content="Knight Rider (KITT) themed Android launchers for car head units: KITT Launcher for big portrait screens and KITT Launcher.2 for 7-10 inch landscape screens. OBD-II scanner, a sarcastic AI co-pilot that sees your live vehicle data, map directions, streaming and the red scanner light.">
 <meta property="og:title" content="KITT Launcher">
 <meta property="og:description" content="Knight Rider themed Android car head-unit launcher: OBD-II scanner, AI co-pilot, directions and the red scanner light. Free APK download.">
 <meta property="og:type" content="website">
@@ -173,7 +173,27 @@
   .gallery-head { margin: 28px 0 12px; }
   @media (max-width: 860px) { .shots, .shots.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
+  /* Editions: the two launchers side by side */
+  .editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .edition { background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px; padding: 18px; display: grid; gap: 10px; align-content: start; }
+  .edition.two { border-color: var(--amber); }
+  .edition h3 { font-size: 20px; color: var(--text); }
+  .edition h3 span { color: var(--red); }
+  .edition.two h3 span { color: var(--amber); }
+  .edition .fit { font: 13px var(--mono); color: var(--amber); letter-spacing: .08em; text-transform: uppercase; }
+  .edition .pick { border-left: 2px solid var(--red); padding: 6px 12px; background: #1a0b09; border-radius: 0 3px 3px 0; }
+  .edition.two .pick { border-left-color: var(--amber); background: #1a1406; }
+  .edition .btn { justify-self: start; }
+  .edition.two .btn { border-color: var(--amber); background: #3a2a07; box-shadow: 0 0 14px rgba(255,176,0,.3); }
+  .compare { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 15px; }
+  .compare th, .compare td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--bezel); vertical-align: top; }
+  .compare thead th { font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--amber); }
+  .compare tbody th { font-weight: 600; color: var(--text); width: 26%; }
+  .compare td { color: var(--muted); }
+  .table-scroll { overflow-x: auto; }
+
   @media (max-width: 720px) {
+    .editions { grid-template-columns: 1fr; }
     .grid { grid-template-columns: 1fr; }
     .readouts { grid-template-columns: repeat(2, 1fr); }
     .theme-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -190,11 +210,12 @@
     <div class="eyebrow">Android head-unit launcher · Knight Industries 2000</div>
     <h1>KITT <span>Launcher</span></h1>
     <p class="lede">A Knight Rider home screen for Android car head units. It replaces the unit's stock home screen with a KITT-style dashboard, adds an OBD-II car scanner and an AI co-pilot named KITT that can see your truck's live data, and includes a browser for video, music, AI chat and games.</p>
-    <p class="lede">Built for a 12.1" portrait (9:16) Tesla-style head unit, and it adapts to landscape screens too. Native Kotlin and Jetpack Compose, Android 7.0 and up, with no Google Play Services and no analytics.</p>
+    <p class="lede">It comes in two editions: <b>KITT Launcher</b> for big portrait screens and <b>KITT Launcher.2</b> for 7" to 10" landscape screens. <a href="#editions" style="color:var(--amber)">Which one do I need?</a> Native Kotlin and Jetpack Compose, Android 7.0 and up, with no Google Play Services and no analytics.</p>
     <div class="download">
-      <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">Download the APK</a>
+      <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher APK</a>
+      <a class="btn" style="border-color:var(--amber);background:#3a2a07;box-shadow:0 0 14px rgba(255,176,0,.3)" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">KITT Launcher.2 APK</a>
       <a class="btn ghost" href="#install">How to install</a>
-      <small>Latest: <a href="#whats-new" style="color:var(--amber)">v1.1</a>. Free. Android 7.0+. No support: shared as-is.</small>
+      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.2</a>. Free. Android 7.0+. No support: shared as-is.</small>
     </div>
     <div class="readouts">
       <div class="readout"><b>10</b><small>Themes</small></div>
@@ -207,6 +228,7 @@
 
 <nav aria-label="Sections">
   <ul>
+    <li><a href="#editions">Which one?</a></li>
     <li><a href="#screens">Screens</a></li>
     <li><a href="#look">Look</a></li>
     <li><a href="#pages">Home pages</a></li>
@@ -221,6 +243,51 @@
 </nav>
 
 <main class="wrap">
+
+  <section id="editions">
+    <h2>Which one? <span class="tag">TWO EDITIONS</span></h2>
+    <p class="intro">Both are the same KITT: the same scanner, OBD-II tools, KITT AI, map directions, browser, themes and settings. What differs is the screen they're laid out for and how hard they work your head unit. They have different app IDs, so you can install both and try each one.</p>
+    <div class="editions">
+      <div class="edition">
+        <h3>KITT <span>Launcher</span></h3>
+        <div class="fit">Big portrait screens · 12.1" Tesla-style</div>
+        <p>The original. Laid out for a tall 9:16 screen: the map on top, gauges and apps in the middle, a full dock of trip, media and vehicle controls along the bottom, and page tabs above it.</p>
+        <ul class="list">
+          <li>Every animation at full frame rate on capable hardware.</li>
+          <li>Landscape screens work too: it switches to the side rail layout.</li>
+        </ul>
+        <p class="pick"><b>Pick it if</b> your head unit is a big portrait screen (11" to 13" Tesla-style), or a powerful unit you'd rather run at full detail.</p>
+        <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">Download KITT Launcher</a>
+      </div>
+      <div class="edition two">
+        <h3>KITT <span>Launcher.2</span></h3>
+        <div class="fit">7" to 10" landscape · 1024×600, 1280×720, 1280×800</div>
+        <p>Rebuilt for the short, wide screens most aftermarket head units have. On those screens, height is what runs out, so KITT and the page buttons move to a side rail and the dock shrinks to one slim row. The pages get nearly the full height.</p>
+        <ul class="list">
+          <li><b>Screen size</b> fits itself to the screen: a little smaller on short 1280×720 units, a little larger on big 10" panels.</li>
+          <li><b>Lite mode</b> turns itself on for budget units (3 GB of RAM or less, or four CPU cores or fewer). Fewer web pages stay loaded, the scanner runs at 30 fps and idle animations stop. Every feature still works.</li>
+          <li>The KITT panel puts the controls on the left and the conversation on the right, so answers stay readable.</li>
+        </ul>
+        <p class="pick"><b>Pick it if</b> your head unit is a typical 7", 9" or 10" landscape screen, especially a budget one that stutters with heavy apps.</p>
+        <a class="btn" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">Download KITT Launcher.2</a>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead><tr><th scope="col"></th><th scope="col">KITT Launcher</th><th scope="col">KITT Launcher.2</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Built for</th><td>12.1" portrait (9:16)</td><td>7"–10" landscape</td></tr>
+          <tr><th scope="row">Page buttons</th><td>Tabs above the dock</td><td>Side rail, with KITT on top</td></tr>
+          <tr><th scope="row">Dock</th><td>Full dock: trip, media, vehicle, KITT</td><td>One slim row: trip, media keys, Diag, Trips, Config, System</td></tr>
+          <tr><th scope="row">Screen size setting</th><td>Yes (Auto leaves portrait as is)</td><td>Yes (Auto fits 7"–10" screens)</td></tr>
+          <tr><th scope="row">Lite mode</th><td>Yes, Auto by hardware</td><td>Yes, Auto by hardware</td></tr>
+          <tr><th scope="row">Features</th><td colspan="2">Identical: OBD-II scanner, KITT AI, directions, browser, themes, settings</td></tr>
+          <tr><th scope="row">App ID</th><td><code>com.aiconsole.knightriderlauncher</code></td><td><code>com.aiconsole.kittlauncher2</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Why two editions? A layout that fills a 13" portrait screen wastes a 7" landscape one: tabs and a tall dock take a quarter of its height. Rather than squeeze one design onto both, each edition gets the layout that suits its screen. If the Launcher.2 download page is empty, its first build hasn't been published yet.</p>
+  </section>
 
   <section id="screens">
     <h2>Screens <span class="tag">TAP TO ENLARGE</span></h2>
@@ -239,8 +306,8 @@
         <figcaption><b>Turn-by-turn</b>The next turn with arrow and distance; KITT says it aloud.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="576" loading="lazy" alt="KITT: Unfiltered KITT reading the fault codes, with attitude."></button>
-        <figcaption><b>KITT</b>Unfiltered KITT reading the fault codes, with attitude.</figcaption>
+        <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="576" loading="lazy" alt="KITT: KITT reading the fault codes, with attitude."></button>
+        <figcaption><b>KITT</b>KITT reading the fault codes, with attitude.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/gauges-thumb.webp" width="400" height="576" loading="lazy" alt="Gauges: A full wall of live OBD gauges."></button>
@@ -311,8 +378,8 @@
     <h3 class="gallery-head">KITT Config, every setting</h3>
     <div class="shots compact">
       <figure class="shot">
-        <button type="button" data-full="screenshots/config-1.webp" aria-label="Enlarge: AI core & personality"><img src="screenshots/config-1-thumb.webp" width="300" height="432" loading="lazy" alt="AI core & personality: Gemini or Perplexity, models, web search, Unfiltered or Classic KITT."></button>
-        <figcaption><b>AI core & personality</b>Gemini or Perplexity, models, web search, Unfiltered or Classic KITT.</figcaption>
+        <button type="button" data-full="screenshots/config-1.webp" aria-label="Enlarge: AI core & personality"><img src="screenshots/config-1-thumb.webp" width="300" height="432" loading="lazy" alt="AI core & personality: Gemini or Perplexity, models, web search, Savage, Unfiltered or Classic KITT."></button>
+        <figcaption><b>AI core & personality</b>Gemini or Perplexity, models, web search, Savage, Unfiltered or Classic KITT.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/config-2.webp" aria-label="Enlarge: Voice & microphone"><img src="screenshots/config-2-thumb.webp" width="300" height="432" loading="lazy" alt="Voice & microphone: Neural or device voice, speech input and the mic takeover fix."></button>
@@ -335,7 +402,7 @@
         <figcaption><b>Buttons, profiles & upkeep</b>Steering-wheel buttons, driver profiles, backup, problem reports, updates.</figcaption>
       </figure>
     </div>
-    <p class="note">Captured on a 12.1" portrait head-unit emulator. Vehicle readings, the fault code and the trip are simulated with the app's demo mode, because no car was connected; on the road they come from your OBD adapter.</p>
+    <p class="note">KITT Launcher, captured on a 12.1" portrait head-unit emulator. Vehicle readings, the fault code and the trip are simulated with the app's demo mode, because no car was connected; on the road they come from your OBD adapter.</p>
   </section>
 
   <section id="look">
@@ -470,7 +537,8 @@
       <div class="card">
         <h3>Personality &amp; voice</h3>
         <ul class="list">
-          <li><b>Unfiltered KITT</b> (default): savagely sarcastic and foul-mouthed. It swears in every reply and alert and roasts your driving and your vehicle, using your live data as ammunition. Even the turn-by-turn directions get roasted, with the turn itself always said plainly first. <b>Classic KITT:</b> the polite TV version. Both follow strict rules: don't make things up, don't distract the driver.</li>
+          <li><b>Savage KITT</b> (default): Unfiltered with the dial past maximum. It swears in every sentence, is sarcastic about every fact, and ends every spoken line with a parting shot, while the facts and safety warnings stay exact.</li>
+          <li><b>Unfiltered KITT</b>: savagely sarcastic and foul-mouthed. It swears in every reply and alert and roasts your driving and your vehicle, using your live data as ammunition. Even the turn-by-turn directions get roasted, with the turn itself always said plainly first. <b>Classic KITT:</b> the polite TV version. Both follow strict rules: don't make things up, don't distract the driver.</li>
           <li><b>Voices:</b> Gemini neural voices, or device text-to-speech (also the offline fallback).</li>
           <li>Music ducks while KITT speaks.</li>
         </ul>
@@ -610,6 +678,14 @@
         </ul>
         <div class="hood">a playing WebView leaving the screen is parked in a 1×1 view that stays attached, so the site still sees a visible page. Pages report playback through a JavaScript bridge, and the playing page holds Android audio focus.</div>
       </div>
+      <div class="card wide">
+        <h3>Can't take the launcher down</h3>
+        <ul class="list">
+          <li><b>A stuck page is shut down, not the launcher.</b> A page that hangs, like a very long AI chat, used to freeze everything until the head unit fell back to its stock launcher. Now that page shows "Page stopped" with a Reload button, and everything else keeps running.</li>
+          <li><b>Light on memory:</b> pages you aren't looking at pause unless they're playing sound. When too many are open, the least recently used ones are unloaded and reload when you return. When Android runs low on memory, every hidden page is unloaded.</li>
+        </ul>
+        <div class="hood">WebView draws in lock-step with the page's renderer, so the renderer is watched from a background thread and terminated if it stops responding. Tabs on the dead renderer show a reload card instead of reloading in a loop.</div>
+      </div>
       <div class="card">
         <h3>Userscripts</h3>
         <ul class="list">
@@ -656,7 +732,7 @@
         <h3>Upkeep</h3>
         <ul class="list">
           <li><b>Backup and restore</b> all settings in one file. API keys are deliberately left out.</li>
-          <li><b>Updates:</b> checks a GitHub repository for new releases and installs them.</li>
+          <li><b>Updates:</b> checks GitHub for new releases, shows download progress and installs them. On Android 12 and up, updates after the first one install without a confirmation screen.</li>
           <li><b>Report a problem:</b> one text report with recent crashes, the OBD connection log, your settings (keys removed) and the app's own log.</li>
         </ul>
       </div>
@@ -665,20 +741,21 @@
 
   <section id="install">
     <h2>Install <span class="tag">APK</span></h2>
-    <p class="intro">KITT Launcher isn't on the Play Store. Install it straight from the APK.</p>
+    <p class="intro">Neither edition is on the Play Store. Install straight from the APK: <a href="https://github.com/tdater/KITT-Launcher-releases/releases/latest" style="color:var(--amber)">KITT Launcher</a> or <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
       <div class="card">
         <h3>First install</h3>
         <ul class="list">
-          <li>On the head unit, open the <a href="https://github.com/tdater/KITT-Launcher-releases/releases/latest" style="color:var(--amber)">latest release</a> and download the <code>.apk</code> under Assets (or copy it over on a USB stick).</li>
+          <li>On the head unit, open the latest release of your edition and download the <code>.apk</code> under Assets (or copy it over on a USB stick).</li>
           <li>Open it, and allow your browser or file manager to install unknown apps when Android asks.</li>
-          <li>Press Home and choose <b>KITT Launcher</b>, then <b>Always</b>.</li>
+          <li>Press Home and choose <b>KITT Launcher</b> or <b>KITT Launcher.2</b>, then <b>Always</b>.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Updates &amp; keys</h3>
         <ul class="list">
-          <li><b>Updates:</b> KITT Config → Updates finds and installs new versions.</li>
+          <li><b>Updates:</b> KITT Config → Updates finds and installs new versions. Each edition updates from its own download page.</li>
+          <li><b>Built it yourself, or installed a test build?</b> Android only updates an app with one signed by the same key. If Updates says the key is different, use Backup, uninstall once, and install the release APK. Updates work from then on.</li>
           <li><b>AI:</b> KITT's answers need your own Gemini or Perplexity API key, entered in KITT Config.</li>
           <li><b>OBD:</b> any ELM327-compatible Bluetooth or Wi-Fi adapter.</li>
         </ul>
@@ -690,6 +767,18 @@
     <h2>What's new <span class="tag">RELEASES</span></h2>
     <p class="intro">Installed copies update from KITT Config → Updates. <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">All releases</a>.</p>
     <div class="grid">
+      <div class="card wide">
+        <h3>v1.2 · and the first KITT Launcher.2</h3>
+        <ul class="list">
+          <li><b>AI page no longer freezes the launcher:</b> a stuck page (long Claude chats were the usual cause) is shut down and offers Reload, instead of freezing everything until the head unit fell back to its stock launcher.</li>
+          <li><b>Updates that actually install:</b> no download time limit, so slow phone hotspots work. The app shows download progress and every install result, and checks the APK first. On Android 12+, later updates skip the confirmation screen.</li>
+          <li><b>Lighter browser:</b> hidden pages pause and are unloaded when memory is short.</li>
+          <li><b>Lite mode</b> and a <b>Screen size</b> setting. On landscape screens, a side-rail layout.</li>
+          <li><b>Savage KITT</b>, the new default personality.</li>
+          <li><b>Freeze reports:</b> if the launcher ever stalls, Report a problem now shows where.</li>
+          <li><b>New: KITT Launcher.2</b>, the 7"–10" landscape edition. <a href="#editions" style="color:var(--amber)">What's different</a>.</li>
+        </ul>
+      </div>
       <div class="card">
         <h3>v1.1</h3>
         <ul class="list">
@@ -716,7 +805,7 @@
     </ul>
   </section>
 
-  <footer>KITT LAUNCHER · Android 7.0+ · Provided as-is, no support · © 2026 travisdater. All rights reserved.</footer>
+  <footer>KITT LAUNCHER · KITT LAUNCHER.2 · Android 7.0+ · Provided as-is, no support · © 2026 travisdater. All rights reserved.</footer>
 </main>
 <dialog class="viewer" id="viewer">
   <form method="dialog"><button>Close ✕</button></form>
