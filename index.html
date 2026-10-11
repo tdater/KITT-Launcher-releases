@@ -170,8 +170,10 @@
   dialog.viewer button { all: unset; cursor: pointer; font: 600 13px var(--display); letter-spacing: .12em; color: var(--text);
     border: 1px solid var(--bezel); padding: 6px 12px; border-radius: 3px; }
   .shots.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .shots.landscape { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery-head { margin: 28px 0 12px; }
   @media (max-width: 860px) { .shots, .shots.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .shots.landscape { grid-template-columns: 1fr; } }
 
   /* Editions: the two launchers side by side */
   .editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -215,7 +217,7 @@
       <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher APK</a>
       <a class="btn" style="border-color:var(--amber);background:#3a2a07;box-shadow:0 0 14px rgba(255,176,0,.3)" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">KITT Launcher.2 APK</a>
       <a class="btn ghost" href="#install">How to install</a>
-      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.2</a> · KITT Launcher.2 <a href="#whats-new" style="color:var(--amber)">v1.0</a>. Free. Android 7.0+. No support: shared as-is.</small>
+      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.3</a> · KITT Launcher.2 <a href="#whats-new" style="color:var(--amber)">v1.1</a>. Free. Android 7.0+. No support: shared as-is.</small>
     </div>
     <div class="readouts">
       <div class="readout"><b>10</b><small>Themes</small></div>
@@ -256,6 +258,7 @@
           <li>Every animation at full frame rate on capable hardware.</li>
           <li>Landscape screens work too: it switches to the side rail layout.</li>
         </ul>
+        <a href="#screens" style="line-height:0;display:flex;justify-content:center;background:#000;border:1px solid var(--bezel);border-radius:4px"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="KITT Launcher Drive page on a 12.1 inch portrait screen" style="height:281px;width:auto"></a>
         <p class="pick"><b>Pick it if</b> your head unit is a big portrait screen (11" to 13" Tesla-style), or a powerful unit you'd rather run at full detail.</p>
         <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">Download KITT Launcher</a>
       </div>
@@ -268,6 +271,7 @@
           <li><b>Lite mode</b> turns itself on for budget units (3 GB of RAM or less, or four CPU cores or fewer). Fewer web pages stay loaded, the scanner runs at 30 fps and idle animations stop. Every feature still works.</li>
           <li>The KITT panel puts the controls on the left and the conversation on the right, so answers stay readable.</li>
         </ul>
+        <a href="#screens-2" style="line-height:0"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="KITT Launcher.2 Drive page on a 7 inch landscape screen" style="width:100%;height:auto;border:1px solid var(--bezel);border-radius:4px"></a>
         <p class="pick"><b>Pick it if</b> your head unit is a typical 7", 9" or 10" landscape screen, especially a budget one that stutters with heavy apps.</p>
         <a class="btn" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">Download KITT Launcher.2</a>
       </div>
@@ -291,7 +295,7 @@
 
   <section id="screens">
     <h2>Screens <span class="tag">TAP TO ENLARGE</span></h2>
-    <p class="intro">KITT Launcher on a portrait head-unit screen.</p>
+    <p class="intro">KITT Launcher on a portrait head-unit screen. <a href="#screens-2" style="color:var(--amber)">KITT Launcher.2 on a 7" landscape screen</a> is further down.</p>
     <div class="shots">
       <figure class="shot">
         <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="Drive page: The night map follows the car, with speed, tach, vehicle status and the last trip underneath."></button>
@@ -403,6 +407,43 @@
       </figure>
     </div>
     <p class="note">KITT Launcher, captured on a 12.1" portrait head-unit emulator. Vehicle readings, the fault code and the trip are simulated with the app's demo mode, because no car was connected; on the road they come from your OBD adapter.</p>
+
+    <h3 class="gallery-head" id="screens-2" style="scroll-margin-top:64px">KITT Launcher.2 · 7" landscape, 1024×600</h3>
+    <div class="shots landscape">
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="Drive page: Map, live gauges and apps side by side, with KITT and the pages in the side rail and the slim dock below."></button>
+        <figcaption><b>Drive page</b>Map, live gauges and apps side by side, with KITT and the pages in the side rail and the slim dock below.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-kitt.webp" aria-label="Enlarge: Savage KITT"><img src="screenshots/l2-kitt-thumb.webp" width="480" height="281" loading="lazy" alt="Savage KITT: KITT announcing the vehicle link and a fault code, in the default Savage personality."></button>
+        <figcaption><b>Savage KITT</b>KITT announcing the vehicle link and a fault code, in the default Savage personality.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/l2-gauges-thumb.webp" width="480" height="281" loading="lazy" alt="Gauges: A full-height wall of live OBD gauges."></button>
+        <figcaption><b>Gauges</b>A full-height wall of live OBD gauges.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-codes.webp" aria-label="Enlarge: Fault codes"><img src="screenshots/l2-codes-thumb.webp" width="480" height="281" loading="lazy" alt="Fault codes: Stored codes in plain English, with emissions readiness below."></button>
+        <figcaption><b>Fault codes</b>Stored codes in plain English, with emissions readiness below.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/l2-ai-thumb.webp" width="480" height="281" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
+        <figcaption><b>AI page</b>Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-apps.webp" aria-label="Enlarge: App drawer"><img src="screenshots/l2-apps-thumb.webp" width="480" height="281" loading="lazy" alt="App drawer: Search, categories and an A to Z rail."></button>
+        <figcaption><b>App drawer</b>Search, categories and an A to Z rail.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-trips.webp" aria-label="Enlarge: Trip computer"><img src="screenshots/l2-trips-thumb.webp" width="480" height="281" loading="lazy" alt="Trip computer: Distance, time, speeds and fuel economy for the last drive."></button>
+        <figcaption><b>Trip computer</b>Distance, time, speeds and fuel economy for the last drive.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-display.webp" aria-label="Enlarge: Screen size & Lite mode"><img src="screenshots/l2-display-thumb.webp" width="480" height="281" loading="lazy" alt="Screen size & Lite mode: Fit the launcher to a 7&quot; to 10&quot; screen, and keep budget head units quick."></button>
+        <figcaption><b>Screen size & Lite mode</b>Fit the launcher to a 7" to 10" screen, and keep budget head units quick.</figcaption>
+      </figure>
+    </div>
+    <p class="note">KITT Launcher.2, captured on a 1024×600 landscape head-unit emulator, the classic 7" size, in demo mode with simulated vehicle data.</p>
   </section>
 
   <section id="look">
@@ -767,6 +808,12 @@
     <h2>What's new <span class="tag">RELEASES</span></h2>
     <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
+      <div class="card wide">
+        <h3>KITT Launcher v1.3 · KITT Launcher.2 v1.1</h3>
+        <ul class="list">
+          <li><b>"Hey KITT" no longer listens over your music.</b> It used to restart the microphone every few seconds even while music played, so some head units chimed or interrupted the music again and again. It now waits until nothing is playing; the steering-wheel voice button and the KITT button work any time.</li>
+        </ul>
+      </div>
       <div class="card wide">
         <h3>KITT Launcher v1.2 · KITT Launcher.2 v1.0</h3>
         <ul class="list">
