@@ -194,7 +194,17 @@
   .compare td { color: var(--muted); }
   .table-scroll { overflow-x: auto; }
 
+  /* Video clips */
+  .clips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .clips.portrait { grid-template-columns: repeat(2, minmax(0, 300px)); justify-content: start; }
+  .clip { margin: 0; display: grid; gap: 6px; align-content: start; }
+  .clip.wide { grid-column: 1 / -1; }
+  .clip video { width: 100%; height: auto; display: block; background: #000; border: 1px solid var(--bezel); border-radius: 4px; }
+  .clip figcaption { font-size: 14px; color: var(--muted); line-height: 1.45; }
+  .clip figcaption b { display: block; color: var(--amber); font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; }
+
   @media (max-width: 720px) {
+    .clips { grid-template-columns: 1fr; }
     .editions { grid-template-columns: 1fr; }
     .grid { grid-template-columns: 1fr; }
     .readouts { grid-template-columns: repeat(2, 1fr); }
@@ -211,7 +221,7 @@
   <header>
     <div class="eyebrow">Android head-unit launcher · Knight Industries 2000</div>
     <h1>KITT <span>Launcher</span></h1>
-    <p class="lede">A Knight Rider home screen for Android car head units. It replaces the unit's stock home screen with a KITT-style dashboard, adds an OBD-II car scanner and an AI co-pilot named KITT that can see your truck's live data, and includes a browser for video, music, AI chat and games.</p>
+    <p class="lede">A Knight Rider home screen for Android car head units. It replaces the unit's stock home screen with a KITT-style dashboard, adds an OBD-II car scanner and an AI co-pilot named KITT that can see your vehicle's live data, and includes a browser for video, music, AI chat and games.</p>
     <p class="lede">It comes in two editions: <b>KITT Launcher</b> for big portrait screens and <b>KITT Launcher.2</b> for 7" to 10" landscape screens. <a href="#editions" style="color:var(--amber)">Which one do I need?</a> Native Kotlin and Jetpack Compose, Android 7.0 and up, with no Google Play Services and no analytics.</p>
     <div class="download">
       <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher APK</a>
@@ -231,6 +241,7 @@
 <nav aria-label="Sections">
   <ul>
     <li><a href="#editions">Which one?</a></li>
+    <li><a href="#action">In action</a></li>
     <li><a href="#screens">Screens</a></li>
     <li><a href="#look">Look</a></li>
     <li><a href="#pages">Home pages</a></li>
@@ -291,6 +302,37 @@
       </table>
     </div>
     <p class="note">Why two editions? A layout that fills a 13" portrait screen wastes a 7" landscape one: tabs and a tall dock take a quarter of its height. Rather than squeeze one design onto both, each edition gets the layout that suits its screen.</p>
+  </section>
+
+  <section id="action">
+    <h2>In action <span class="tag">VIDEO</span></h2>
+    <p class="intro">Short clips recorded on head-unit emulators in demo mode, so the vehicle data is simulated. Clips play while they're on screen. Tap one for full screen.</p>
+    <h3 class="gallery-head">KITT Launcher.2 · 7" landscape</h3>
+    <div class="clips">
+      <figure class="clip">
+        <video src="videos/l2-tour.mp4" poster="videos/l2-tour-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top."></video>
+        <figcaption><b>Around the pages</b>Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/l2-kitt.mp4" poster="videos/l2-kitt-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="KITT comes online: The link comes up, the gauges come alive, and Savage KITT has an opinion about it."></video>
+        <figcaption><b>KITT comes online</b>The link comes up, the gauges come alive, and Savage KITT has an opinion about it.</figcaption>
+      </figure>
+      <figure class="clip wide">
+        <video src="videos/l2-themes.mp4" poster="videos/l2-themes-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="Themes: KITT, KARR, Outrun, Terminator, RoboCop and The Matrix with its digital rain."></video>
+        <figcaption><b>Themes</b>KITT, KARR, Outrun, Terminator, RoboCop and The Matrix with its digital rain.</figcaption>
+      </figure>
+    </div>
+    <h3 class="gallery-head">KITT Launcher · 12.1" portrait</h3>
+    <div class="clips portrait">
+      <figure class="clip">
+        <video src="videos/tour.mp4" poster="videos/tour-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media and Apps from the page tabs."></video>
+        <figcaption><b>Around the pages</b>Drive, Gauges, Media and Apps from the page tabs.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/kitt.mp4" poster="videos/kitt-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="KITT comes online: Gauges come alive as the vehicle link comes up."></video>
+        <figcaption><b>KITT comes online</b>Gauges come alive as the vehicle link comes up.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section id="screens">
@@ -571,7 +613,7 @@
         <h3>Perplexity Agent API</h3>
         <ul class="list">
           <li>Presets from <b>fast</b> to <b>high</b>, chosen separately for conversation and diagnostics.</li>
-          <li><b>Credit saving:</b> truck questions and chit-chat skip the paid web search. Weather, prices, recalls, scores and diagnostics still search.</li>
+          <li><b>Credit saving:</b> vehicle questions and chit-chat skip the paid web search. Weather, prices, recalls, scores and diagnostics still search.</li>
           <li>Every answer shows what it cost.</li>
         </ul>
       </div>
@@ -765,7 +807,7 @@
         <h3>Start-up &amp; drivers</h3>
         <ul class="list">
           <li><b>Start-up routine:</b> on start, or on wake after 5+ minutes asleep, open a chosen app and/or resume audio.</li>
-          <li><b>Driver profiles:</b> personal settings per driver. Truck data (adapters, odometer, service, fuel) stays shared.</li>
+          <li><b>Driver profiles:</b> personal settings per driver. Vehicle data (adapters, odometer, service, fuel) stays shared.</li>
           <li><b>Default assistant:</b> set KITT as Android's assistant so the voice button opens it.</li>
         </ul>
       </div>
@@ -860,6 +902,22 @@
   <p></p>
 </dialog>
 <script>
+  // Clips play only while visible (and not at all for reduced motion); tap for full screen.
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clips = document.querySelectorAll('.clip video');
+  if ('IntersectionObserver' in window && !still) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.play().catch(() => {}); } else { e.target.pause(); }
+    }), { threshold: 0.4 });
+    clips.forEach((v) => io.observe(v));
+  } else {
+    clips.forEach((v) => { v.controls = true; });
+  }
+  clips.forEach((v) => v.addEventListener('click', () => {
+    if (v.requestFullscreen) v.requestFullscreen().catch(() => {});
+    v.controls = true; v.play().catch(() => {});
+  }));
+
   // Tap a screenshot to see it full size.
   const viewer = document.getElementById('viewer');
   document.querySelectorAll('[data-full]').forEach((b) => b.addEventListener('click', () => {
