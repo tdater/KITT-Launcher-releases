@@ -227,7 +227,7 @@
       <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher APK</a>
       <a class="btn" style="border-color:var(--amber);background:#3a2a07;box-shadow:0 0 14px rgba(255,176,0,.3)" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">KITT Launcher.2 APK</a>
       <a class="btn ghost" href="#install">How to install</a>
-      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.3</a> · KITT Launcher.2 <a href="#whats-new" style="color:var(--amber)">v1.1</a>. Free. Android 7.0+. No support: shared as-is.</small>
+      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.4</a> · KITT Launcher.2 <a href="#whats-new" style="color:var(--amber)">v1.2</a>. Free. Android 7.0+. No support: shared as-is.</small>
     </div>
     <div class="readouts">
       <div class="readout"><b>10</b><small>Themes</small></div>
@@ -248,6 +248,7 @@
     <li><a href="#kitt">KITT AI</a></li>
     <li><a href="#scanner">Car scanner</a></li>
     <li><a href="#browser">Browser</a></li>
+    <li><a href="#ride-along">Rides along</a></li>
     <li><a href="#settings">Settings</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#whats-new">What's new</a></li>
@@ -620,6 +621,7 @@
       <div class="card">
         <h3>Personality &amp; voice</h3>
         <ul class="list">
+          <li><b>KARR</b>: KITT's evil twin. Cold, superior and quietly menacing, with no swearing. Same accuracy and safety rules.</li>
           <li><b>Savage KITT</b> (default): Unfiltered with the dial past maximum. It swears in every sentence, is sarcastic about every fact, and ends every spoken line with a parting shot, while the facts and safety warnings stay exact.</li>
           <li><b>Unfiltered KITT</b>: savagely sarcastic and foul-mouthed. It swears in every reply and alert and roasts your driving and your vehicle, using your live data as ammunition. Even the turn-by-turn directions get roasted, with the turn itself always said plainly first. <b>Classic KITT:</b> the polite TV version. Both follow strict rules: don't make things up, don't distract the driver.</li>
           <li><b>Voices:</b> Gemini neural voices, or device text-to-speech (also the offline fallback).</li>
@@ -769,6 +771,14 @@
         </ul>
         <div class="hood">WebView draws in lock-step with the page's renderer, so the renderer is watched from a background thread and terminated if it stops responding. Tabs on the dead renderer show a reload card instead of reloading in a loop.</div>
       </div>
+      <div class="card wide">
+        <h3>Reading and data</h3>
+        <ul class="list">
+          <li><b>Big text:</b> on the AI page, the latest answer in large type, with read-aloud.</li>
+          <li><b>Mini player:</b> a video in the stream window keeps playing in a corner when you leave the Drive page. Tap it to go back.</li>
+          <li><b>Data saver</b> per site: no images, and videos wait for a tap. Handy on a phone hotspot.</li>
+        </ul>
+      </div>
       <div class="card">
         <h3>Userscripts</h3>
         <ul class="list">
@@ -782,6 +792,49 @@
           <li>Close on-page pop-ups, scroll buttons, full screen, reload, find-the-install-link.</li>
           <li><b>Game controllers:</b> buttons map to the keys web emulators expect; the stick works as a D-pad.</li>
           <li><b>Voice to AI:</b> a spoken question can be typed into every open AI tab.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ride-along">
+    <h2>KITT rides along <span class="tag">NEW</span></h2>
+    <p class="intro">KITT now pays attention while you drive, using the data it already reads. Everything is read-only: nothing is ever sent to the vehicle.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Commentary &amp; report cards</h3>
+        <ul class="list">
+          <li>Hard stops, revving a cold engine, ten minutes of idling, full throttle: KITT has something to say, rate-limited so it doesn't nag.</li>
+          <li>When you switch off, the drive gets a grade (A+ to F) for smoothness, idling and economy against your 30-day average.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Fuel &amp; parking</h3>
+        <ul class="list">
+          <li>Below 12% fuel, KITT offers the nearest gas station and routes you there.</li>
+          <li>Where you switched off is saved with its address. Scan the code on the Trips screen to keep it on your phone.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Speed limits</h3>
+        <ul class="list">
+          <li>The road's limit from OpenStreetMap shows next to the speedometer and turns red when you're over it.</li>
+          <li>Optional spoken warning when you stay over by more than your margin.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Pursuit mode &amp; Maps + KITT</h3>
+        <ul class="list">
+          <li>Pursuit mode: a full-screen 1982-style dash with a bar-graph speedometer and KITT's voice box.</li>
+          <li>Maps + KITT: opens Google Maps or Waze with a narrow KITT panel (speed, limit, revs, temperature, fuel, media keys) beside it.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>Look after itself</h3>
+        <ul class="list">
+          <li><b>System check:</b> every permission and setting KITT needs, each with a fix button.</li>
+          <li><b>Report to phone:</b> a QR code your phone scans on the same Wi-Fi or hotspot, or the share sheet.</li>
+          <li><b>Weekly backup</b> to Downloads/KITT, and <b>What's new</b> after every update.</li>
         </ul>
       </div>
     </div>
@@ -850,6 +903,21 @@
     <h2>What's new <span class="tag">RELEASES</span></h2>
     <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
+      <div class="card wide">
+        <h3>KITT Launcher v1.4 · KITT Launcher.2 v1.2</h3>
+        <ul class="list">
+          <li><b>KITT rides along:</b> it comments on hard stops, revving a cold engine, long idling and full throttle, and grades every drive when you switch off. Report cards are on the Trips screen.</li>
+          <li><b>Low fuel:</b> KITT warns you and finds the nearest gas station with one tap, or say "find gas".</li>
+          <li><b>Parking spot:</b> saved when you switch off. Scan the QR code on the Trips screen to put it on your phone, or ask "where did I park?".</li>
+          <li><b>Speed limits</b> from OpenStreetMap on the map, with an optional warning when you stay over.</li>
+          <li><b>System check</b> in KITT Config: every permission and setting KITT needs, each with a fix button. KITT also tells you if another launcher has taken over.</li>
+          <li><b>Problem reports to your phone</b> with a QR code or the share sheet. No USB stick needed.</li>
+          <li><b>Pursuit mode:</b> a full-screen 1982-style dash. <b>Maps + KITT:</b> KITT's panel next to Google Maps or Waze.</li>
+          <li><b>KARR</b>, the evil-twin personality, and optional KITT <b>sound effects</b>.</li>
+          <li><b>Night theme</b> that switches at sunset, <b>big text</b> for AI answers, a <b>mini player</b> for the stream window, per-site <b>data saver</b>.</li>
+          <li><b>Weekly backup</b> to Downloads/KITT that restores into either edition, <b>GM tire pressures</b> (community-sourced) and <b>What's new</b> after each update.</li>
+        </ul>
+      </div>
       <div class="card wide">
         <h3>KITT Launcher v1.3 · KITT Launcher.2 v1.1</h3>
         <ul class="list">
