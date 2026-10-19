@@ -171,9 +171,10 @@
     border: 1px solid var(--bezel); padding: 6px 12px; border-radius: 3px; }
   .shots.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .shots.landscape { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shots.landscape.films { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gallery-head { margin: 28px 0 12px; }
-  @media (max-width: 860px) { .shots, .shots.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 560px) { .shots.landscape { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .shots, .shots.compact, .shots.landscape.films { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .shots.landscape, .shots.landscape.films { grid-template-columns: 1fr; } }
 
   /* Editions: the two launchers side by side */
   .editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -311,16 +312,20 @@
     <h3 class="gallery-head">KITT Launcher.2 · 7" landscape</h3>
     <div class="clips">
       <figure class="clip">
-        <video src="videos/l2-tour.mp4" poster="videos/l2-tour-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top."></video>
+        <video src="videos/l2-tour.mp4" poster="videos/l2-tour-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top."></video>
         <figcaption><b>Around the pages</b>Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top.</figcaption>
       </figure>
       <figure class="clip">
-        <video src="videos/l2-kitt.mp4" poster="videos/l2-kitt-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="KITT comes online: The link comes up, the gauges come alive, and Savage KITT has an opinion about it."></video>
+        <video src="videos/l2-kitt.mp4" poster="videos/l2-kitt-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="KITT comes online: The link comes up, the gauges come alive, and Savage KITT has an opinion about it."></video>
         <figcaption><b>KITT comes online</b>The link comes up, the gauges come alive, and Savage KITT has an opinion about it.</figcaption>
       </figure>
-      <figure class="clip wide">
-        <video src="videos/l2-themes.mp4" poster="videos/l2-themes-poster.webp" width="1024" height="544" muted loop playsinline preload="none" aria-label="Themes: KITT, KARR, Outrun, Terminator, RoboCop and The Matrix with its digital rain."></video>
-        <figcaption><b>Themes</b>KITT, KARR, Outrun, Terminator, RoboCop and The Matrix with its digital rain.</figcaption>
+      <figure class="clip">
+        <video src="videos/l2-themes.mp4" poster="videos/l2-themes-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Themes: From KITT and KARR to Outrun and the film HUDs, each with its own scanner and panels."></video>
+        <figcaption><b>Themes</b>From KITT and KARR to Outrun and the film HUDs, each with its own scanner and panels.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/l2-editions.mp4" poster="videos/l2-editions-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Film editions: Liquid Metal, ED-209, Zion, Hill Valley 2015 and the rest, each with its own colours and readouts."></video>
+        <figcaption><b>Film editions</b>Liquid Metal, ED-209, Zion, Hill Valley 2015 and the rest, each with its own colours and readouts.</figcaption>
       </figure>
     </div>
     <h3 class="gallery-head">KITT Launcher · 12.1" portrait</h3>
@@ -333,6 +338,14 @@
         <video src="videos/kitt.mp4" poster="videos/kitt-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="KITT comes online: Gauges come alive as the vehicle link comes up."></video>
         <figcaption><b>KITT comes online</b>The map follows the car, the gauges come alive as the vehicle link comes up, and KITT says so in its own words.</figcaption>
       </figure>
+      <figure class="clip">
+        <video src="videos/themes.mp4" poster="videos/themes-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Themes: KITT, Retro VFD, Outrun, Terminator, RoboCop, The Matrix and Stealth."></video>
+        <figcaption><b>Themes</b>KITT, Retro VFD, Outrun, Terminator, RoboCop, The Matrix and Stealth.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/editions.mp4" poster="videos/editions-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Film editions: Three of each film theme, every one with its own colours, scanner and character."></video>
+        <figcaption><b>Film editions</b>Three of each film theme, every one with its own colours, scanner and character.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -341,8 +354,8 @@
     <p class="intro">KITT Launcher on a portrait head-unit screen. <a href="#screens-2" style="color:var(--amber)">KITT Launcher.2 on a 7" landscape screen</a> is further down.</p>
     <div class="shots">
       <figure class="shot">
-        <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="Drive page: The night map follows the car, with speed, tach, vehicle status and the last trip underneath."></button>
-        <figcaption><b>Drive page</b>The night map follows the car, with speed, tach, vehicle status and the last trip underneath.</figcaption>
+        <button type="button" data-full="screenshots/drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="Drive page: The map follows the car, with speed, tach, vehicle status and the last trip underneath."></button>
+        <figcaption><b>Drive page</b>The map follows the car, with speed, tach, vehicle status and the last trip underneath.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/route.webp" aria-label="Enlarge: Map search"><img src="screenshots/route-thumb.webp" width="400" height="576" loading="lazy" alt="Map search: Search a place, then preview the route with distance, time and arrival."></button>
@@ -387,6 +400,10 @@
       <figure class="shot">
         <button type="button" data-full="screenshots/quick-settings.webp" aria-label="Enlarge: Quick settings"><img src="screenshots/quick-settings-thumb.webp" width="400" height="576" loading="lazy" alt="Quick settings: Volume, brightness, night mode and shortcuts from the status strip."></button>
         <figcaption><b>Quick settings</b>Volume, brightness, night mode and shortcuts from the status strip.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/driving.webp" aria-label="Enlarge: Driving layout"><img src="screenshots/driving-thumb.webp" width="400" height="576" loading="lazy" alt="Driving layout: Big media and volume buttons, KITT and your top three apps while the car is moving."></button>
+        <figcaption><b>Driving layout</b>Big media and volume buttons, KITT and your top three apps while the car is moving.</figcaption>
       </figure>
     </div>
 
@@ -485,6 +502,10 @@
         <button type="button" data-full="screenshots/l2-display.webp" aria-label="Enlarge: Screen size & Lite mode"><img src="screenshots/l2-display-thumb.webp" width="480" height="281" loading="lazy" alt="Screen size & Lite mode: Fit the launcher to a 7&quot; to 10&quot; screen, and keep budget head units quick."></button>
         <figcaption><b>Screen size & Lite mode</b>Fit the launcher to a 7" to 10" screen, and keep budget head units quick.</figcaption>
       </figure>
+      <figure class="shot">
+        <button type="button" data-full="screenshots/l2-driving.webp" aria-label="Enlarge: Driving layout"><img src="screenshots/l2-driving-thumb.webp" width="480" height="281" loading="lazy" alt="Driving layout: A bigger rail with just the driving pages, big media and volume buttons, and your top three apps."></button>
+        <figcaption><b>Driving layout</b>A bigger rail with just the driving pages, big media and volume buttons, and your top three apps.</figcaption>
+      </figure>
     </div>
     <p class="note">KITT Launcher.2, captured on a 1024×600 landscape head-unit emulator, the classic 7" size, in demo mode with simulated vehicle data.</p>
   </section>
@@ -526,6 +547,7 @@
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-terminator.webp" aria-label="Enlarge: Terminator theme"><img src="screenshots/theme-terminator-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Terminator theme"></button><figcaption>Terminator</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-robocop.webp" aria-label="Enlarge: RoboCop theme"><img src="screenshots/theme-robocop-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the RoboCop theme"></button><figcaption>RoboCop</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-colorado.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/theme-colorado-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the The Matrix theme"></button><figcaption>The Matrix</figcaption></figure>
+          <figure class="theme-shot"><button type="button" data-full="screenshots/theme-backtothefuture.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/theme-backtothefuture-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Back to the Future theme"></button><figcaption>Back to the Future</figcaption></figure>
         </div>
         <ul class="list">
           <li><b>Film HUD themes</b> change much more than colours: fonts, panel shapes, the scanner, panel frames, a full-screen scanline effect and themed status text.
@@ -551,10 +573,24 @@
         <div class="shots landscape" style="margin-top:12px">
           <figure class="shot"><button type="button" data-full="screenshots/l2-theme-terminator.webp" aria-label="Enlarge: Terminator theme"><img src="screenshots/l2-theme-terminator-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator theme: red vision, targeting box on the vehicle and scrolling machine code"></button><figcaption><b>Terminator</b>Targeting box on the vehicle, machine code down the side.</figcaption></figure>
           <figure class="shot"><button type="button" data-full="screenshots/l2-theme-robocop.webp" aria-label="Enlarge: RoboCop theme"><img src="screenshots/l2-theme-robocop-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop theme: visor blue with a reticle tracking the vehicle"></button><figcaption><b>RoboCop</b>Visor reticle, Prime Directives, OCP unit.</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-matrix.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/l2-theme-matrix-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix theme: green terminal panels over digital rain"></button><figcaption><b>The Matrix</b>Terminal panels over the rain; the Agent answers.</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-future.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/l2-theme-future-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future theme: time circuits, flux capacitor and steel panels"></button><figcaption><b>Back to the Future</b>Time circuits, flux capacitor, DeLorean steel.</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-colorado.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/l2-theme-colorado-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix theme: green terminal panels over digital rain"></button><figcaption><b>The Matrix</b>Terminal panels over the rain; the Agent answers.</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-backtothefuture.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/l2-theme-backtothefuture-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future theme: time circuits, flux capacitor and steel panels"></button><figcaption><b>Back to the Future</b>Time circuits, flux capacitor, DeLorean steel.</figcaption></figure>
         </div>
-        <p class="note">Film theme screenshots from KITT Launcher.2 on a 7" landscape emulator in demo mode.</p>
+        <h3 class="gallery-head">Film editions</h3>
+        <div class="shots landscape films">
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-t800.webp" aria-label="Enlarge: T-800 Vision edition"><img src="screenshots/l2-edition-t800-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator, T-800 Vision edition: red vision and machine code"></button><figcaption><b>T-800 Vision</b>Terminator</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-t1000.webp" aria-label="Enlarge: Liquid Metal edition"><img src="screenshots/l2-edition-t1000-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator, Liquid Metal edition: mercury chrome panels"></button><figcaption><b>Liquid Metal</b>Terminator</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-visor.webp" aria-label="Enlarge: Visor edition"><img src="screenshots/l2-edition-visor-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, Visor edition: cold blue glow and a reticle on the vehicle"></button><figcaption><b>Visor</b>RoboCop</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-ed209.webp" aria-label="Enlarge: ED-209 edition"><img src="screenshots/l2-edition-ed209-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, ED-209 edition: gunmetal and hazard stripes"></button><figcaption><b>ED-209</b>RoboCop</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-deltacity.webp" aria-label="Enlarge: OCP Delta City edition"><img src="screenshots/l2-edition-deltacity-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, OCP Delta City edition: navy and executive gold"></button><figcaption><b>OCP Delta City</b>RoboCop</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-code.webp" aria-label="Enlarge: Digital Rain edition"><img src="screenshots/l2-edition-code-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Digital Rain edition: green phosphor terminal"></button><figcaption><b>Digital Rain</b>The Matrix</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-realworld.webp" aria-label="Enlarge: Real World edition"><img src="screenshots/l2-edition-realworld-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Real World edition: the hovercraft's cold blue"></button><figcaption><b>Real World</b>The Matrix</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-zion.webp" aria-label="Enlarge: Zion edition"><img src="screenshots/l2-edition-zion-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Zion edition: amber firelight"></button><figcaption><b>Zion</b>The Matrix</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-delorean1985.webp" aria-label="Enlarge: DeLorean 1985 edition"><img src="screenshots/l2-edition-delorean1985-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, DeLorean 1985 edition: brushed steel and time circuits"></button><figcaption><b>DeLorean 1985</b>Back to the Future</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-hillvalley2015.webp" aria-label="Enlarge: Hill Valley 2015 edition"><img src="screenshots/l2-edition-hillvalley2015-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, Hill Valley 2015 edition: hover-conversion neon"></button><figcaption><b>Hill Valley 2015</b>Back to the Future</figcaption></figure>
+          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-frontier1885.webp" aria-label="Enlarge: Hill Valley 1885 edition"><img src="screenshots/l2-edition-frontier1885-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, Hill Valley 1885 edition: brass, sepia and steam"></button><figcaption><b>Hill Valley 1885</b>Back to the Future</figcaption></figure>
+        </div>
+        <p class="note">Film theme and edition screenshots from KITT Launcher.2 on a 7" landscape emulator in demo mode. Future War 2029 isn't pictured: its effects are too heavy for the emulator used to capture these.</p>
       </div>
     </div>
   </section>
