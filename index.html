@@ -566,7 +566,7 @@
       <div class="card">
         <h3>Drive</h3>
         <ul class="list">
-          <li><b>Live map</b> (OpenStreetMap, centred on you) with your apps or vehicle status underneath. Side by side on wide screens.</li>
+          <li><b>Live map</b> (OpenStreetMap, centred on you) with your apps or vehicle status underneath. Side by side on wide screens. Places you've seen stay viewable without signal, and you can add a map file of your area for dead zones.</li>
           <li><b>Search and turn-by-turn directions</b> right on the map (below).</li>
           <li><b>Stream window</b> can take over the map area.</li>
           <li>Swiping pauses while you drag the map or a video.</li>
@@ -610,7 +610,7 @@
         <h3>Always there</h3>
         <ul class="list">
           <li><b>Dock</b> fixed at the bottom.</li>
-          <li><b>Driving layout</b> (optional, off by default): bigger, simpler controls while moving. It waits about 15 seconds of driving and 60 seconds stopped before switching, so it doesn't flicker in traffic.</li>
+          <li><b>Driving layout</b> (optional, off by default): bigger, simpler controls while moving: big media and volume buttons, KITT and your top three apps, and a bigger side rail and bottom bar with just the driving pages. It waits about 15 seconds of driving and 60 seconds stopped before switching, so it doesn't flicker in traffic.</li>
           <li><b>Quick Settings:</b> brightness, sound, Wi-Fi, Bluetooth, night mode and a shortcut to Android Settings.</li>
         </ul>
       </div>
@@ -619,7 +619,7 @@
 
   <section id="kitt">
     <h2>KITT, the AI co-pilot <span class="tag">VOICE</span></h2>
-    <p class="intro">Talk or type. Use the mic button, the steering-wheel voice button, or say "Hey KITT" if you turn that on. Every question includes your live readings, fault codes, vehicle identity and a 30-day driving summary, so "how's my coolant?" and "how was that drive?" just work.</p>
+    <p class="intro">Talk or type. Use the mic button, the steering-wheel voice button, or say "Hey KITT" if you turn that on (it can run fully offline, even over music, and quick commands like "KITT, pause music" or "KITT, find gas" work with no internet at all). Every question includes your live readings, fault codes, vehicle identity and a 30-day driving summary, so "how's my coolant?" and "how was that drive?" just work.</p>
     <div class="grid">
       <div class="card">
         <h3>Google Gemini</h3>
@@ -829,6 +829,7 @@
         <ul class="list">
           <li>Hard stops, revving a cold engine, ten minutes of idling, full throttle: KITT has something to say, rate-limited so it doesn't nag.</li>
           <li>When you switch off, the drive gets a grade (A+ to F) for smoothness, idling and economy against your 30-day average.</li>
+          <li><b>Last-drive recap</b> when you set off again: fault codes still showing, a weak battery, last time's grade.</li>
         </ul>
       </div>
       <div class="card">
@@ -891,7 +892,9 @@
         <h3>Upkeep</h3>
         <ul class="list">
           <li><b>Backup and restore</b> all settings in one file. API keys are deliberately left out.</li>
-          <li><b>Updates:</b> checks GitHub for new releases, shows download progress and installs them. On Android 12 and up, updates after the first one install without a confirmation screen.</li>
+          <li><b>Updates:</b> checks GitHub for new releases, shows download progress and installs them. On Android 12 and up, updates after the first one install without a confirmation screen. Turn on <b>Beta updates</b> to try test releases first.</li>
+          <li><b>Safe mode:</b> if KITT crashes at start-up a few times in a row, it starts without web pages and extras so the head unit is never stuck, with Report and Back to normal buttons.</li>
+          <li><b>Search in KITT Config:</b> type a word and jump to that setting.</li>
           <li><b>Report a problem:</b> one text report with recent crashes, the OBD connection log, your settings (keys removed) and the app's own log.</li>
         </ul>
       </div>
@@ -927,7 +930,20 @@
     <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
       <div class="card wide">
-        <h3>Next update: KITT Launcher v1.7 · KITT Launcher.2 v1.5</h3>
+        <h3>Next update: v1.8 for both editions</h3>
+        <ul class="list">
+          <li><b>Offline "Hey KITT":</b> a small listener on the head unit hears you with no internet and no chimes, even over music. Quick commands run on their own: "KITT, pause music", "KITT, next song", "KITT, find gas", "KITT, where did I park", "KITT, show gauges".</li>
+          <li><b>Safe mode:</b> if KITT ever crashes at start-up a few times in a row, it starts in safe mode so you're never stuck, with buttons to report the problem or go back to normal.</li>
+          <li><b>Last-drive recap:</b> one line when you set off: fault codes still showing, a weak battery, last time's grade.</li>
+          <li><b>Bigger buttons while driving:</b> volume controls, your top three apps, and a bigger rail and bottom bar with just the driving pages.</li>
+          <li><b>Search in KITT Config</b>, <b>beta updates</b>, and <b>offline map files</b> for dead zones.</li>
+          <li><b>Faster and steadier:</b> the home screen shows first on start-up; OBD adapters reconnect faster by remembering what worked; the offline voice frees its memory when idle and checks every download.</li>
+          <li><b>Fixes:</b> pages can no longer save files or open an installer without a tap; urgent alerts never wait on the offline voice; sign-ins and game launchers work again; controllers keep working after a restart and no button sticks.</li>
+          <li><b>One app, two editions:</b> KITT Launcher and KITT Launcher.2 now come from the same code, so every update reaches both at once. Both keep updating in place from KITT Config → Updates.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>KITT Launcher v1.7 · KITT Launcher.2 v1.5</h3>
         <ul class="list">
           <li><b>KITT neural (offline) voice:</b> free, natural voices that run on the head unit, with no API key and no internet once downloaded. Now the default; download one under KITT Config → Voice.</li>
           <li><b>Games page rebuilt from RetroTV:</b> retro-game site tiles, favourites, continue playing, game mode, an on-screen touch pad, and controllers that work with every kind of web emulator.</li>
