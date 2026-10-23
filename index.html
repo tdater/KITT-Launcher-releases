@@ -687,7 +687,7 @@
         <h3>Listening</h3>
         <ul class="list">
           <li><b>Speech input:</b> Auto, KITT's own Gemini transcription, or a device recognizer you pick.</li>
-          <li><b>Mic takeover guard:</b> when the head unit hijacks the mic into its stock voice app, KITT notices. The Microphone fix section gives copy-paste ADB commands to stop it.</li>
+          <li><b>Mic takeover guard:</b> when the head unit hijacks the mic into its stock voice app, KITT notices. The Microphone fix section gives copy-paste ADB commands to stop it, and can bring KITT back to the front after a takeover.</li>
         </ul>
       </div>
       <div class="card">
@@ -966,7 +966,16 @@
     <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
       <div class="card wide">
-        <h3>Next update: v1.8 for both editions</h3>
+        <h3>Next update: v1.9 for both editions</h3>
+        <ul class="list">
+          <li><b>Music library on the Media page:</b> a new Library tab lists the music apps on the head unit that share their library (Spotify, YouTube Music, USB players and others). Pick one, search it, or browse its playlists, artists and albums and tap to play, without opening the app. Apps that don't allow it show a message and an Open button instead.</li>
+          <li><b>Recently played:</b> the last songs, playlists and searches you started from KITT come back at the top of the Library, one tap to play again.</li>
+          <li><b>"Play" by voice:</b> "Hey KITT, play Nightcall on Spotify" searches that app's library and plays it. Leave out the app and KITT uses the one playing now or the one you used last.</li>
+          <li><b>Back from the radio screen:</b> some head units throw their stock radio screen over the launcher when an app starts audio or opens the mic. If that happens within a few seconds of KITT speaking, listening, or starting music, KITT brings itself back. Opening an app yourself is never undone. Turn it off under KITT Config → Microphone fix.</li>
+        </ul>
+      </div>
+      <div class="card wide">
+        <h3>KITT Launcher v1.8 · KITT Launcher.2 v1.8</h3>
         <ul class="list">
           <li><b>Offline "Hey KITT":</b> a small listener on the head unit hears you with no internet and no chimes, even over music. Quick commands run on their own: "KITT, pause music", "KITT, next song", "KITT, find gas", "KITT, where did I park", "KITT, show gauges".</li>
           <li><b>KITT offline speech:</b> the mic understands full questions and commands with no signal and no Google recognizer, using a small speech model on the head unit (30 MB download under KITT Config → Speech input). With offline "Hey KITT" on too, voice works anywhere.</li>
