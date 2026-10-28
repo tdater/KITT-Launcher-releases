@@ -187,6 +187,12 @@
   .edition .pick { border-left: 2px solid var(--red); padding: 6px 12px; background: #1a0b09; border-radius: 0 3px 3px 0; }
   .edition.two .pick { border-left-color: var(--amber); background: #1a1406; }
   .edition .btn { justify-self: start; }
+  .edition.holo { grid-column: 1 / -1; border-color: #00e5ff; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 18px; }
+  .edition.holo > * { grid-column: 1; }
+  .edition.holo > .holo-shot { grid-column: 2; grid-row: 1 / span 6; align-self: center; line-height: 0; }
+  .edition.holo h3 span, .edition.holo .fit { color: #00e5ff; }
+  .edition.holo .pick { border-left-color: #00e5ff; background: #061a1d; }
+  @media (max-width: 760px) { .edition.holo { grid-template-columns: 1fr; } .edition.holo > .holo-shot { grid-column: 1; grid-row: auto; } }
   .edition.two .btn { border-color: var(--amber); background: #3a2a07; box-shadow: 0 0 14px rgba(255,176,0,.3); }
   .compare { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 15px; }
   .compare th, .compare td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--bezel); vertical-align: top; }
@@ -260,8 +266,8 @@
 <main class="wrap">
 
   <section id="editions">
-    <h2>Which one? <span class="tag">TWO EDITIONS</span></h2>
-    <p class="intro">Both are the same KITT: the same scanner, OBD-II tools, KITT AI, map directions, browser, themes and settings. What differs is the screen they're laid out for and how hard they work your head unit. They have different app IDs, so you can install both and try each one.</p>
+    <h2>Which one? <span class="tag">THREE EDITIONS</span></h2>
+    <p class="intro">Both are the same KITT: the same scanner, OBD-II tools, KITT AI, map directions, browser, themes and settings. What differs is the screen they're laid out for and how hard they work your head unit. They have different app IDs, so you can install them side by side and try each one. <b>KITT Holo</b> is the newest: the same KITT with a redesigned cockpit.</p>
     <div class="editions">
       <div class="edition">
         <h3>KITT <span>Launcher</span></h3>
@@ -287,6 +293,19 @@
         <a href="#screens-2" style="line-height:0"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="KITT Launcher.2 Drive page on a 7 inch landscape screen" style="width:100%;height:auto;border:1px solid var(--bezel);border-radius:4px"></a>
         <p class="pick"><b>Pick it if</b> your head unit is a typical 7", 9" or 10" landscape screen, especially a budget one that stutters with heavy apps.</p>
         <a class="btn" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">Download KITT Launcher.2</a>
+      </div>
+      <div class="edition holo">
+        <h3>KITT <span>Holo</span></h3>
+        <div class="fit">Landscape or portrait · redesigned cockpit</div>
+        <p>The same KITT with a new cockpit. A hologram of your car turns slowly on the Drive page with the live data painted on it: engine heat, fuel, battery, exhaust, speed streaks and each tire's pressure on its wheel. It comes as two builds, one laid out for landscape and one for portrait screens.</p>
+        <ul class="list">
+          <li><b>Hologram car:</b> rendered in Blender, 72 views per body, blended frame to frame for a smooth turn. Lite mode holds a still three-quarter view.</li>
+          <li><b>Film Drive pages:</b> the Terminator, Matrix and RoboCop themes get their own three-panel Drive screen; Back to the Future keeps the time circuits.</li>
+          <li><b>Cockpit details:</b> a trip-computer dock with now playing, icon media keys, cockpit-style site tiles, and a CRT terminal with ECU cards in the KITT panel (Diagnose ECU, Read codes, Range report in one tap).</li>
+          <li><b>Film characters</b> may quote their films and speak with the characters' accents (the other editions keep original characters).</li>
+        </ul>
+        <a class="holo-shot" href="screenshots/holo-drive.webp"><img src="screenshots/holo-drive-thumb.webp" loading="lazy" alt="KITT Holo Drive page with the hologram car" style="width:100%;height:auto;border:1px solid var(--bezel);border-radius:4px"></a>
+        <p class="pick"><b>Pick it if</b> you want the full show and your head unit has the power for it. Download: <a href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest">Holo Landscape</a> or <a href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">Holo Portrait</a>.</p>
       </div>
     </div>
     <div class="table-scroll">
@@ -414,8 +433,8 @@
     <h3 class="gallery-head">Diagnostics, every tab</h3>
     <div class="shots compact">
       <figure class="shot">
-        <button type="button" data-full="screenshots/diag-gauges.webp" aria-label="Enlarge: Gauges tab"><img src="screenshots/diag-gauges-thumb.webp" width="300" height="432" loading="lazy" alt="Gauges tab: Your own dashboard: dial, LED bar, digital or graph, with warning limits."></button>
-        <figcaption><b>Gauges tab</b>Your own dashboard: dial, LED bar, digital or graph, with warning limits.</figcaption>
+        <button type="button" data-full="screenshots/diag-gauges.webp" aria-label="Enlarge: Gauges tab"><img src="screenshots/diag-gauges-thumb.webp" width="300" height="432" loading="lazy" alt="Gauges tab: Your own dashboard in eleven styles, with warning limits."></button>
+        <figcaption><b>Gauges tab</b>Your own dashboard in eleven styles, with warning limits.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/diag-data.webp" aria-label="Enlarge: Data"><img src="screenshots/diag-data-thumb.webp" width="300" height="432" loading="lazy" alt="Data: Live graphs of any sensor and CSV data logging."></button>
@@ -619,7 +638,7 @@
       <div class="card">
         <h3>Gauges · Media</h3>
         <ul class="list">
-          <li><b>Gauges:</b> a full wall of your OBD gauges.</li>
+          <li><b>Gauges:</b> a full wall of your OBD gauges. <b>Cluster</b> draws the first one large, like the main dial of an instrument cluster.</li>
           <li><b>Media:</b> whatever any app is playing, with title, artist, artwork and controls. Needs notification access (reads the active MediaSession).</li>
         </ul>
       </div>
@@ -752,7 +771,7 @@
       <div class="card">
         <h3>Gauges · Data</h3>
         <ul class="list">
-          <li><b>Gauges:</b> your own dashboard in four styles: Dial, LED bar, Digital, Graph. High and low warning limits on any gauge.</li>
+          <li><b>Gauges:</b> your own dashboard in eleven styles: Dial, LED bar, Digital, Graph, plus retro and futuristic faces: <b>Needle</b>, <b>Nixie</b> tubes, 80s <b>Skyline</b> bars, fighter-jet <b>HUD tape</b>, CRT <b>Scope</b>, neon <b>Halo</b> and a <b>Film HUD</b> that follows the theme. A live style gallery (one gauge or all), peak hold, and high and low warning limits on any gauge.</li>
           <li><b>Data:</b> live graphs of any sensor, and CSV data logging while you keep using the launcher, exportable anywhere.</li>
         </ul>
       </div>
@@ -973,6 +992,16 @@
     <h2>What's new <span class="tag">RELEASES</span></h2>
     <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
     <div class="grid">
+      <div class="card wide">
+        <h3>Coming next: retro gauges and KITT Holo</h3>
+        <ul class="list">
+          <li><b>Seven new gauge faces</b> for every edition: Needle (an analog instrument with a red zone from your warning limit), Nixie tubes, 80s Skyline bars, a fighter-jet HUD tape, a CRT Scope trace, a neon Halo ring, and a Film HUD that turns into a Terminator reticle, RoboCop's visor, Matrix code or Back to the Future time circuits with the theme.</li>
+          <li><b>Style gallery:</b> Style shows your gauge live in every face; tap one, or switch to "All gauges" to restyle the dashboard in one go. <b>Peak hold</b> marks the highest value this drive on Needle and Halo.</li>
+          <li><b>Cluster layout</b> for the Gauges page: the first gauge large, the rest around it.</li>
+          <li><b>Nearest repair shop</b> on the Codes tab when there are stored codes (routing only; nothing is sent to the car).</li>
+          <li><b>KITT Holo</b>, a third edition with a redesigned cockpit and a spinning hologram of your car (see Which one?).</li>
+        </ul>
+      </div>
       <div class="card wide">
         <h3>Next update: v1.9 for both editions</h3>
         <ul class="list">
