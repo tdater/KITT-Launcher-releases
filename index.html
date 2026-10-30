@@ -195,6 +195,11 @@
   .shots.compact { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .shots.landscape { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shots.landscape.films { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .shots.portrait { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .shots.portrait .shot button { display: flex; justify-content: center; background: #000; }
+  .shots.portrait .shot img { width: 100%; height: auto; display: block; border-radius: 3px; }
+  @media (max-width: 960px) { .shots.portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 500px) { .shots.portrait { grid-template-columns: 1fr; } }
   .gallery-head { margin: 28px 0 12px; }
   @media (max-width: 860px) { .shots, .shots.compact, .shots.landscape.films, .shots.three { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 560px) { .shots.landscape, .shots.landscape.films, .shots.two, .shots.three, .shots.six { grid-template-columns: 1fr; } }
@@ -361,7 +366,7 @@
           <li><b>Expanded Diagnostics:</b> live PID callouts with extra diagnostic instrumentation cards.</li>
           <li><b>Film Cockpits:</b> high-density Terminator vision grid, Matrix CRT rain, and DeLorean brushed metal.</li>
         </ul>
-        <a href="#holo" style="line-height:0"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="KITT Holo Portrait Drive page in Back to the Future theme" style="width:100%;height:auto;border:1px solid #38bdf8;border-radius:4px"></a>
+        <a href="#holo" style="line-height:0;display:flex;justify-content:center;background:#000;border:1px solid #38bdf8;border-radius:4px"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="360" height="800" loading="lazy" alt="KITT Holo Portrait Drive page in Back to the Future theme" style="height:260px;width:auto"></a>
         <p class="pick"><b>Pick it if</b> you have a tall portrait display (11" to 13" Tesla-style) and want an immersive 3D holographic cockpit.</p>
         <a class="btn cyan" style="border-color:#38bdf8" href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">Download Holo Portrait</a>
       </div>
@@ -397,13 +402,7 @@
     <h2>In action <span class="tag cyan">VIDEO DEMOS</span></h2>
     <p class="intro">Watch the launchers running live. Video clips play automatically when in view; tap any clip to enter full screen.</p>
 
-    <h3 class="gallery-head" style="color:var(--cyan)">KITT Holo · 3D Turntable &amp; Live Telemetry Callouts</h3>
-    <div class="clips">
-      <figure class="clip wide">
-        <video src="videos/holo-demo.mp4" poster="videos/holo-demo-poster.webp" width="1206" height="672" muted loop playsinline preload="none" aria-label="KITT Holo in action: 3D Holographic vehicle turntable with touch manual rotation, live telemetry callouts, and film theme cockpits."></video>
-        <figcaption><b>KITT Holo 3D Turntable</b>Smooth manual touch drag rotation across 72 camera angles, inertia glide, vehicle telemetry callouts, and dynamic film themes.</figcaption>
-      </figure>
-    </div>
+
 
     <h3 class="gallery-head">KITT Launcher.2 · 7" Landscape</h3>
     <div class="clips">
@@ -445,72 +444,52 @@
     <h3 class="gallery-head" style="color:var(--cyan)">Holo Landscape Cockpits</h3>
     <div class="shots landscape">
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-01-drive-kitt-car.webp" aria-label="Enlarge: Classic KITT Holo 3D Cockpit"><img src="screenshots/landscape-01-drive-kitt-car-thumb.webp" width="480" height="270" loading="lazy" alt="Classic KITT Holo: 3D wireframe vehicle turntable with live telemetry callout badges"></button>
+        <button type="button" data-full="screenshots/landscape-01-drive-kitt-car.webp" aria-label="Enlarge: Classic KITT Holo 3D Cockpit"><img src="screenshots/landscape-01-drive-kitt-car-thumb.webp" width="640" height="360" loading="lazy" alt="Classic KITT Holo: 3D wireframe vehicle turntable with live telemetry callout badges"></button>
         <figcaption><b>Classic KITT 3D Wireframe</b>Rotating holographic sports coupe with coolant, revs, and tire pressure callouts.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-03-drive-terminator-car.webp" aria-label="Enlarge: Cyberdyne Terminator T-800 Vision"><img src="screenshots/landscape-03-drive-terminator-car-thumb.webp" width="480" height="270" loading="lazy" alt="Terminator T-800 Vision: crimson HUD with targeting telemetry and threat assessment"></button>
-        <figcaption><b>Cyberdyne T-800 HUD</b>Crimson vehicle wireframe, machine code readout, and live threat telemetry.</figcaption>
+        <button type="button" data-full="screenshots/landscape-03-drive-terminator-car.webp" aria-label="Enlarge: Cyberdyne Terminator T-800 Vision"><img src="screenshots/landscape-03-drive-terminator-car-thumb.webp" width="640" height="360" loading="lazy" alt="Terminator T-800 Vision: crimson HUD with targeting telemetry and threat assessment"></button>
+        <figcaption><b>Cyberdyne T-800 HUD</b>Crimson vehicle wireframe, 6502 machine code readout, and live threat telemetry.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-04-drive-robocop-car.webp" aria-label="Enlarge: OmniCorp RoboCop Visor HUD"><img src="screenshots/landscape-04-drive-robocop-car-thumb.webp" width="480" height="270" loading="lazy" alt="RoboCop Visor HUD: cold blue glow with prime directives and tactical grid"></button>
+        <button type="button" data-full="screenshots/landscape-04-drive-robocop-car.webp" aria-label="Enlarge: OmniCorp RoboCop Visor HUD"><img src="screenshots/landscape-04-drive-robocop-car-thumb.webp" width="640" height="360" loading="lazy" alt="RoboCop Visor HUD: cold blue glow with prime directives and tactical grid"></button>
         <figcaption><b>OmniCorp Visor HUD</b>Tactical vehicle telemetry grid, targeting reticles, and Prime Directives.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: DeLorean Time Circuits Cockpit"><img src="screenshots/landscape-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="Back to the Future: DeLorean time circuits, flux capacitor, and speed streaks"></button>
+        <button type="button" data-full="screenshots/landscape-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: DeLorean Time Circuits Cockpit"><img src="screenshots/landscape-06-drive-back-to-the-future-car-thumb.webp" width="640" height="360" loading="lazy" alt="Back to the Future: DeLorean time circuits, flux capacitor, and speed streaks"></button>
         <figcaption><b>DeLorean 1985 / 2015</b>Authentic destination/present/last-departed time circuits and flux capacitor.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-07-gauges-kitt.webp" aria-label="Enlarge: Holo Multi-Gauge Matrix"><img src="screenshots/landscape-07-gauges-kitt-thumb.webp" width="480" height="270" loading="lazy" alt="Holo 11-Style Multi-Gauge Matrix with peak hold markers"></button>
+        <button type="button" data-full="screenshots/landscape-07-gauges-kitt.webp" aria-label="Enlarge: Holo Multi-Gauge Matrix"><img src="screenshots/landscape-07-gauges-kitt-thumb.webp" width="640" height="360" loading="lazy" alt="Holo 11-Style Multi-Gauge Matrix with peak hold markers"></button>
         <figcaption><b>Holo Instrumentation Matrix</b>11 selectable gauge styles with peak hold and warning thresholds.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/landscape-08-gauges-terminator.webp" aria-label="Enlarge: Terminator Cyberdyne Diagnostic Array"><img src="screenshots/landscape-08-gauges-terminator-thumb.webp" width="480" height="270" loading="lazy" alt="Terminator Cyberdyne Diagnostic Array with target tracking"></button>
-        <figcaption><b>Cyberdyne Diagnostic Array</b>Tactical bar graphs, digital telemetry, and sensor limits.</figcaption>
+        <button type="button" data-full="screenshots/landscape-08-entertainment.webp" aria-label="Enlarge: Entertainment Hub"><img src="screenshots/landscape-08-entertainment-thumb.webp" width="640" height="360" loading="lazy" alt="Entertainment Hub with Piradex streaming directories and retro arcade games"></button>
+        <figcaption><b>Entertainment Hub</b>Live sports streaming, Live TV channels, free movies &amp; TV, and retro arcade emulation with vector brand emblems.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot" style="grid-column: 1 / -1">
+        <button type="button" data-full="screenshots/landscape-09-widgets.webp" aria-label="Enlarge: Built-in Cockpit Driver Widgets"><img src="screenshots/landscape-09-widgets-thumb.webp" width="640" height="360" loading="lazy" alt="Widgets page displaying all 7 built-in driver cockpit widgets"></button>
+        <figcaption><b>Driver Cockpit Widgets</b>Seven built-in tools: Navigation Waypoints, Parking Sentry Timer, Attitude Gyro, Sound SPL Meter, Dash Memo Pad, Unit Converters, and Battery SOS.</figcaption>
       </figure>
     </div>
 
-    <h3 class="gallery-head" style="color:#38bdf8">Holo Portrait Cockpits</h3>
-    <div class="shots three">
+    <h3 class="gallery-head" style="color:#38bdf8">Holo Portrait Cockpits · Tall 9:16 Screens</h3>
+    <div class="shots portrait">
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/portrait-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: Portrait DeLorean Cockpit"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait DeLorean Drive Screen"></button>
-        <figcaption><b>Portrait DeLorean Cockpit</b>Vertical time circuit stack with holographic vehicle turntable.</figcaption>
+        <button type="button" data-full="screenshots/portrait-01-drive-kitt.webp" aria-label="Enlarge: Portrait Classic KITT Cockpit"><img src="screenshots/portrait-01-drive-kitt-thumb.webp" width="360" height="800" loading="lazy" alt="Portrait Classic KITT Drive Screen with 3D turntable and voice modulator"></button>
+        <figcaption><b>Classic KITT Portrait</b>Stacked vertical mission telemetry, 3D hologram vehicle, and red touch dock.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/portrait-07-gauges-kitt.webp" aria-label="Enlarge: Portrait Holo Gauges"><img src="screenshots/portrait-07-gauges-kitt-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait Holo Gauges Array"></button>
-        <figcaption><b>Portrait Multi-Gauges</b>High-density vertical gauge array with live OBD telemetry.</figcaption>
+        <button type="button" data-full="screenshots/portrait-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: Portrait DeLorean Cockpit"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="360" height="800" loading="lazy" alt="Portrait DeLorean Drive Screen with time circuits"></button>
+        <figcaption><b>DeLorean Time Circuits</b>Vertical time circuit stack, DOC voice modulator, and 3D turntable.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/portrait-08-gauges-terminator.webp" aria-label="Enlarge: Portrait Terminator HUD"><img src="screenshots/portrait-08-gauges-terminator-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait Terminator HUD Diagnostic Array"></button>
-        <figcaption><b>Portrait Cyberdyne Array</b>Tactical vertical sensor wall and threat monitor.</figcaption>
-      </figure>
-    </div>
-
-    <h3 class="gallery-head" style="color:var(--amber)">72-Angle Wireframe Turntable Precision</h3>
-    <div class="shots six">
-      <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_coupe_08_cyan.webp" aria-label="Enlarge: Coupe 40 deg"><img src="screenshots/preview_coupe_08_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 40 degrees"></button>
-        <figcaption><b>Coupe 40°</b>Cyan wireframe</figcaption>
+        <button type="button" data-full="screenshots/portrait-08-entertainment.webp" aria-label="Enlarge: Portrait Entertainment Hub"><img src="screenshots/portrait-08-entertainment-thumb.webp" width="360" height="800" loading="lazy" alt="Portrait Entertainment Hub with Piradex streaming portals"></button>
+        <figcaption><b>Entertainment Hub</b>Piradex Live TV list, sports streaming, and retro games on tall displays.</figcaption>
       </figure>
       <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_coupe_26_cyan.webp" aria-label="Enlarge: Coupe 130 deg"><img src="screenshots/preview_coupe_26_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 130 degrees"></button>
-        <figcaption><b>Coupe 130°</b>Rear three-quarter</figcaption>
-      </figure>
-      <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_coupe_62_cyan.webp" aria-label="Enlarge: Coupe 310 deg"><img src="screenshots/preview_coupe_62_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 310 degrees"></button>
-        <figcaption><b>Coupe 310°</b>Front three-quarter</figcaption>
-      </figure>
-      <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_truck_08_cyan.webp" aria-label="Enlarge: Truck 40 deg"><img src="screenshots/preview_truck_08_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 40 degrees"></button>
-        <figcaption><b>Truck 40°</b>Cyan wireframe</figcaption>
-      </figure>
-      <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_truck_26_cyan.webp" aria-label="Enlarge: Truck 130 deg"><img src="screenshots/preview_truck_26_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 130 degrees"></button>
-        <figcaption><b>Truck 130°</b>Rear bed &amp; wheels</figcaption>
-      </figure>
-      <figure class="shot cyan-shot">
-        <button type="button" data-full="screenshots/preview_truck_62_cyan.webp" aria-label="Enlarge: Truck 310 deg"><img src="screenshots/preview_truck_62_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 310 degrees"></button>
-        <figcaption><b>Truck 310°</b>Front grille &amp; cab</figcaption>
+        <button type="button" data-full="screenshots/portrait-09-widgets.webp" aria-label="Enlarge: Portrait Cockpit Widgets"><img src="screenshots/portrait-09-widgets-thumb.webp" width="360" height="800" loading="lazy" alt="Portrait Cockpit Widgets with parking sentry and target navigation"></button>
+        <figcaption><b>Cockpit Driver Widgets</b>Seven built-in driver widgets tailored for full vertical touchscreens.</figcaption>
       </figure>
     </div>
   </section>
