@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Knight Rider (KITT) themed Android launchers for car head units: KITT Launcher for big portrait screens and KITT Launcher.2 for 7-10 inch landscape screens. OBD-II scanner, a sarcastic AI co-pilot that sees your live vehicle data, map directions, streaming and the red scanner light.">
-<meta property="og:title" content="KITT Launcher">
-<meta property="og:description" content="Knight Rider themed Android car head-unit launcher: OBD-II scanner, AI co-pilot, directions and the red scanner light. Free APK download.">
+<meta name="description" content="Knight Rider (KITT) themed Android launchers for car head units: KITT Launcher (portrait), KITT Launcher.2 (7-10 inch landscape), KITT Holo Landscape, and KITT Holo Portrait. 3D holographic turntable, vehicle PID callouts, entertainment & streaming hub with Piradex, built-in cockpit driver widgets, 16-band visualizer, OBD-II scanner, AI co-pilot, and the red scanner light.">
+<meta property="og:title" content="KITT Launcher · 4 Dedicated Editions">
+<meta property="og:description" content="Knight Rider themed Android car head-unit launchers: 3D holographic turntable, vehicle PID callouts, entertainment streaming & games, built-in cockpit widgets, OBD-II scanner, AI co-pilot, directions and the red scanner light. Free APK downloads.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://tdater.github.io/KITT-Launcher-releases/screenshots/drive.webp">
+<meta property="og:image" content="https://tdater.github.io/KITT-Launcher-releases/screenshots/landscape-01-drive-kitt-car.webp">
 <meta property="og:url" content="https://tdater.github.io/KITT-Launcher-releases/">
 <meta name="theme-color" content="#0a0909">
-<title>KITT Launcher</title>
+<title>KITT Launcher · 4 Dedicated Android Head-Unit Editions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap">
 <style>
-  /* A deliberate single-look design: the launcher's own night console (KittBlack, ScannerRed, DashAmber, LedGreen). */
+  /* Night console styling: KittBlack, ScannerRed, DashAmber, LedGreen, HoloCyan */
   :root {
     color-scheme: dark;
     --black: #0a0909;
@@ -28,6 +28,8 @@
     --red-dim: #5a120c;
     --amber: #ffb000;
     --green: #3dff72;
+    --cyan: #00e5ff;
+    --cyan-dim: #063840;
     --display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
     --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
     --mono: "Share Tech Mono", ui-monospace, Consolas, monospace;
@@ -39,8 +41,9 @@
     font: 16px/1.6 var(--body);
     padding-inline: 16px;
     padding-block: 0 64px;
+    margin: 0;
   }
-  .wrap { max-width: 980px; margin: 0 auto; }
+  .wrap { max-width: 1040px; margin: 0 auto; }
 
   /* Scanner */
   .scanner {
@@ -56,14 +59,15 @@
   @keyframes sweep { from { left: -4%; transform: scaleX(1); } to { left: 82%; transform: scaleX(-1); } }
   @media (prefers-reduced-motion: reduce) { .scanner::before { animation: none; left: 39%; } }
 
-  header { padding-block: 48px 28px; display: grid; gap: 18px; }
+  header { padding-block: 44px 28px; display: grid; gap: 18px; }
   .eyebrow { font: 14px var(--mono); color: var(--amber); letter-spacing: .14em; text-transform: uppercase; }
   h1 {
-    font: 700 clamp(40px, 8vw, 76px)/1 var(--display); letter-spacing: .02em; margin: 0;
+    font: 700 clamp(38px, 7vw, 72px)/1 var(--display); letter-spacing: .02em; margin: 0;
     text-transform: uppercase; text-wrap: balance;
   }
   h1 span { color: var(--red); text-shadow: 0 0 18px rgba(255,42,26,.45); }
-  .lede { max-width: 64ch; color: var(--text); font-size: 18px; margin: 0; }
+  h1 span.holo-text { color: var(--cyan); text-shadow: 0 0 18px rgba(0,229,255,.45); }
+  .lede { max-width: 68ch; color: var(--text); font-size: 18px; margin: 0; }
   .lede + .lede { color: var(--muted); font-size: 16px; }
 
   /* Readouts */
@@ -73,15 +77,16 @@
     padding: 12px 14px; display: grid; gap: 2px;
   }
   .readout b { font: 34px/1 var(--mono); color: var(--amber); font-variant-numeric: tabular-nums; text-shadow: 0 0 10px rgba(255,176,0,.35); }
+  .readout.cyan b { color: var(--cyan); text-shadow: 0 0 10px rgba(0,229,255,.35); }
   .readout small { font: 12px var(--mono); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 
-  /* Page tabs, like the launcher's own console buttons */
+  /* Page tabs */
   nav {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2;
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
     background: var(--black); border-bottom: 1px solid var(--bezel);
     margin: 0 -16px; padding: 10px 16px; overflow-x: auto;
   }
-  nav ul { list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 6px; max-width: 980px; }
+  nav ul { list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 6px; max-width: 1040px; }
   nav a {
     display: block; white-space: nowrap; text-decoration: none;
     font: 600 13px var(--display); letter-spacing: .12em; text-transform: uppercase;
@@ -89,6 +94,7 @@
     padding: 8px 12px;
   }
   nav a:hover, nav a:focus-visible { border-color: var(--red); color: #fff; outline: none; box-shadow: 0 0 0 1px var(--red); }
+  nav a.cyan-nav:hover, nav a.cyan-nav:focus-visible { border-color: var(--cyan); color: #fff; box-shadow: 0 0 0 1px var(--cyan); }
 
   section { padding-block: 40px 8px; scroll-margin-top: 64px; }
   h2 {
@@ -96,19 +102,24 @@
     margin: 0 0 6px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   }
   h2 .tag { font: 13px var(--mono); color: var(--red); letter-spacing: .1em; }
-  .intro { color: var(--muted); max-width: 66ch; margin: 0 0 18px; }
+  h2 .tag.cyan { color: var(--cyan); }
+  .intro { color: var(--muted); max-width: 68ch; margin: 0 0 18px; }
 
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .card {
     background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px;
     padding: 16px 18px; display: grid; gap: 8px; align-content: start;
   }
   .card.wide { grid-column: 1 / -1; }
+  .card.cyan-card { border-color: var(--cyan); }
   h3 {
     margin: 0; font: 600 15px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--amber);
   }
+  h3.cyan-title { color: var(--cyan); }
   ul.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
   ul.list li::marker { color: var(--red); }
+  ul.list.cyan-list li::marker { color: var(--cyan); }
   ul.list ul { margin-top: 6px; padding-left: 18px; display: grid; gap: 4px; color: var(--muted); }
   li b { color: var(--text); font-weight: 600; }
   code { font: 14px var(--mono); color: var(--green); background: #0c140e; padding: 1px 5px; border-radius: 2px; }
@@ -134,16 +145,24 @@
 
   .download { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .btn {
-    display: inline-block; text-decoration: none; font: 700 15px var(--display); letter-spacing: .12em;
+    display: inline-block; text-decoration: none; font: 700 14px var(--display); letter-spacing: .12em;
     text-transform: uppercase; color: #fff; background: #3a0b07; border: 1px solid var(--red);
-    border-radius: 3px; padding: 12px 18px; box-shadow: 0 0 14px rgba(255,42,26,.35);
+    border-radius: 3px; padding: 10px 16px; box-shadow: 0 0 14px rgba(255,42,26,.35);
   }
   .btn:hover, .btn:focus-visible { background: #5a120c; outline: none; }
+  .btn.amber { border-color: var(--amber); background: #3a2a07; box-shadow: 0 0 14px rgba(255,176,0,.3); }
+  .btn.amber:hover { background: #5a420b; }
+  .btn.cyan { border-color: var(--cyan); background: #062b33; box-shadow: 0 0 14px rgba(0,229,255,.3); }
+  .btn.cyan:hover { background: #0b4552; }
   .btn.ghost { background: var(--panel-2); border-color: var(--bezel); box-shadow: none; color: var(--text); }
-  .download small { color: var(--muted); font: 13px var(--mono); flex-basis: 100%; }
+  .btn.ghost:hover { border-color: var(--muted); background: #26201e; }
+  .download small { color: var(--muted); font: 13px var(--mono); flex-basis: 100%; margin-top: 4px; }
 
   /* Screenshot gallery */
   .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .shots.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shots.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .shots.six { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .shot { margin: 0; display: grid; gap: 6px; align-content: start; }
   .shot button, .theme-shot button {
     all: unset; cursor: zoom-in; display: block; border: 1px solid var(--bezel); border-radius: 4px;
@@ -152,15 +171,19 @@
   .shot button:hover, .shot button:focus-visible, .theme-shot button:hover, .theme-shot button:focus-visible {
     border-color: var(--red); box-shadow: 0 0 0 1px var(--red);
   }
+  .shot.cyan-shot button:hover, .shot.cyan-shot button:focus-visible {
+    border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan);
+  }
   .shot img, .theme-shot img { width: 100%; height: auto; display: block; }
   .shot figcaption { font-size: 14px; color: var(--muted); line-height: 1.45; }
   .shot figcaption b { display: block; color: var(--amber); font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; }
+  .shot.cyan-shot figcaption b { color: var(--cyan); }
   .theme-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
   .theme-shot { margin: 0; display: grid; gap: 4px; }
   .theme-shot figcaption { font: 12px var(--mono); color: var(--muted); text-align: center; letter-spacing: .06em; }
   .note { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; }
   dialog.viewer {
-    border: 1px solid var(--red); border-radius: 4px; padding: 0; background: #000; max-width: min(92vw, 820px);
+    border: 1px solid var(--red); border-radius: 4px; padding: 0; background: #000; max-width: min(92vw, 960px);
     max-height: 94vh; overflow: auto;
   }
   dialog.viewer::backdrop { background: rgba(0,0,0,.85); }
@@ -173,31 +196,34 @@
   .shots.landscape { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shots.landscape.films { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gallery-head { margin: 28px 0 12px; }
-  @media (max-width: 860px) { .shots, .shots.compact, .shots.landscape.films { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 560px) { .shots.landscape, .shots.landscape.films { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .shots, .shots.compact, .shots.landscape.films, .shots.three { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .shots.landscape, .shots.landscape.films, .shots.two, .shots.three, .shots.six { grid-template-columns: 1fr; } }
 
-  /* Editions: the two launchers side by side */
-  .editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  /* Editions: 4 separate apps */
+  .editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .edition { background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px; padding: 18px; display: grid; gap: 10px; align-content: start; }
   .edition.two { border-color: var(--amber); }
+  .edition.holo-land { border-color: var(--cyan); }
+  .edition.holo-port { border-color: #38bdf8; }
   .edition h3 { font-size: 20px; color: var(--text); }
   .edition h3 span { color: var(--red); }
   .edition.two h3 span { color: var(--amber); }
+  .edition.holo-land h3 span { color: var(--cyan); }
+  .edition.holo-port h3 span { color: #38bdf8; }
   .edition .fit { font: 13px var(--mono); color: var(--amber); letter-spacing: .08em; text-transform: uppercase; }
+  .edition.holo-land .fit { color: var(--cyan); }
+  .edition.holo-port .fit { color: #38bdf8; }
   .edition .pick { border-left: 2px solid var(--red); padding: 6px 12px; background: #1a0b09; border-radius: 0 3px 3px 0; }
   .edition.two .pick { border-left-color: var(--amber); background: #1a1406; }
+  .edition.holo-land .pick { border-left-color: var(--cyan); background: #061c21; }
+  .edition.holo-port .pick { border-left-color: #38bdf8; background: #071e2b; }
   .edition .btn { justify-self: start; }
-  .edition.holo { grid-column: 1 / -1; border-color: #00e5ff; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 18px; }
-  .edition.holo > * { grid-column: 1; }
-  .edition.holo > .holo-shot { grid-column: 2; grid-row: 1 / span 6; align-self: center; line-height: 0; }
-  .edition.holo h3 span, .edition.holo .fit { color: #00e5ff; }
-  .edition.holo .pick { border-left-color: #00e5ff; background: #061a1d; }
-  @media (max-width: 760px) { .edition.holo { grid-template-columns: 1fr; } .edition.holo > .holo-shot { grid-column: 1; grid-row: auto; } }
-  .edition.two .btn { border-color: var(--amber); background: #3a2a07; box-shadow: 0 0 14px rgba(255,176,0,.3); }
-  .compare { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 15px; }
+
+  /* Comparison table */
+  .compare { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
   .compare th, .compare td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--bezel); vertical-align: top; }
   .compare thead th { font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--amber); }
-  .compare tbody th { font-weight: 600; color: var(--text); width: 26%; }
+  .compare tbody th { font-weight: 600; color: var(--text); width: 22%; }
   .compare td { color: var(--muted); }
   .table-scroll { overflow-x: auto; }
 
@@ -210,10 +236,23 @@
   .clip figcaption { font-size: 14px; color: var(--muted); line-height: 1.45; }
   .clip figcaption b { display: block; color: var(--amber); font: 600 13px var(--display); letter-spacing: .1em; text-transform: uppercase; }
 
+  /* Widgets & Visual badges */
+  .widget-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .widget-card { background: var(--panel); border: 1px solid var(--bezel); border-radius: 4px; padding: 16px; display: grid; gap: 8px; }
+  .widget-card h4 { margin: 0; font: 600 15px var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--text); display: flex; align-items: center; justify-content: space-between; }
+  .widget-card h4 span { font: 12px var(--mono); color: var(--amber); }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .brand-badge { font: 11px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .08em; padding: 3px 7px; border-radius: 3px; border: 1px solid var(--bezel); background: var(--panel-2); color: var(--text); }
+  .brand-badge.red { border-color: var(--red); color: #ff8b80; background: #260805; }
+  .brand-badge.cyan { border-color: var(--cyan); color: #80f0ff; background: #062229; }
+  .brand-badge.amber { border-color: var(--amber); color: #ffd880; background: #261b05; }
+  .brand-badge.green { border-color: var(--green); color: #9cffbe; background: #072611; }
+
   @media (max-width: 720px) {
     .clips { grid-template-columns: 1fr; }
     .editions { grid-template-columns: 1fr; }
     .grid { grid-template-columns: 1fr; }
+    .widget-grid { grid-template-columns: 1fr; }
     .readouts { grid-template-columns: repeat(2, 1fr); }
     .theme-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .lede { font-size: 17px; }
@@ -226,39 +265,43 @@
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">Android head-unit launcher · Knight Industries 2000</div>
-    <h1>KITT <span>Launcher</span></h1>
-    <p class="lede">A Knight Rider home screen for Android car head units. It replaces the unit's stock home screen with a KITT-style dashboard, adds an OBD-II car scanner and an AI co-pilot named KITT that can see your vehicle's live data, and includes a browser for video, music, AI chat and games.</p>
-    <p class="lede">It comes in two editions: <b>KITT Launcher</b> for big portrait screens and <b>KITT Launcher.2</b> for 7" to 10" landscape screens. <a href="#editions" style="color:var(--amber)">Which one do I need?</a> Native Kotlin and Jetpack Compose, Android 7.0 and up, with no Google Play Services and no analytics.</p>
+    <div class="eyebrow">Android Head-Unit Launchers · Knight Industries 2000</div>
+    <h1>KITT <span>Launcher</span> &amp; <span class="holo-text">Holo</span></h1>
+    <p class="lede">A Knight Rider home screen for Android car head units. It replaces the stock launcher with an authentic KITT cockpit, adds an OBD-II car scanner, a sarcastic AI co-pilot that sees your live telemetry, turn-by-turn navigation, an entertainment streaming hub, and the signature red scanner light.</p>
+    <p class="lede">Now available in <b>four dedicated standalone editions</b>: classic <b>KITT Launcher</b> (portrait), <b>KITT Launcher.2</b> (7–10" landscape), <b>KITT Holo Landscape</b> (3D turntable &amp; live telemetry callouts), and <b>KITT Holo Portrait</b> (tall Tesla-style 3D cockpit). Native Kotlin and Jetpack Compose, Android 7.0+, zero Google Play Services and zero telemetry.</p>
     <div class="download">
-      <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher APK</a>
-      <a class="btn" style="border-color:var(--amber);background:#3a2a07;box-shadow:0 0 14px rgba(255,176,0,.3)" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">KITT Launcher.2 APK</a>
-      <a class="btn ghost" href="#install">How to install</a>
-      <small>Latest: KITT Launcher <a href="#whats-new" style="color:var(--amber)">v1.6</a> · KITT Launcher.2 <a href="#whats-new" style="color:var(--amber)">v1.4</a>. Free. Android 7.0+. No support: shared as-is.</small>
+      <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">KITT Launcher</a>
+      <a class="btn amber" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">KITT Launcher.2</a>
+      <a class="btn cyan" href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest">KITT Holo Landscape</a>
+      <a class="btn cyan" style="border-color:#38bdf8" href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">KITT Holo Portrait</a>
+      <a class="btn ghost" href="#install">Install Guide</a>
+      <small>Latest: <b>v2.2.0</b> across all four editions. Free APKs. Android 7.0+. Open-source releases.</small>
     </div>
     <div class="readouts">
+      <div class="readout cyan"><b>4</b><small>Editions</small></div>
       <div class="readout"><b>11</b><small>Themes</small></div>
-      <div class="readout"><b>7</b><small>Home pages</small></div>
-      <div class="readout"><b>7</b><small>Diagnostic tabs</small></div>
-      <div class="readout"><b>12</b><small>Maker profiles</small></div>
+      <div class="readout"><b>7</b><small>Driver Widgets</small></div>
+      <div class="readout"><b>12</b><small>Maker Profiles</small></div>
     </div>
   </header>
 </div>
 
 <nav aria-label="Sections">
   <ul>
-    <li><a href="#editions">Which one?</a></li>
+    <li><a href="#editions">Four Editions</a></li>
     <li><a href="#action">In action</a></li>
-    <li><a href="#screens">Screens</a></li>
-    <li><a href="#look">Look</a></li>
-    <li><a href="#pages">Home pages</a></li>
+    <li><a href="#holo" class="cyan-nav">KITT Holo</a></li>
+    <li><a href="#screens">Classic Screens</a></li>
+    <li><a href="#entertainment">Entertainment</a></li>
+    <li><a href="#widgets">Driver Widgets</a></li>
+    <li><a href="#visualizer">Music &amp; Visualizer</a></li>
+    <li><a href="#look">Look &amp; Themes</a></li>
+    <li><a href="#pages">Home Pages</a></li>
     <li><a href="#kitt">KITT AI</a></li>
-    <li><a href="#scanner">Car scanner</a></li>
+    <li><a href="#scanner">Car Scanner</a></li>
     <li><a href="#browser">Browser</a></li>
-    <li><a href="#ride-along">Rides along</a></li>
-    <li><a href="#settings">Settings</a></li>
     <li><a href="#install">Install</a></li>
-    <li><a href="#whats-new">What's new</a></li>
+    <li><a href="#whats-new">What's New</a></li>
     <li><a href="#safety">Safety</a></li>
   </ul>
 </nav>
@@ -266,110 +309,347 @@
 <main class="wrap">
 
   <section id="editions">
-    <h2>Which one? <span class="tag">THREE EDITIONS</span></h2>
-    <p class="intro">Both are the same KITT: the same scanner, OBD-II tools, KITT AI, map directions, browser, themes and settings. What differs is the screen they're laid out for and how hard they work your head unit. They have different app IDs, so you can install them side by side and try each one. <b>KITT Holo</b> is the newest: the same KITT with a redesigned cockpit.</p>
+    <h2>Which one? <span class="tag">FOUR DEDICATED APPS</span></h2>
+    <p class="intro">Each edition is built specifically for its form factor and screen geometry with its own dedicated layout, app ID, and auto-update channel. You can install all four side by side to compare them.</p>
     <div class="editions">
       <div class="edition">
         <h3>KITT <span>Launcher</span></h3>
-        <div class="fit">Big portrait screens · 12.1" Tesla-style</div>
-        <p>The original. Laid out for a tall 9:16 screen: the map on top, gauges and apps in the middle, a full dock of trip, media and vehicle controls along the bottom, and page tabs above it.</p>
+        <div class="fit">Big portrait screens · 11"–13" Tesla-style</div>
+        <p>The original full-detail cockpit. Laid out for tall 9:16 vertical displays: navigation map on top, instrument dials and apps in the center, and a dedicated multi-touch trip and media dock below.</p>
         <ul class="list">
-          <li>Every animation at full frame rate on capable hardware.</li>
-          <li>Landscape screens work too: it switches to the side rail layout.</li>
+          <li>Full animations at high refresh rates on portrait head units.</li>
+          <li>Optimized for vertical dash panels with stacked telemetry clusters.</li>
         </ul>
-        <a href="#screens" style="line-height:0;display:flex;justify-content:center;background:#000;border:1px solid var(--bezel);border-radius:4px"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="KITT Launcher Drive page on a 12.1 inch portrait screen" style="height:281px;width:auto"></a>
-        <p class="pick"><b>Pick it if</b> your head unit is a big portrait screen (11" to 13" Tesla-style), or a powerful unit you'd rather run at full detail.</p>
+        <a href="#screens" style="line-height:0;display:flex;justify-content:center;background:#000;border:1px solid var(--bezel);border-radius:4px"><img src="screenshots/drive-thumb.webp" width="400" height="576" loading="lazy" alt="KITT Launcher Drive page on a portrait screen" style="height:260px;width:auto"></a>
+        <p class="pick"><b>Pick it if</b> your car has a vertical touchscreen (Tesla-style 11" to 13") and you want the classic red Knight Rider instrument layout.</p>
         <a class="btn" href="https://github.com/tdater/KITT-Launcher-releases/releases/latest">Download KITT Launcher</a>
       </div>
+
       <div class="edition two">
         <h3>KITT <span>Launcher.2</span></h3>
         <div class="fit">7" to 10" landscape · 1024×600, 1280×720, 1280×800</div>
-        <p>Rebuilt for the short, wide screens most aftermarket head units have. On those screens, height is what runs out, so KITT and the page buttons move to a side rail and the dock shrinks to one slim row. The pages get nearly the full height.</p>
+        <p>Engineered from scratch for widescreen head units. Vertical real estate is protected: navigation controls and KITT AI move to an interactive side rail, while the dock condenses to an ultra-slim driving row.</p>
         <ul class="list">
-          <li><b>Screen size</b> fits itself to the screen: a little smaller on short 1280×720 units, a little larger on big 10" panels.</li>
-          <li><b>Lite mode</b> turns itself on for budget units (3 GB of RAM or less, or four CPU cores or fewer). Fewer web pages stay loaded, the scanner runs at 30 fps and idle animations stop. Every feature still works.</li>
-          <li>The KITT panel puts the controls on the left and the conversation on the right, so answers stay readable.</li>
+          <li><b>Auto-scaling:</b> dynamic element sizing across 7", 8", 9", and 10.1" dash units.</li>
+          <li><b>Hardware Lite Mode:</b> auto-activates on budget 2GB/3GB quad-core units to ensure fluid 60fps operation without dropping frames.</li>
         </ul>
         <a href="#screens-2" style="line-height:0"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="KITT Launcher.2 Drive page on a 7 inch landscape screen" style="width:100%;height:auto;border:1px solid var(--bezel);border-radius:4px"></a>
-        <p class="pick"><b>Pick it if</b> your head unit is a typical 7", 9" or 10" landscape screen, especially a budget one that stutters with heavy apps.</p>
-        <a class="btn" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">Download KITT Launcher.2</a>
+        <p class="pick"><b>Pick it if</b> you have a standard double-DIN landscape head unit (7" to 10.1") and want an ultra-responsive classic cockpit.</p>
+        <a class="btn amber" href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest">Download KITT Launcher.2</a>
       </div>
-      <div class="edition holo">
-        <h3>KITT <span>Holo</span></h3>
-        <div class="fit">Landscape or portrait · redesigned cockpit</div>
-        <p>The same KITT with a new cockpit. A hologram of your car turns slowly on the Drive page with the live data painted on it: engine heat, fuel, battery, exhaust, speed streaks and each tire's pressure on its wheel. It comes as two builds, one laid out for landscape and one for portrait screens.</p>
+
+      <div class="edition holo-land">
+        <h3>KITT <span>Holo Landscape</span></h3>
+        <div class="fit">7" to 10" landscape · 3D Hologram Cockpit</div>
+        <p>The next-generation holographic interface. A 3D wireframe hologram of your car turns on the Drive page with real-time telemetry callout pins (coolant, speed, revs, battery, tires) anchored in 3D space.</p>
         <ul class="list">
-          <li><b>Hologram car:</b> rendered in Blender, 72 views per body, blended frame to frame for a smooth turn. Lite mode holds a still three-quarter view.</li>
-          <li><b>Film Drive pages:</b> the Terminator, Matrix and RoboCop themes get their own three-panel Drive screen; Back to the Future keeps the time circuits.</li>
-          <li><b>Cockpit details:</b> a trip-computer dock with now playing, icon media keys, cockpit-style site tiles, and a CRT terminal with ECU cards in the KITT panel (Diagnose ECU, Read codes, Range report in one tap).</li>
-          <li><b>Film characters</b> may quote their films and speak with the characters' accents (the other editions keep original characters).</li>
+          <li><b>Touch Turntable:</b> swipe to spin the vehicle manually with smooth inertia decay glide; car and truck body styles.</li>
+          <li><b>PID Callout Badges:</b> live data callouts positioned around the vehicle with tap-to-expand data cards.</li>
+          <li><b>Film Cockpits:</b> Terminator T-800 Cyberdyne HUD, RoboCop visor, and DeLorean time circuits.</li>
         </ul>
-        <a class="holo-shot" href="screenshots/holo-drive.webp"><img src="screenshots/holo-drive-thumb.webp" loading="lazy" alt="KITT Holo Drive page with the hologram car" style="width:100%;height:auto;border:1px solid var(--bezel);border-radius:4px"></a>
-        <p class="pick"><b>Pick it if</b> you want the full show and your head unit has the power for it. Download: <a href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest">Holo Landscape</a> or <a href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">Holo Portrait</a>.</p>
+        <a href="#holo" style="line-height:0"><img src="screenshots/landscape-01-drive-kitt-car-thumb.webp" width="480" height="270" loading="lazy" alt="KITT Holo Landscape Drive page with 3D hologram vehicle" style="width:100%;height:auto;border:1px solid var(--cyan);border-radius:4px"></a>
+        <p class="pick"><b>Pick it if</b> your head unit is a landscape widescreen (7" to 10") and you want the full 3D interactive holographic turntable experience.</p>
+        <a class="btn cyan" href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest">Download Holo Landscape</a>
+      </div>
+
+      <div class="edition holo-port">
+        <h3>KITT <span>Holo Portrait</span></h3>
+        <div class="fit">Big portrait screens · 3D Hologram Cockpit</div>
+        <p>The flagship holographic experience tailored for tall vertical screens. Centers the 3D vehicle turntable between upper mission telemetry and lower cockpit quick-controls.</p>
+        <ul class="list">
+          <li><b>Vertical Staging:</b> full 3D vehicle projection with expanded pitch and elevation perspective.</li>
+          <li><b>Expanded Diagnostics:</b> live PID callouts with extra diagnostic instrumentation cards.</li>
+          <li><b>Film Cockpits:</b> high-density Terminator vision grid, Matrix CRT rain, and DeLorean brushed metal.</li>
+        </ul>
+        <a href="#holo" style="line-height:0"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="KITT Holo Portrait Drive page in Back to the Future theme" style="width:100%;height:auto;border:1px solid #38bdf8;border-radius:4px"></a>
+        <p class="pick"><b>Pick it if</b> you have a tall portrait display (11" to 13" Tesla-style) and want an immersive 3D holographic cockpit.</p>
+        <a class="btn cyan" style="border-color:#38bdf8" href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">Download Holo Portrait</a>
       </div>
     </div>
+
     <div class="table-scroll">
       <table class="compare">
-        <thead><tr><th scope="col"></th><th scope="col">KITT Launcher</th><th scope="col">KITT Launcher.2</th></tr></thead>
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col">KITT Launcher</th>
+            <th scope="col">KITT Launcher.2</th>
+            <th scope="col">Holo Landscape</th>
+            <th scope="col">Holo Portrait</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><th scope="row">Built for</th><td>12.1" portrait (9:16)</td><td>7"–10" landscape</td></tr>
-          <tr><th scope="row">Page buttons</th><td>Tabs above the dock</td><td>Side rail, with KITT on top</td></tr>
-          <tr><th scope="row">Dock</th><td>Full dock: trip, media, vehicle, KITT</td><td>One slim row: trip, media keys, Diag, Trips, Config, System</td></tr>
-          <tr><th scope="row">Screen size setting</th><td>Yes (Auto leaves portrait as is)</td><td>Yes (Auto fits 7"–10" screens)</td></tr>
-          <tr><th scope="row">Lite mode</th><td>Yes, Auto by hardware</td><td>Yes, Auto by hardware</td></tr>
-          <tr><th scope="row">Features</th><td colspan="2">Identical: OBD-II scanner, KITT AI, directions, browser, themes, settings</td></tr>
-          <tr><th scope="row">App ID</th><td><code>com.aiconsole.knightriderlauncher</code></td><td><code>com.aiconsole.kittlauncher2</code></td></tr>
+          <tr><th scope="row">Target Hardware</th><td>11"–13" Portrait</td><td>7"–10" Landscape</td><td>7"–10" Landscape</td><td>11"–13" Portrait</td></tr>
+          <tr><th scope="row">Cockpit Style</th><td>Classic KITT Console</td><td>Classic KITT Side Rail</td><td>3D Hologram Cockpit</td><td>3D Hologram Cockpit</td></tr>
+          <tr><th scope="row">3D Vehicle Turntable</th><td>—</td><td>—</td><td>72-Angle Manual Spin</td><td>72-Angle Manual Spin</td></tr>
+          <tr><th scope="row">Live Telemetry Callouts</th><td>Gauges Page</td><td>Gauges Page</td><td>Pinned Vehicle Badges</td><td>Pinned Vehicle Badges</td></tr>
+          <tr><th scope="row">Film Cockpit Redesigns</th><td>Color Themes</td><td>Color Themes</td><td>Terminator / RoboCop / BTTF</td><td>Terminator / RoboCop / BTTF</td></tr>
+          <tr><th scope="row">Entertainment Hub</th><td>Yes (v2.2)</td><td>Yes (v2.2)</td><td>Yes (v2.2)</td><td>Yes (v2.2)</td></tr>
+          <tr><th scope="row">Built-In Cockpit Widgets</th><td>All 7</td><td>All 7</td><td>All 7 with Film Frames</td><td>All 7 with Film Frames</td></tr>
+          <tr><th scope="row">16-Band Visualizer</th><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">Package Name</th><td><code>com.aiconsole.knightriderlauncher</code></td><td><code>com.aiconsole.kittlauncher2</code></td><td><code>com.aiconsole.kitthololandscape</code></td><td><code>com.aiconsole.kittholoportrait</code></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note">Why two editions? A layout that fills a 13" portrait screen wastes a 7" landscape one: tabs and a tall dock take a quarter of its height. Rather than squeeze one design onto both, each edition gets the layout that suits its screen.</p>
   </section>
 
   <section id="action">
-    <h2>In action <span class="tag">VIDEO</span></h2>
-    <p class="intro">Short clips recorded on head-unit emulators in demo mode, so the vehicle data is simulated. Clips play while they're on screen. Tap one for full screen.</p>
-    <h3 class="gallery-head">KITT Launcher.2 · 7" landscape</h3>
+    <h2>In action <span class="tag cyan">VIDEO DEMOS</span></h2>
+    <p class="intro">Watch the launchers running live. Video clips play automatically when in view; tap any clip to enter full screen.</p>
+
+    <h3 class="gallery-head" style="color:var(--cyan)">KITT Holo · 3D Turntable &amp; Live Telemetry Callouts</h3>
     <div class="clips">
-      <figure class="clip">
-        <video src="videos/l2-tour.mp4" poster="videos/l2-tour-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top."></video>
-        <figcaption><b>Around the pages</b>Drive, Gauges, Media, AI and Apps from the side rail, with the scanner sweeping on top.</figcaption>
-      </figure>
-      <figure class="clip">
-        <video src="videos/l2-kitt.mp4" poster="videos/l2-kitt-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="KITT comes online: The link comes up, the gauges come alive, and Savage KITT has an opinion about it."></video>
-        <figcaption><b>KITT comes online</b>The link comes up, the gauges come alive, and Savage KITT has an opinion about it.</figcaption>
-      </figure>
-      <figure class="clip">
-        <video src="videos/l2-themes.mp4" poster="videos/l2-themes-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Themes: From KITT and KARR to Outrun and the film HUDs, each with its own scanner and panels."></video>
-        <figcaption><b>Themes</b>From KITT and KARR to Outrun and the film HUDs, each with its own scanner and panels.</figcaption>
-      </figure>
-      <figure class="clip">
-        <video src="videos/l2-editions.mp4" poster="videos/l2-editions-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Film editions: Liquid Metal, ED-209, Zion, Hill Valley 2015 and the rest, each with its own colours and readouts."></video>
-        <figcaption><b>Film editions</b>Liquid Metal, ED-209, Zion, Hill Valley 2015 and the rest, each with its own colours and readouts.</figcaption>
+      <figure class="clip wide">
+        <video src="videos/holo-demo.mp4" poster="videos/holo-demo-poster.webp" width="1206" height="672" muted loop playsinline preload="none" aria-label="KITT Holo in action: 3D Holographic vehicle turntable with touch manual rotation, live telemetry callouts, and film theme cockpits."></video>
+        <figcaption><b>KITT Holo 3D Turntable</b>Smooth manual touch drag rotation across 72 camera angles, inertia glide, vehicle telemetry callouts, and dynamic film themes.</figcaption>
       </figure>
     </div>
-    <h3 class="gallery-head">KITT Launcher · 12.1" portrait</h3>
+
+    <h3 class="gallery-head">KITT Launcher.2 · 7" Landscape</h3>
+    <div class="clips">
+      <figure class="clip">
+        <video src="videos/l2-tour.mp4" poster="videos/l2-tour-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media, AI and Apps from the side rail."></video>
+        <figcaption><b>Around the pages</b>Drive, Gauges, Media, AI and Apps from the side rail, with scanner sweeping on top.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/l2-kitt.mp4" poster="videos/l2-kitt-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="KITT comes online: Link comes up, gauges come alive."></video>
+        <figcaption><b>KITT comes online</b>Vehicle link connects, gauges activate, and Savage KITT greets you.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/l2-themes.mp4" poster="videos/l2-themes-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Themes: KITT, KARR, Outrun and film HUDs."></video>
+        <figcaption><b>Themes</b>From KITT and KARR to Outrun and film HUDs, each with tailored scanners.</figcaption>
+      </figure>
+      <figure class="clip">
+        <video src="videos/l2-editions.mp4" poster="videos/l2-editions-poster.webp" width="1024" height="600" muted loop playsinline preload="none" aria-label="Film editions: Liquid Metal, ED-209, Zion, Hill Valley 2015."></video>
+        <figcaption><b>Film editions</b>Liquid Metal, ED-209, Zion, Hill Valley 2015 with dedicated sound effects and accents.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gallery-head">KITT Launcher · 12.1" Portrait</h3>
     <div class="clips portrait">
       <figure class="clip">
-        <video src="videos/tour.mp4" poster="videos/tour-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media and Apps from the page tabs."></video>
-        <figcaption><b>Around the pages</b>Drive, Gauges, Media and Apps from the page tabs.</figcaption>
+        <video src="videos/tour.mp4" poster="videos/tour-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Around the pages: Drive, Gauges, Media and Apps."></video>
+        <figcaption><b>Portrait Navigation</b>Drive, Gauges, Media and Apps from the bottom page tabs.</figcaption>
       </figure>
       <figure class="clip">
-        <video src="videos/kitt.mp4" poster="videos/kitt-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="KITT comes online: Gauges come alive as the vehicle link comes up."></video>
-        <figcaption><b>KITT comes online</b>The map follows the car, the gauges come alive as the vehicle link comes up, and KITT says so in its own words.</figcaption>
+        <video src="videos/kitt.mp4" poster="videos/kitt-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="KITT comes online in portrait."></video>
+        <figcaption><b>KITT Telemetry</b>Map tracking, full-height gauge walls, and live voice synthesis.</figcaption>
       </figure>
-      <figure class="clip">
-        <video src="videos/themes.mp4" poster="videos/themes-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Themes: KITT, Retro VFD, Outrun, Terminator, RoboCop, The Matrix and Stealth."></video>
-        <figcaption><b>Themes</b>KITT, Retro VFD, Outrun, Terminator, RoboCop, The Matrix and Stealth.</figcaption>
+    </div>
+  </section>
+
+  <section id="holo">
+    <h2>KITT Holo <span class="tag cyan">3D HOLOGRAPHIC COCKPIT</span></h2>
+    <p class="intro">A complete cockpit revolution. The Drive screen projects a rotating 3D wireframe vehicle hologram rendered from 72 pre-rendered Blender vector camera angles. Touch to spin the vehicle manually with smooth velocity-decay physics, or let it rotate at cruising speed. Direct vehicle PID callouts float around the body with tap-to-expand telemetry cards.</p>
+
+    <h3 class="gallery-head" style="color:var(--cyan)">Holo Landscape Cockpits</h3>
+    <div class="shots landscape">
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-01-drive-kitt-car.webp" aria-label="Enlarge: Classic KITT Holo 3D Cockpit"><img src="screenshots/landscape-01-drive-kitt-car-thumb.webp" width="480" height="270" loading="lazy" alt="Classic KITT Holo: 3D wireframe vehicle turntable with live telemetry callout badges"></button>
+        <figcaption><b>Classic KITT 3D Wireframe</b>Rotating holographic sports coupe with coolant, revs, and tire pressure callouts.</figcaption>
       </figure>
-      <figure class="clip">
-        <video src="videos/editions.mp4" poster="videos/editions-poster.webp" width="600" height="862" muted loop playsinline preload="none" aria-label="Film editions: Three of each film theme, every one with its own colours, scanner and character."></video>
-        <figcaption><b>Film editions</b>Three of each film theme, every one with its own colours, scanner and character.</figcaption>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-03-drive-terminator-car.webp" aria-label="Enlarge: Cyberdyne Terminator T-800 Vision"><img src="screenshots/landscape-03-drive-terminator-car-thumb.webp" width="480" height="270" loading="lazy" alt="Terminator T-800 Vision: crimson HUD with targeting telemetry and threat assessment"></button>
+        <figcaption><b>Cyberdyne T-800 HUD</b>Crimson vehicle wireframe, machine code readout, and live threat telemetry.</figcaption>
       </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-04-drive-robocop-car.webp" aria-label="Enlarge: OmniCorp RoboCop Visor HUD"><img src="screenshots/landscape-04-drive-robocop-car-thumb.webp" width="480" height="270" loading="lazy" alt="RoboCop Visor HUD: cold blue glow with prime directives and tactical grid"></button>
+        <figcaption><b>OmniCorp Visor HUD</b>Tactical vehicle telemetry grid, targeting reticles, and Prime Directives.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: DeLorean Time Circuits Cockpit"><img src="screenshots/landscape-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="Back to the Future: DeLorean time circuits, flux capacitor, and speed streaks"></button>
+        <figcaption><b>DeLorean 1985 / 2015</b>Authentic destination/present/last-departed time circuits and flux capacitor.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-07-gauges-kitt.webp" aria-label="Enlarge: Holo Multi-Gauge Matrix"><img src="screenshots/landscape-07-gauges-kitt-thumb.webp" width="480" height="270" loading="lazy" alt="Holo 11-Style Multi-Gauge Matrix with peak hold markers"></button>
+        <figcaption><b>Holo Instrumentation Matrix</b>11 selectable gauge styles with peak hold and warning thresholds.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/landscape-08-gauges-terminator.webp" aria-label="Enlarge: Terminator Cyberdyne Diagnostic Array"><img src="screenshots/landscape-08-gauges-terminator-thumb.webp" width="480" height="270" loading="lazy" alt="Terminator Cyberdyne Diagnostic Array with target tracking"></button>
+        <figcaption><b>Cyberdyne Diagnostic Array</b>Tactical bar graphs, digital telemetry, and sensor limits.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gallery-head" style="color:#38bdf8">Holo Portrait Cockpits</h3>
+    <div class="shots three">
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/portrait-06-drive-back-to-the-future-car.webp" aria-label="Enlarge: Portrait DeLorean Cockpit"><img src="screenshots/portrait-06-drive-back-to-the-future-car-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait DeLorean Drive Screen"></button>
+        <figcaption><b>Portrait DeLorean Cockpit</b>Vertical time circuit stack with holographic vehicle turntable.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/portrait-07-gauges-kitt.webp" aria-label="Enlarge: Portrait Holo Gauges"><img src="screenshots/portrait-07-gauges-kitt-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait Holo Gauges Array"></button>
+        <figcaption><b>Portrait Multi-Gauges</b>High-density vertical gauge array with live OBD telemetry.</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/portrait-08-gauges-terminator.webp" aria-label="Enlarge: Portrait Terminator HUD"><img src="screenshots/portrait-08-gauges-terminator-thumb.webp" width="480" height="270" loading="lazy" alt="Portrait Terminator HUD Diagnostic Array"></button>
+        <figcaption><b>Portrait Cyberdyne Array</b>Tactical vertical sensor wall and threat monitor.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gallery-head" style="color:var(--amber)">72-Angle Wireframe Turntable Precision</h3>
+    <div class="shots six">
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_coupe_08_cyan.webp" aria-label="Enlarge: Coupe 40 deg"><img src="screenshots/preview_coupe_08_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 40 degrees"></button>
+        <figcaption><b>Coupe 40°</b>Cyan wireframe</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_coupe_26_cyan.webp" aria-label="Enlarge: Coupe 130 deg"><img src="screenshots/preview_coupe_26_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 130 degrees"></button>
+        <figcaption><b>Coupe 130°</b>Rear three-quarter</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_coupe_62_cyan.webp" aria-label="Enlarge: Coupe 310 deg"><img src="screenshots/preview_coupe_62_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Coupe wireframe at 310 degrees"></button>
+        <figcaption><b>Coupe 310°</b>Front three-quarter</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_truck_08_cyan.webp" aria-label="Enlarge: Truck 40 deg"><img src="screenshots/preview_truck_08_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 40 degrees"></button>
+        <figcaption><b>Truck 40°</b>Cyan wireframe</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_truck_26_cyan.webp" aria-label="Enlarge: Truck 130 deg"><img src="screenshots/preview_truck_26_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 130 degrees"></button>
+        <figcaption><b>Truck 130°</b>Rear bed &amp; wheels</figcaption>
+      </figure>
+      <figure class="shot cyan-shot">
+        <button type="button" data-full="screenshots/preview_truck_62_cyan.webp" aria-label="Enlarge: Truck 310 deg"><img src="screenshots/preview_truck_62_cyan-thumb.webp" width="360" height="220" loading="lazy" alt="Truck wireframe at 310 degrees"></button>
+        <figcaption><b>Truck 310°</b>Front grille &amp; cab</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="entertainment">
+    <h2>Entertainment Hub <span class="tag">PIRADEX STREAMING &amp; GAMES</span></h2>
+    <p class="intro">The Games screen is now the <b>Entertainment Hub</b> across all menus, side rails, and voice commands. Combines live streaming sports, live TV broadcast directories, on-demand movies, and retro arcade emulation with visual brand recognition emblems.</p>
+    <div class="grid">
+      <div class="card wide">
+        <h3 style="color:var(--cyan)">Piradex Live Streaming Portals</h3>
+        <ul class="list cyan-list">
+          <li><b>Live Sports Streaming:</b> Instant access to sports live streaming portals with match schedules, active streams, and mirror fallbacks for NFL, NBA, MLB, Premier League, UEFA, Formula 1, UFC, boxing, and college athletics.
+            <div class="badge-row">
+              <span class="brand-badge red">Live Sports</span>
+              <span class="brand-badge cyan">StreamEast</span>
+              <span class="brand-badge amber">Sportsurge</span>
+              <span class="brand-badge green">CrackStreams</span>
+              <span class="brand-badge">BilaSport</span>
+              <span class="brand-badge">FootyBite</span>
+            </div>
+          </li>
+          <li><b>Live TV List:</b> Curated live streaming TV directories featuring 24/7 news, music television, weather networks, global broadcast feeds, and local IPTV channels.
+            <div class="badge-row">
+              <span class="brand-badge cyan">Live TV List</span>
+              <span class="brand-badge red">Pluto TV</span>
+              <span class="brand-badge amber">Xumo Play</span>
+              <span class="brand-badge green">Samsung TV Plus</span>
+              <span class="brand-badge">Plex Live</span>
+            </div>
+          </li>
+          <li><b>Movies &amp; TV Shows:</b> Complete free streaming portals for full-length movies, bingeable series, anime, and documentary cinema.
+            <div class="badge-row">
+              <span class="brand-badge amber">Movies &amp; TV</span>
+              <span class="brand-badge red">Tubi TV</span>
+              <span class="brand-badge cyan">Fandango</span>
+              <span class="brand-badge green">Crackle</span>
+              <span class="brand-badge">Kanopy</span>
+              <span class="brand-badge">Hoopla</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Visual Brand Recognition</h3>
+        <ul class="list">
+          <li><b>Visual Emblems:</b> No more generic text buttons. Every site card features a distinctive vector brand badge and themed visual layout so drivers can identify destinations instantly at a glance.</li>
+          <li><b>High-Contrast Badges:</b> Emblems adapt dynamically to your cockpit theme (KITT red, Terminator amber/crimson, Matrix green phosphor, RoboCop visor blue).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Audio Focus &amp; Video Protection</h3>
+        <ul class="list">
+          <li><b>Audio Playback Protection:</b> Fixed video playback stopping after &lt; 1 second on streaming services (Tubi, Pluto, YouTube) by preventing spurious audio-focus drops.</li>
+          <li><b>Background Playback:</b> Video audio continues seamlessly when navigating between pages or checking live OBD gauges.</li>
+          <li><b>Renderer Isolation:</b> Stuck heavy web pages fail safely without freezing the head unit.</li>
+        </ul>
+      </div>
+
+      <div class="card wide">
+        <h3>Retro Arcade Suite (from RetroTV)</h3>
+        <ul class="list">
+          <li><b>One-Tap Web Emulators:</b> RetroGames.cc, PlayClassic, ClassicReload, webЯcade, Internet Arcade, MS-DOS archives.</li>
+          <li><b>Gamepad Support:</b> Full USB and Bluetooth controller mapping; analog sticks map to virtual D-pads with zero input lag.</li>
+          <li><b>On-Screen Touch Pad:</b> Retro directional pad and fire buttons for touchscreens when no gamepad is connected.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="widgets">
+    <h2>Driver Cockpit Widgets <span class="tag">7 BUILT-IN DASH TOOLS</span></h2>
+    <p class="intro">Seven native driver widgets built directly into the launcher's Widgets page. Designed specifically for in-car tasks and framed to match all cockpit film themes (KITT scanlines, Terminator HUD brackets, Matrix CRT ticks, DeLorean brushed metal with rivets, RoboCop hazard stripes).</p>
+    <div class="widget-grid">
+      <div class="widget-card">
+        <h4>Nav Quick Dispatcher <span>NAVIGATION</span></h4>
+        <p>Instant one-tap routing to your most frequent driver destinations: Home, Work, Gas Stations, EV Fast Chargers, Food, and Parking Lots. Includes a theme-styled rotating compass reticle with live vehicle heading.</p>
+      </div>
+
+      <div class="widget-card">
+        <h4>Parking Sentry &amp; Car Finder <span>SECURITY</span></h4>
+        <p>Quick parking meter countdown timer (+15m, +30m, +1h, +2h) with color-coded warning alerts. Remembers your GPS parking spot with "Pin Spot" and gives one-tap walking directions back to your car.</p>
+      </div>
+
+      <div class="widget-card">
+        <h4>Attitude Inclinometer &amp; Gyro <span>OFF-ROAD / ATTITUDE</span></h4>
+        <p>Real-time pitch ladder, roll degree indicators, and artificial horizon level sensor. Crucial for trucks, off-road driving, steep mountain grades, and towing stability.</p>
+      </div>
+
+      <div class="widget-card">
+        <h4>Cabin Decibel Sound Meter <span>ACOUSTICS</span></h4>
+        <p>Live cabin noise SPL monitor with an animated 16-segment acoustic bar spectrum and persistent peak hold marker. Measures highway tire drone, exhaust rumble, and audio system volume.</p>
+      </div>
+
+      <div class="widget-card">
+        <h4>Cockpit Dash Scratchpad <span>MEMORY</span></h4>
+        <p>Persistent dash memo pad for quick notes, gate codes, parking spot numbers, and mileage logs. Features one-tap themed stamp tags: URGENT, MAINT, NOTE, and OBD.</p>
+      </div>
+
+      <div class="widget-card">
+        <h4>Tire Pressure &amp; Speed Converter <span>UNITS</span></h4>
+        <p>Instant two-way conversions for car specs: Tire Pressure (PSI ↔ Bar ↔ kPa) with quick-step buttons, and Speed (MPH ↔ KM/H) with preset highway markers.</p>
+      </div>
+
+      <div class="widget-card" style="grid-column: 1 / -1; border-color:var(--red)">
+        <h4 style="color:var(--red)">Vehicle Emergency &amp; Battery Sentry <span>SOS / ASSISTANCE</span></h4>
+        <p>Monitors 12V alternator charging and resting voltage health with color-coded battery condition alerts. Features instant one-tap dispatch buttons for 911 Emergency SOS and Roadside Assistance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="visualizer">
+    <h2>Music &amp; 16-Band Visualizer <span class="tag cyan">AUDIO ENGINE</span></h2>
+    <p class="intro">Real-time graphic audio spectrum visualizer integrated into the Media screen and Holo cockpit dock, paired with a unified Music &amp; Radio hub.</p>
+    <div class="grid">
+      <div class="card">
+        <h3 style="color:var(--cyan)">16-Band Real-Time Audio Visualizer</h3>
+        <ul class="list cyan-list">
+          <li><b>16 Frequency Bands:</b> Sub-bass (30–60 Hz), mid-bass, midrange, presence, and brilliance (up to 16 kHz).</li>
+          <li><b>Hardware Audio Session Capture:</b> Analyzes live audio output with fast FFT calculation.</li>
+          <li><b>Peak Hold Markers:</b> Persistent indicators mark acoustic peaks with realistic ballistic decay.</li>
+          <li><b>Theme Colors:</b> Scanner red, Terminator amber, Matrix green, or Holo electric cyan.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Music &amp; Internet Radio Hub</h3>
+        <ul class="list">
+          <li><b>Curated Live Radio Stations:</b> One-tap streaming radio presets (Nightdrive Synthwave, 80s Rock, K-Rose Country, Vice City Pop, Lo-Fi Chill, Cyberpunk Industrial, Ambient Space).</li>
+          <li><b>Local USB &amp; Storage Player:</b> Browse local MP3/FLAC music files by folder, artist, and album.</li>
+          <li><b>MediaSession Integration:</b> Displays album art, track progress, and playback controls for Spotify, YouTube Music, Apple Music, and podcast apps.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section id="screens">
-    <h2>Screens <span class="tag">TAP TO ENLARGE</span></h2>
+    <h2>Classic Screens <span class="tag">TAP TO ENLARGE</span></h2>
     <p class="intro">KITT Launcher on a portrait head-unit screen. <a href="#screens-2" style="color:var(--amber)">KITT Launcher.2 on a 7" landscape screen</a> is further down.</p>
     <div class="shots">
       <figure class="shot">
@@ -386,15 +666,15 @@
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/kitt.webp" aria-label="Enlarge: KITT"><img src="screenshots/kitt-thumb.webp" width="400" height="576" loading="lazy" alt="KITT: KITT reading the fault codes, with attitude."></button>
-        <figcaption><b>KITT</b>KITT reading the fault codes, with attitude.</figcaption>
+        <figcaption><b>KITT</b>KITT reading fault codes with conversational attitude.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/gauges-thumb.webp" width="400" height="576" loading="lazy" alt="Gauges: A full wall of live OBD gauges."></button>
-        <figcaption><b>Gauges</b>A full wall of live OBD gauges.</figcaption>
+        <figcaption><b>Gauges</b>Full wall of live OBD diagnostic gauges.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/library.webp" aria-label="Enlarge: Music library"><img src="screenshots/library-thumb.webp" width="400" height="576" loading="lazy" alt="Music library: Browse and search a music app's playlists and artists, with recently played one tap away."></button>
-        <figcaption><b>Music library</b>Browse and search Spotify, YouTube Music or a USB player from the Media page, with recently played one tap away.</figcaption>
+        <button type="button" data-full="screenshots/library.webp" aria-label="Enlarge: Music library"><img src="screenshots/library-thumb.webp" width="400" height="576" loading="lazy" alt="Music library: Browse and search a music app's playlists and artists."></button>
+        <figcaption><b>Music library</b>Browse and search Spotify, YouTube Music or a USB player.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/codes.webp" aria-label="Enlarge: Fault codes"><img src="screenshots/codes-thumb.webp" width="400" height="576" loading="lazy" alt="Fault codes: Stored codes in plain English, emissions readiness and freeze frame."></button>
@@ -404,165 +684,35 @@
         <button type="button" data-full="screenshots/trips.webp" aria-label="Enlarge: Trip computer"><img src="screenshots/trips-thumb.webp" width="400" height="576" loading="lazy" alt="Trip computer: Distance, time, speeds and fuel economy for the last drive."></button>
         <figcaption><b>Trip computer</b>Distance, time, speeds and fuel economy for the last drive.</figcaption>
       </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/ai-thumb.webp" width="400" height="576" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
-        <figcaption><b>AI page</b>Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/stream.webp" aria-label="Enlarge: Stream window"><img src="screenshots/stream-thumb.webp" width="400" height="576" loading="lazy" alt="Stream window: Licensed free video and music sites over the map."></button>
-        <figcaption><b>Stream window</b>Licensed free video and music sites over the map.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/games.webp" aria-label="Enlarge: Games"><img src="screenshots/games-thumb.webp" width="400" height="576" loading="lazy" alt="Games: Browser games with controller support, in the shared browser."></button>
-        <figcaption><b>Games</b>Browser games with controller support, in the shared browser.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/apps.webp" aria-label="Enlarge: Apps"><img src="screenshots/apps-thumb.webp" width="400" height="576" loading="lazy" alt="Apps: App drawer with search, groups and an A–Z rail."></button>
-        <figcaption><b>Apps</b>App drawer with search, groups and an A–Z rail.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/quick-settings.webp" aria-label="Enlarge: Quick settings"><img src="screenshots/quick-settings-thumb.webp" width="400" height="576" loading="lazy" alt="Quick settings: Volume, brightness, night mode and shortcuts from the status strip."></button>
-        <figcaption><b>Quick settings</b>Volume, brightness, night mode and shortcuts from the status strip.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/driving.webp" aria-label="Enlarge: Driving layout"><img src="screenshots/driving-thumb.webp" width="400" height="576" loading="lazy" alt="Driving layout: Big media and volume buttons, KITT and your top three apps while the car is moving."></button>
-        <figcaption><b>Driving layout</b>Big media and volume buttons, KITT and your top three apps while the car is moving.</figcaption>
-      </figure>
     </div>
 
-    <h3 class="gallery-head">Diagnostics, every tab</h3>
-    <div class="shots compact">
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-gauges.webp" aria-label="Enlarge: Gauges tab"><img src="screenshots/diag-gauges-thumb.webp" width="300" height="432" loading="lazy" alt="Gauges tab: Your own dashboard in eleven styles, with warning limits."></button>
-        <figcaption><b>Gauges tab</b>Your own dashboard in eleven styles, with warning limits.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-data.webp" aria-label="Enlarge: Data"><img src="screenshots/diag-data-thumb.webp" width="300" height="432" loading="lazy" alt="Data: Live graphs of any sensor and CSV data logging."></button>
-        <figcaption><b>Data</b>Live graphs of any sensor and CSV data logging.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-codes.webp" aria-label="Enlarge: Codes"><img src="screenshots/diag-codes-thumb.webp" width="300" height="432" loading="lazy" alt="Codes: Stored, pending and permanent codes, readiness and freeze frame."></button>
-        <figcaption><b>Codes</b>Stored, pending and permanent codes, readiness and freeze frame.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-vehicle.webp" aria-label="Enlarge: Vehicle"><img src="screenshots/diag-vehicle-thumb.webp" width="300" height="432" loading="lazy" alt="Vehicle: VIN, battery and charging, fuel, fuel log and maintenance."></button>
-        <figcaption><b>Vehicle</b>VIN, battery and charging, fuel, fuel log and maintenance.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-tools.webp" aria-label="Enlarge: Tools"><img src="screenshots/diag-tools-thumb.webp" width="300" height="432" loading="lazy" alt="Tools: Performance timer, Mode 06, module scan and adapter tools."></button>
-        <figcaption><b>Tools</b>Performance timer, Mode 06, module scan and adapter tools.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-pids.webp" aria-label="Enlarge: PIDs"><img src="screenshots/diag-pids-thumb.webp" width="300" height="432" loading="lazy" alt="PIDs: Manufacturer PIDs, custom PIDs and every live sensor."></button>
-        <figcaption><b>PIDs</b>Manufacturer PIDs, custom PIDs and every live sensor.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/diag-link.webp" aria-label="Enlarge: Link"><img src="screenshots/diag-link-thumb.webp" width="300" height="432" loading="lazy" alt="Link: Adapter connection, manufacturer profile, protocol and polling."></button>
-        <figcaption><b>Link</b>Adapter connection, manufacturer profile, protocol and polling.</figcaption>
-      </figure>
-    </div>
-
-    <h3 class="gallery-head">KITT Config, every setting</h3>
-    <div class="shots compact">
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-1.webp" aria-label="Enlarge: AI core & personality"><img src="screenshots/config-1-thumb.webp" width="300" height="432" loading="lazy" alt="AI core & personality: Gemini or Perplexity, models, web search, Savage, Unfiltered or Classic KITT."></button>
-        <figcaption><b>AI core & personality</b>Gemini or Perplexity, models, web search, Savage, Unfiltered or Classic KITT.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-2.webp" aria-label="Enlarge: Voice & microphone"><img src="screenshots/config-2-thumb.webp" width="300" height="432" loading="lazy" alt="Voice & microphone: Neural or device voice, speech input and the mic takeover fix."></button>
-        <figcaption><b>Voice & microphone</b>Neural or device voice, speech input and the mic takeover fix.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-3.webp" aria-label="Enlarge: Listening & messages"><img src="screenshots/config-3-thumb.webp" width="300" height="432" loading="lazy" alt="Listening & messages: Default assistant, recognizer, "Hey KITT", messages read aloud."></button>
-        <figcaption><b>Listening & messages</b>Default assistant, recognizer, "Hey KITT", messages read aloud.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-4.webp" aria-label="Enlarge: Display & navigation"><img src="screenshots/config-4-thumb.webp" width="300" height="432" loading="lazy" alt="Display & navigation: Themes, accent colour, night mode, units, driving layout, shift light, map."></button>
-        <figcaption><b>Display & navigation</b>Themes, accent colour, night mode, units, driving layout, shift light, map.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-5.webp" aria-label="Enlarge: Home screen"><img src="screenshots/config-5-thumb.webp" width="300" height="432" loading="lazy" alt="Home screen: Status strip, icons, button sounds, weather and spoken directions, screensaver, start-up."></button>
-        <figcaption><b>Home screen</b>Status strip, icons, button sounds, weather and spoken directions, screensaver, start-up.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/config-6.webp" aria-label="Enlarge: Buttons, profiles & upkeep"><img src="screenshots/config-6-thumb.webp" width="300" height="432" loading="lazy" alt="Buttons, profiles & upkeep: Steering-wheel buttons, driver profiles, backup, problem reports, updates."></button>
-        <figcaption><b>Buttons, profiles & upkeep</b>Steering-wheel buttons, driver profiles, backup, problem reports, updates.</figcaption>
-      </figure>
-    </div>
-    <p class="note">KITT Launcher, captured on a 12.1" portrait head-unit emulator. Vehicle readings, the fault code and the trip are simulated with the app's demo mode, because no car was connected; on the road they come from your OBD adapter.</p>
-
-    <h3 class="gallery-head" id="screens-2" style="scroll-margin-top:64px">KITT Launcher.2 · 7" landscape, 1024×600</h3>
+    <h3 class="gallery-head" id="screens-2" style="scroll-margin-top:64px">KITT Launcher.2 · 7" Landscape, 1024×600</h3>
     <div class="shots landscape">
       <figure class="shot">
-        <button type="button" data-full="screenshots/l2-drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="Drive page: Map, live gauges and apps side by side, with KITT and the pages in the side rail and the slim dock below."></button>
-        <figcaption><b>Drive page</b>Map, live gauges and apps side by side, with KITT and the pages in the side rail and the slim dock below.</figcaption>
+        <button type="button" data-full="screenshots/l2-drive.webp" aria-label="Enlarge: Drive page"><img src="screenshots/l2-drive-thumb.webp" width="480" height="281" loading="lazy" alt="Drive page: Map, live gauges and apps side by side, with KITT in side rail."></button>
+        <figcaption><b>Drive page</b>Map, live gauges and apps side by side, with KITT in the side rail.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/l2-kitt.webp" aria-label="Enlarge: Savage KITT"><img src="screenshots/l2-kitt-thumb.webp" width="480" height="281" loading="lazy" alt="Savage KITT: KITT announcing the vehicle link and a fault code, in the default Savage personality."></button>
-        <figcaption><b>Savage KITT</b>KITT announcing the vehicle link and a fault code, in the default Savage personality.</figcaption>
+        <button type="button" data-full="screenshots/l2-kitt.webp" aria-label="Enlarge: Savage KITT"><img src="screenshots/l2-kitt-thumb.webp" width="480" height="281" loading="lazy" alt="Savage KITT: KITT announcing vehicle link and fault codes."></button>
+        <figcaption><b>Savage KITT</b>KITT announcing vehicle link and fault codes in Savage mode.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-full="screenshots/l2-gauges.webp" aria-label="Enlarge: Gauges"><img src="screenshots/l2-gauges-thumb.webp" width="480" height="281" loading="lazy" alt="Gauges: A full-height wall of live OBD gauges."></button>
-        <figcaption><b>Gauges</b>A full-height wall of live OBD gauges.</figcaption>
+        <figcaption><b>Gauges</b>Full-height landscape wall of live OBD gauges.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-full="screenshots/l2-library.webp" aria-label="Enlarge: Music library"><img src="screenshots/l2-library-thumb.webp" width="480" height="281" loading="lazy" alt="Music library: Browse and search a music app's playlists and artists, with recently played one tap away."></button>
-        <figcaption><b>Music library</b>Browse and search Spotify, YouTube Music or a USB player from the Media page, with recently played one tap away.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-codes.webp" aria-label="Enlarge: Fault codes"><img src="screenshots/l2-codes-thumb.webp" width="480" height="281" loading="lazy" alt="Fault codes: Stored codes in plain English, with emissions readiness below."></button>
+        <button type="button" data-full="screenshots/l2-codes.webp" aria-label="Enlarge: Fault codes"><img src="screenshots/l2-codes-thumb.webp" width="480" height="281" loading="lazy" alt="Fault codes: Stored codes in plain English."></button>
         <figcaption><b>Fault codes</b>Stored codes in plain English, with emissions readiness below.</figcaption>
       </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-ai.webp" aria-label="Enlarge: AI page"><img src="screenshots/l2-ai-thumb.webp" width="480" height="281" loading="lazy" alt="AI page: Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs."></button>
-        <figcaption><b>AI page</b>Your own Gemini, Claude, Perplexity and ChatGPT accounts in tabs.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-apps.webp" aria-label="Enlarge: App drawer"><img src="screenshots/l2-apps-thumb.webp" width="480" height="281" loading="lazy" alt="App drawer: Search, categories and an A to Z rail."></button>
-        <figcaption><b>App drawer</b>Search, categories and an A to Z rail.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-trips.webp" aria-label="Enlarge: Trip computer"><img src="screenshots/l2-trips-thumb.webp" width="480" height="281" loading="lazy" alt="Trip computer: Distance, time, speeds and fuel economy for the last drive."></button>
-        <figcaption><b>Trip computer</b>Distance, time, speeds and fuel economy for the last drive.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-display.webp" aria-label="Enlarge: Screen size & Lite mode"><img src="screenshots/l2-display-thumb.webp" width="480" height="281" loading="lazy" alt="Screen size & Lite mode: Fit the launcher to a 7&quot; to 10&quot; screen, and keep budget head units quick."></button>
-        <figcaption><b>Screen size & Lite mode</b>Fit the launcher to a 7" to 10" screen, and keep budget head units quick.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-full="screenshots/l2-driving.webp" aria-label="Enlarge: Driving layout"><img src="screenshots/l2-driving-thumb.webp" width="480" height="281" loading="lazy" alt="Driving layout: A bigger rail with just the driving pages, big media and volume buttons, and your top three apps."></button>
-        <figcaption><b>Driving layout</b>A bigger rail with just the driving pages, big media and volume buttons, and your top three apps.</figcaption>
-      </figure>
     </div>
-    <p class="note">KITT Launcher.2, captured on a 1024×600 landscape head-unit emulator, the classic 7" size, in demo mode with simulated vehicle data.</p>
   </section>
 
   <section id="look">
-    <h2>The look <span class="tag">DISPLAY</span></h2>
-    <p class="intro">The red scanner never stops sweeping, and every screen wears the theme you pick.</p>
+    <h2>The look <span class="tag">11 THEMES · 12 EDITIONS</span></h2>
+    <p class="intro">The scanner light never stops sweeping, and every screen wears the theme you pick.</p>
     <div class="grid">
-      <div class="card">
-        <h3>Scanner light</h3>
-        <ul class="list">
-          <li><b>Always on</b> across the top of the screen.</li>
-          <li><b>Over other apps</b> as a see-through strip that taps pass through.</li>
-          <li><b>Shift light:</b> flashes as the engine nears an RPM you choose (5,000 by default).</li>
-        </ul>
-        <div class="hood">a TYPE_APPLICATION_OVERLAY at 80% opacity, the most Android 12+ allows while passing touches through. One simulation engine (eased head, exponentially fading lamps) drives both scanners.</div>
-      </div>
-      <div class="card">
-        <h3>Display options</h3>
-        <ul class="list">
-          <li><b>Custom accent colour</b> on any theme.</li>
-          <li><b>Night mode:</b> Off, Auto or Always.</li>
-          <li><b>Units:</b> imperial or metric.</li>
-          <li><b>Status strip:</b> clock, compass heading, Wi-Fi, Bluetooth, OBD link and battery volts. Tap it for Quick Settings.</li>
-          <li><b>Icons:</b> button sounds, theme-tinted app icons, or ADW/Nova icon packs.</li>
-          <li><b>Screensaver</b> after a set number of idle minutes while parked.</li>
-        </ul>
-      </div>
       <div class="card wide">
-        <h3>11 themes</h3>
+        <h3>11 Themes</h3>
         <div class="theme-strip">
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-kitt.webp" aria-label="Enlarge: KITT theme"><img src="screenshots/theme-kitt-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KITT theme"></button><figcaption>KITT</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-karr.webp" aria-label="Enlarge: KARR theme"><img src="screenshots/theme-karr-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KARR theme"></button><figcaption>KARR</figcaption></figure>
@@ -576,526 +726,175 @@
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-colorado.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/theme-colorado-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the The Matrix theme"></button><figcaption>The Matrix</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-backtothefuture.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/theme-backtothefuture-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Back to the Future theme"></button><figcaption>Back to the Future</figcaption></figure>
         </div>
-        <ul class="list">
-          <li><b>Film HUD themes</b> change much more than colours: fonts, panel shapes, the scanner, panel frames, a full-screen scanline effect and themed status text.
-            <ul>
-              <li><b>Terminator:</b> red vision overlay, 20-segment scanner, T-800 readouts like "THREAT ASSESSMENT: NONE".</li>
-              <li><b>RoboCop:</b> cold blue visor glow, targeting-bracket panel corners, visor scanner, the Prime Directives.</li>
-              <li><b>The Matrix:</b> green phosphor terminal with optional falling digital rain behind see-through panels; KITT's messages type themselves out.</li>
-              <li><b>Back to the Future</b> (new): brushed DeLorean steel, the time circuits (destination, present and last-departed times in red, green and amber) in place of the clock, a flux-capacitor scanner and voice box, rivet-cornered panels and label-maker titles.</li>
-            </ul>
-          </li>
-          <li><b>More film, less Knight Rider:</b> each film theme now boots with its own start-up sequence; Terminator scrolls machine code down the side and locks a targeting box onto the vehicle on the map; RoboCop's visor scan sweeps the screen and a reticle tracks the vehicle; alerts arrive as a "priority transmission", an "OCP advisory" or a typed terminal message.</li>
-          <li><b>Film characters:</b> with a film theme on, KITT becomes that film's character, with its own voice and way of talking: a deep, flat cyborg unit, a cold program agent, a procedural cyborg officer, or an excitable inventor. They're original characters in the spirit of the films, not imitations of the actors, and your personality setting still decides how crude they get.</li>
-          <li><b>Film editions</b> (new): every film theme comes in three, each with its own colours, scanner, screen effects, readouts and start-up sequence.
-            <ul>
-              <li><b>Terminator:</b> T-800 Vision · <b>Liquid Metal</b> (mercury chrome, a molten bead for a scanner, a sheen flowing across the screen) · <b>Future War 2029</b> (night-battle blue, plasma bolts, a hunter-killer searchlight).</li>
-              <li><b>RoboCop:</b> Visor · <b>ED-209</b> (gunmetal and hazard stripes, a red sensor eye) · <b>OCP Delta City</b> (navy and executive gold, news-flash alerts).</li>
-              <li><b>The Matrix:</b> Digital Rain · <b>Real World</b> (the hovercraft's cold blue, an EMP that charges and fires in the scanner) · <b>Zion</b> (amber firelight, dock beacons).</li>
-              <li><b>Back to the Future:</b> DeLorean 1985 · <b>Hill Valley 2015</b> (hover-conversion neon) · <b>Hill Valley 1885</b> (brass, sepia and steam), plus a small surprise at 88 km/h.</li>
-            </ul>
-          </li>
-          <li><b>12 film characters</b> (new): three per film, from a liquid-metal prototype and a resistance soldier to a ship operator, a resistance captain, an over-loud enforcement droid, a slick corporate executive, a teen time traveller and a holographic 2015 café host. Each edition brings its own, or pick your favourite. With sound effects on, each film plays its own start-up sound.</li>
-        </ul>
-        <div class="shots landscape" style="margin-top:12px">
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-terminator.webp" aria-label="Enlarge: Terminator theme"><img src="screenshots/l2-theme-terminator-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator theme: red vision, targeting box on the vehicle and scrolling machine code"></button><figcaption><b>Terminator</b>Targeting box on the vehicle, machine code down the side.</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-robocop.webp" aria-label="Enlarge: RoboCop theme"><img src="screenshots/l2-theme-robocop-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop theme: visor blue with a reticle tracking the vehicle"></button><figcaption><b>RoboCop</b>Visor reticle, Prime Directives, OCP unit.</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-matrix.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/l2-theme-matrix-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix theme: green terminal panels over digital rain"></button><figcaption><b>The Matrix</b>Terminal panels over the rain; the Agent answers.</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-theme-future.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/l2-theme-future-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future theme: time circuits, flux capacitor and steel panels"></button><figcaption><b>Back to the Future</b>Time circuits, flux capacitor, DeLorean steel.</figcaption></figure>
-        </div>
-        <h3 class="gallery-head">Film editions</h3>
-        <div class="shots landscape films">
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-t800.webp" aria-label="Enlarge: T-800 Vision edition"><img src="screenshots/l2-edition-t800-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator, T-800 Vision edition: red vision and machine code"></button><figcaption><b>T-800 Vision</b>Terminator</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-t1000.webp" aria-label="Enlarge: Liquid Metal edition"><img src="screenshots/l2-edition-t1000-thumb.webp" width="480" height="281" loading="lazy" alt="Terminator, Liquid Metal edition: mercury chrome panels"></button><figcaption><b>Liquid Metal</b>Terminator</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-visor.webp" aria-label="Enlarge: Visor edition"><img src="screenshots/l2-edition-visor-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, Visor edition: cold blue glow and a reticle on the vehicle"></button><figcaption><b>Visor</b>RoboCop</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-ed209.webp" aria-label="Enlarge: ED-209 edition"><img src="screenshots/l2-edition-ed209-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, ED-209 edition: gunmetal and hazard stripes"></button><figcaption><b>ED-209</b>RoboCop</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-deltacity.webp" aria-label="Enlarge: OCP Delta City edition"><img src="screenshots/l2-edition-deltacity-thumb.webp" width="480" height="281" loading="lazy" alt="RoboCop, OCP Delta City edition: navy and executive gold"></button><figcaption><b>OCP Delta City</b>RoboCop</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-code.webp" aria-label="Enlarge: Digital Rain edition"><img src="screenshots/l2-edition-code-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Digital Rain edition: green phosphor terminal"></button><figcaption><b>Digital Rain</b>The Matrix</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-realworld.webp" aria-label="Enlarge: Real World edition"><img src="screenshots/l2-edition-realworld-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Real World edition: the hovercraft's cold blue"></button><figcaption><b>Real World</b>The Matrix</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-zion.webp" aria-label="Enlarge: Zion edition"><img src="screenshots/l2-edition-zion-thumb.webp" width="480" height="281" loading="lazy" alt="The Matrix, Zion edition: amber firelight"></button><figcaption><b>Zion</b>The Matrix</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-delorean1985.webp" aria-label="Enlarge: DeLorean 1985 edition"><img src="screenshots/l2-edition-delorean1985-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, DeLorean 1985 edition: brushed steel and time circuits"></button><figcaption><b>DeLorean 1985</b>Back to the Future</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-hillvalley2015.webp" aria-label="Enlarge: Hill Valley 2015 edition"><img src="screenshots/l2-edition-hillvalley2015-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, Hill Valley 2015 edition: hover-conversion neon"></button><figcaption><b>Hill Valley 2015</b>Back to the Future</figcaption></figure>
-          <figure class="shot"><button type="button" data-full="screenshots/l2-edition-frontier1885.webp" aria-label="Enlarge: Hill Valley 1885 edition"><img src="screenshots/l2-edition-frontier1885-thumb.webp" width="480" height="281" loading="lazy" alt="Back to the Future, Hill Valley 1885 edition: brass, sepia and steam"></button><figcaption><b>Hill Valley 1885</b>Back to the Future</figcaption></figure>
-        </div>
-        <p class="note">Film theme and edition screenshots from KITT Launcher.2 on a 7" landscape emulator in demo mode. Future War 2029 isn't pictured: its effects are too heavy for the emulator used to capture these.</p>
       </div>
     </div>
   </section>
 
   <section id="pages">
     <h2>Home screen pages <span class="tag">SWIPE</span></h2>
-    <p class="intro">Swipe left and right between pages or tap the page buttons. A swipe that starts at the left or right edge of the screen always changes page, even over a web page or the map. The Home button always returns you to Drive.</p>
+    <p class="intro">Swipe left and right between pages or tap the page buttons. A swipe starting at the edge always changes page. The Home button always returns you to Drive.</p>
     <div class="grid">
       <div class="card">
         <h3>Drive</h3>
         <ul class="list">
-          <li><b>Live map</b> (OpenStreetMap, centred on you) with your apps or vehicle status underneath. Side by side on wide screens. Places you've seen stay viewable without signal, and you can add a map file of your area for dead zones.</li>
-          <li><b>Search and turn-by-turn directions</b> right on the map (below).</li>
-          <li><b>Stream window</b> can take over the map area.</li>
-          <li>Swiping pauses while you drag the map or a video.</li>
+          <li><b>Live map</b> (OpenStreetMap) with vehicle status underneath. Side by side on landscape screens.</li>
+          <li><b>Search and turn-by-turn directions</b> with spoken turn prompts.</li>
+          <li><b>Holo vehicle turntable</b> on Holo editions with live PID telemetry callouts.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Gauges · Media</h3>
         <ul class="list">
-          <li><b>Gauges:</b> a full wall of your OBD gauges. <b>Cluster</b> draws the first one large, like the main dial of an instrument cluster.</li>
-          <li><b>Media:</b> whatever any app is playing, with title, artist, artwork and controls. Needs notification access (reads the active MediaSession).</li>
+          <li><b>Gauges:</b> full wall of OBD gauges. 11 selectable gauge styles.</li>
+          <li><b>Media:</b> real-time 16-band visualizer, streaming radio stations, USB library, and active player controls.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>AI · Games · Widgets</h3>
+        <h3>AI · Entertainment · Widgets</h3>
         <ul class="list">
-          <li><b>AI:</b> Gemini, Claude and Perplexity websites in tabs, signed in with your own accounts.</li>
-          <li><b>Games</b> (new, from RetroTV): a full retro-game browser. Big tiles for RetroGames.cc, PlayClassic, ClassicReload, webЯcade, the Internet Arcade, the MS-DOS library and more, with search, categories, favourites, <b>Continue playing</b> and your own sites. Play with a Bluetooth or USB controller or the <b>on-screen touch pad</b>; controllers work with every kind of web emulator. <b>Game mode</b> gives the game the whole screen, <b>Focus game</b> blows it up inside the page, ads and pop-ups are blocked, and emulator apps download from the same page and install with a tap.</li>
-          <li><b>Widgets:</b> any regular Android home-screen widget.</li>
+          <li><b>AI:</b> Gemini, Claude, and Perplexity accounts in tabs.</li>
+          <li><b>Entertainment Hub:</b> Piradex live sports streaming, live TV list, free movies, and retro arcade emulation with gamepad support.</li>
+          <li><b>Widgets:</b> 7 built-in cockpit driver widgets plus any regular Android widgets.</li>
         </ul>
       </div>
       <div class="card">
         <h3>Apps</h3>
         <ul class="list">
-          <li>Search, an A–Z jump bar and most-used sorting.</li>
-          <li>Pin apps to the home grid, or hide them.</li>
-          <li>Automatic groups: Navigation, Music, Video, Car, Social, Tools.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>Map search &amp; directions</h3>
-        <ul class="list">
-          <li><b>Search:</b> tap Search on the map and type an address or place. Results come nearest first, and your recent destinations are one tap away.</li>
-          <li><b>Preview:</b> the route is drawn on the map with distance, drive time and arrival time. Start it, cancel it, or tap <b>Other app</b> to hand it to Google Maps, Waze or any navigation app.</li>
-          <li><b>Guidance:</b> the next turn shows at the top of the map with an arrow and distance. KITT speaks each turn twice, early and at the turn (earlier on faster roads), recalculates if you leave the route, and announces arrival.</li>
-          <li><b>By voice:</b> "navigate to the nearest Walmart", "take me to 1600 Main Street", "cancel the route".</li>
-          <li>Free, no account. Needs a data connection and location. Guidance runs while the launcher is on screen, and spoken directions can be switched off.</li>
-        </ul>
-        <div class="hood">place search uses Photon and routing uses OSRM (the openstreetmap.org routing server, with a fallback). The car's GPS position is matched to the route line, searching forward so roads that double back don't confuse it; three off-route fixes in a row trigger a new route.</div>
-      </div>
-      <div class="card wide">
-        <h3>Always there</h3>
-        <ul class="list">
-          <li><b>Dock</b> fixed at the bottom.</li>
-          <li><b>Driving layout</b> (optional, off by default): bigger, simpler controls while moving: big media and volume buttons, KITT and your top three apps, and a bigger side rail and bottom bar with just the driving pages. It waits about 15 seconds of driving and 60 seconds stopped before switching, so it doesn't flicker in traffic.</li>
-          <li><b>Quick Settings:</b> brightness, sound, Wi-Fi, Bluetooth, night mode and a shortcut to Android Settings.</li>
+          <li>Search, A–Z jump rail, and most-used smart sorting.</li>
+          <li>Pin favorite apps to the quick dock or hide system utilities.</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="kitt">
-    <h2>KITT, the AI co-pilot <span class="tag">VOICE</span></h2>
-    <p class="intro">Talk or type. Use the mic button, the steering-wheel voice button, or say "Hey KITT" if you turn that on (it can run fully offline, even over music, and quick commands like "KITT, pause music" or "KITT, find gas" work with no internet at all). Every question includes your live readings, fault codes, vehicle identity and a 30-day driving summary, so "how's my coolant?" and "how was that drive?" just work.</p>
+    <h2>KITT, the AI co-pilot <span class="tag">VOICE &amp; TELEMETRY</span></h2>
+    <p class="intro">Talk or type. Use the mic button, steering-wheel voice key, or "Hey KITT" offline wake-word. Questions include your live OBD readings, trouble codes, and trip summaries.</p>
     <div class="grid">
       <div class="card">
-        <h3>Google Gemini</h3>
+        <h3>Google Gemini &amp; Perplexity</h3>
         <ul class="list">
-          <li>A fast model for conversation and a smarter one for diagnostics, each selectable.</li>
-          <li>Optional Google Search grounding, skipped automatically on free-tier keys.</li>
-          <li>When Google retires a model, KITT switches to the newest equivalent on its own.</li>
+          <li>Fast conversational model with smart diagnostic deep-dive reasoning.</li>
+          <li>Google Search grounding with source citations.</li>
+          <li>Bring your own API key; keys are encrypted in Android Keystore.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Perplexity Agent API</h3>
+        <h3>Personalities &amp; Voices</h3>
         <ul class="list">
-          <li>Presets from <b>fast</b> to <b>high</b>, chosen separately for conversation and diagnostics.</li>
-          <li><b>Credit saving:</b> vehicle questions and chit-chat skip the paid web search. Weather, prices, recalls, scores and diagnostics still search.</li>
-          <li>Every answer shows what it cost.</li>
+          <li><b>Savage KITT</b> (default): Hilariously sarcastic, roasts your driving while delivering 100% exact technical telemetry.</li>
+          <li><b>Classic KITT:</b> The polite, protective 1982 TV series voice.</li>
+          <li><b>KARR:</b> Cold, superior, calculating evil twin.</li>
+          <li><b>Offline Neural Voices:</b> High-quality local voice models running directly on device with zero internet.</li>
         </ul>
-      </div>
-      <div class="card">
-        <h3>Personality &amp; voice</h3>
-        <ul class="list">
-          <li><b>KARR</b>: KITT's evil twin. Cold, superior and quietly menacing, with no swearing. Same accuracy and safety rules.</li>
-          <li><b>Savage KITT</b> (default): Unfiltered with the dial past maximum. It swears in every sentence, is sarcastic about every fact, and ends every spoken line with a parting shot, while the facts and safety warnings stay exact.</li>
-          <li><b>Unfiltered KITT</b>: savagely sarcastic and foul-mouthed. It swears in every reply and alert and roasts your driving and your vehicle, using your live data as ammunition. Even the turn-by-turn directions get roasted, with the turn itself always said plainly first. <b>Classic KITT:</b> the polite TV version. Both follow strict rules: don't make things up, don't distract the driver.</li>
-          <li><b>Voices:</b> <b>KITT neural (offline)</b> (new, the default): natural voices that run on the head unit itself, free, with no API key and no internet once a voice is downloaded (about 20 MB; 12 to choose from, including an 11-voice studio pack). Or Gemini neural voices with your key, or device text-to-speech.</li>
-          <li>Music ducks while KITT speaks.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Listening</h3>
-        <ul class="list">
-          <li><b>Speech input:</b> Auto, KITT's own Gemini transcription, or a device recognizer you pick.</li>
-          <li><b>Mic takeover guard:</b> when the head unit hijacks the mic into its stock voice app, KITT notices. The Microphone fix section gives copy-paste ADB commands to stop it, and can bring KITT back to the front after a takeover.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Instant voice commands</h3>
-        <ul class="list">
-          <li>Run right away, no AI needed:
-            <ul>
-              <li>"open Spotify", "show the gauges page"</li>
-              <li>"stream YouTube", "close the stream"</li>
-              <li>"navigate to …", "cancel the route"</li>
-              <li>"play", "pause", "next track", "previous track"</li>
-              <li>"read my codes", "open diagnostics"</li>
-              <li>"start logging", "stop logging"</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>KITT speaks up</h3>
-        <ul class="list">
-          <li>Greets you at start-up and when the vehicle connects.</li>
-          <li><b>Alerts:</b> overheating, charging problems, new fault codes and your gauge limits (a gauge must stay past its limit for 20 seconds). Each is spoken at most twice per drive, then shown silently.</li>
-          <li><b>Road weather:</b> freezing rain, black ice, heavy snow or rain, fog, storms, strong wind (Open-Meteo), each at most every 3 hours.</li>
-          <li><b>Maintenance reminders</b>, at most twice a day.</li>
-          <li><b>Messages read aloud:</b> off, sender only, or the whole message.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>Keys and subscriptions</h3>
-        <ul class="list">
-          <li>You bring your own API key. Web-grounded answers list their sources.</li>
-          <li>Paying for Gemini, Claude or Perplexity Pro? KITT hands the question to that official app, because consumer subscriptions can't be used through an API.</li>
-        </ul>
-        <div class="hood">keys are encrypted on the device with an Android Keystore AES-GCM key and never leave it except in requests to the provider you chose.</div>
       </div>
     </div>
   </section>
 
   <section id="scanner">
-    <h2>Car scanner <span class="tag">OBD-II</span></h2>
-    <p class="intro">Plug in an ELM327-compatible adapter (a Bluetooth or Wi-Fi diagnostic dongle) and get Car Scanner-style diagnostics.</p>
+    <h2>Car scanner <span class="tag">OBD-II DIAGNOSTICS</span></h2>
+    <p class="intro">Connect any ELM327-compatible Bluetooth (Classic or BLE) or Wi-Fi adapter for real-time engine telemetry, custom PID formulas, and emission checks.</p>
     <div class="grid">
       <div class="card">
-        <h3>Adapters</h3>
+        <h3>Trouble Codes</h3>
         <ul class="list">
-          <li><b>Bluetooth Classic</b> (SPP/RFCOMM, with a channel-1 fallback for picky adapters).</li>
-          <li><b>Bluetooth Low Energy</b>, finding the adapter's read/write channels automatically.</li>
-          <li><b>Wi-Fi</b> (TCP).</li>
-          <li>Saved adapters are tried in turn, with auto-reconnect.</li>
-          <li><b>Head-unit friendly</b> (new): BLE adapters entered by address are found first and tried several ways, a new connection never fights an old one, and an adapter entered with the wrong type still uses the right one.</li>
-          <li>Protocol auto-detect or manual, and a fast-polling switch.</li>
+          <li>Stored, pending, and permanent DTC fault codes explained in plain English.</li>
+          <li>Freeze-frame sensor snapshots and inspection readiness checks.</li>
+          <li>Ask KITT directly to diagnose any trouble code.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Gauges · Data</h3>
+        <h3>Live Sensors &amp; Manufacturer PIDs</h3>
         <ul class="list">
-          <li><b>Gauges:</b> your own dashboard in eleven styles: Dial, LED bar, Digital, Graph, plus retro and futuristic faces: <b>Needle</b>, <b>Nixie</b> tubes, 80s <b>Skyline</b> bars, fighter-jet <b>HUD tape</b>, CRT <b>Scope</b>, neon <b>Halo</b> and a <b>Film HUD</b> that follows the theme. A live style gallery (one gauge or all), peak hold, and high and low warning limits on any gauge.</li>
-          <li><b>Data:</b> live graphs of any sensor, and CSV data logging while you keep using the launcher, exportable anywhere.</li>
+          <li>Supports GM, Ford, Toyota, Stellantis, Honda, Nissan, Hyundai/Kia, VW, BMW, Mercedes, Subaru, Mazda.</li>
+          <li>Custom Torque-style formula evaluator with multi-PID batching.</li>
+          <li>CSV diagnostic data logging to storage.</li>
         </ul>
-      </div>
-      <div class="card">
-        <h3>Codes</h3>
-        <ul class="list">
-          <li>Stored, pending and permanent fault codes.</li>
-          <li>Freeze-frame data and emissions readiness (would you pass inspection).</li>
-          <li><b>Ask KITT</b> about any code.</li>
-          <li>Clearing codes is a manual button with a warning. Nothing clears them automatically.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Vehicle</h3>
-        <ul class="list">
-          <li><b>VIN decoding:</b> built-in with check-digit validation, plus an NHTSA lookup.</li>
-          <li><b>Battery &amp; charging:</b> resting, cranking and running voltage.</li>
-          <li><b>Maintenance schedule</b> with due-soon and overdue status, plus odometer tracking.</li>
-          <li><b>Fuel log:</b> measured full-to-full economy, cost per mile, range.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Tools</h3>
-        <ul class="list">
-          <li><b>Performance timer:</b> 0–60 mph, 1/4 mile, 60–0 braking (indicative; OBD speed has limited precision).</li>
-          <li>Mode 06 on-board test results, module scan, adapter identification.</li>
-          <li>A raw command console that only sends read-only commands.</li>
-          <li>A connection log that names which layer failed: Bluetooth, adapter, ELM init, ECU or decoding.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>PIDs · Link · Trips</h3>
-        <ul class="list">
-          <li><b>PIDs:</b> every standard sensor, manufacturer profiles auto-detected from your VIN (GM, Ford, Toyota, Stellantis, Honda, Nissan, Hyundai/Kia, VW group, BMW, Mercedes, Subaru, Mazda), and custom PIDs with Torque-style formulas like <code>((A*256)+B)/4</code>.</li>
-          <li><b>Link:</b> find, pair and connect adapters, pick the profile and protocol.</li>
-          <li><b>Trips:</b> each drive is logged once a second. See distance, time, speed and fuel economy for your last drive and the week.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <div class="hood">commands to the ELM327 are serialised, so background polling and on-demand requests never collide. ISO-TP multi-frame responses are reassembled. Only sensors on screen are polled; on CAN it batches up to 6 PIDs per request and falls back to single PIDs automatically, using response-count suffixes and engine-specific CAN headers. Values are stored in metric and converted for display.</div>
       </div>
     </div>
   </section>
 
   <section id="browser">
-    <h2>Browser <span class="tag">STREAM · AI · GAMES</span></h2>
-    <p class="intro">One shared, tabbed browser powers the Stream window on the Drive page, the AI page and the Games page.</p>
+    <h2>Browser <span class="tag">STREAMING · AI · GAMES</span></h2>
+    <p class="intro">Dedicated tabbed web engine powering the Stream window, AI assistant page, and Entertainment hub.</p>
     <div class="grid">
       <div class="card">
-        <h3>Stream window</h3>
+        <h3>Built for Car Dashboards</h3>
         <ul class="list">
-          <li>Video and music over the map area. It keeps playing while driving, by design.</li>
-          <li><b>New home page:</b> big tiles by category (movies &amp; TV, live TV, library card, classics, music, radio), search, favourites, <b>Continue watching</b> and your own sites. <b>Theater</b> gives the window the whole screen and <b>Focus</b> blows the video up inside the page.</li>
-          <li><b>Video:</b> Fandango at Home (new), YouTube, Tubi, Pluto TV, Plex, Roku Channel, Xumo Play, Crackle, Kanopy, Hoopla, PBS, Twitch and more: free, licensed services.</li>
-          <li><b>Music:</b> YT Music, Spotify, SoundCloud, Pandora, iHeartRadio, TuneIn, Amazon Music, Deezer, Bandcamp, SomaFM, Radio Garden and more.</li>
+          <li>Full ad-blocking engine with pop-up suppression.</li>
+          <li>Automatic mobile/desktop view switcher per site.</li>
+          <li>Tampermonkey-compatible userscript support.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Sites &amp; pages</h3>
+        <h3>Audio Stability</h3>
         <ul class="list">
-          <li><b>Save any site</b> with ★ Save, or import and export bookmarks under My sites.</li>
-          <li><b>Per site:</b> desktop or mobile layout, dark pages, ad blocking (never on YouTube), text size. Google sign-in always opens as mobile, so signing in works in either mode.</li>
-          <li><b>Stronger ad blocking</b> (new): a much bigger block list, stand-ins for blocked ad scripts so pages that wait for an ad still start, hidden ad slots, and pop-ups or redirects you didn't tap held back on the Games page and stream window (one tap opens them).</li>
-          <li><b>Downloads</b> (new) ask before saving and go to Downloads/KITT, signed in as you are on that site. A downloaded app shows an <b>Install</b> button; nothing installs unless you tap it.</li>
-          <li><b>Same toolbar on all three:</b> Stream, AI and Games. ▲ ▼ scroll chat sites too, and Back steps back through pages everywhere.</li>
-          <li><b>Tabs;</b> pop-ups you trigger open as new tabs. Links that try to launch other apps are blocked.</li>
-          <li><b>Separate sign-ins</b> for each page.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>Sound keeps playing</h3>
-        <ul class="list">
-          <li>A page playing music or video keeps playing when you swipe to another home page. Its tab shows ♪.</li>
-          <li><b>One thing at a time:</b> starting sound on another page, or pressing play in another app such as YouTube Music, pauses it. KITT's voice only lowers it, and after a call it picks up again.</li>
-        </ul>
-        <div class="hood">a playing WebView leaving the screen is parked in a 1×1 view that stays attached, so the site still sees a visible page. Pages report playback through a JavaScript bridge, and the playing page holds Android audio focus.</div>
-      </div>
-      <div class="card wide">
-        <h3>Can't take the launcher down</h3>
-        <ul class="list">
-          <li><b>A stuck page is shut down, not the launcher.</b> A page that hangs, like a very long AI chat, used to freeze everything until the head unit fell back to its stock launcher. Now that page shows "Page stopped" with a Reload button, and everything else keeps running.</li>
-          <li><b>Light on memory:</b> pages you aren't looking at pause unless they're playing sound. When too many are open, the least recently used ones are unloaded and reload when you return. When Android runs low on memory, every hidden page is unloaded.</li>
-        </ul>
-        <div class="hood">WebView draws in lock-step with the page's renderer, so the renderer is watched from a background thread and terminated if it stays stuck for 20 seconds or starts freezing the launcher (a heavy page that's just loading slowly is left to finish). Tabs on the dead renderer show a reload card instead of reloading in a loop.</div>
-      </div>
-      <div class="card wide">
-        <h3>Reading and data</h3>
-        <ul class="list">
-          <li><b>Big text:</b> on the AI page, the latest answer in large type, with read-aloud.</li>
-          <li><b>Mini player:</b> a video in the stream window keeps playing in a corner when you leave the Drive page. Tap it to go back.</li>
-          <li><b>Data saver</b> per site: no images, and videos wait for a tap. Handy on a phone hotspot.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Userscripts</h3>
-        <ul class="list">
-          <li>Install Tampermonkey-style <code>.user.js</code> scripts from Greasy Fork, a link, or pasted code.</li>
-          <li>They run as the page starts loading.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Helpers</h3>
-        <ul class="list">
-          <li>Close on-page pop-ups, scroll buttons, full screen, reload, find-the-install-link.</li>
-          <li><b>Game controllers:</b> buttons map to the keys web emulators expect; the stick works as a D-pad.</li>
-          <li><b>Voice to AI:</b> a spoken question can be typed into every open AI tab.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="ride-along">
-    <h2>KITT rides along <span class="tag">NEW</span></h2>
-    <p class="intro">KITT now pays attention while you drive, using the data it already reads. Everything is read-only: nothing is ever sent to the vehicle.</p>
-    <div class="grid">
-      <div class="card">
-        <h3>Commentary &amp; report cards</h3>
-        <ul class="list">
-          <li>Hard stops, revving a cold engine, ten minutes of idling, full throttle: KITT has something to say, rate-limited so it doesn't nag.</li>
-          <li>When you switch off, the drive gets a grade (A+ to F) for smoothness, idling and economy against your 30-day average.</li>
-          <li><b>Last-drive recap</b> when you set off again: fault codes still showing, a weak battery, last time's grade.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Fuel &amp; parking</h3>
-        <ul class="list">
-          <li>Below 12% fuel, KITT offers the nearest gas station and routes you there.</li>
-          <li>Where you switched off is saved with its address. Scan the code on the Trips screen to keep it on your phone.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Speed limits</h3>
-        <ul class="list">
-          <li>The road's limit from OpenStreetMap shows next to the speedometer and turns red when you're over it.</li>
-          <li>Optional spoken warning when you stay over by more than your margin.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Pursuit mode &amp; Maps + KITT</h3>
-        <ul class="list">
-          <li>Pursuit mode: a full-screen 1982-style dash with a bar-graph speedometer and KITT's voice box.</li>
-          <li>Maps + KITT: opens Google Maps or Waze with a narrow KITT panel (speed, limit, revs, temperature, fuel, media keys) beside it.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>Look after itself</h3>
-        <ul class="list">
-          <li><b>System check:</b> every permission and setting KITT needs, each with a fix button.</li>
-          <li><b>Report to phone:</b> a QR code your phone scans on the same Wi-Fi or hotspot, or the share sheet.</li>
-          <li><b>Weekly backup</b> to Downloads/KITT, and <b>What's new</b> after every update.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="settings">
-    <h2>Launcher settings <span class="tag">CONFIG</span></h2>
-    <p class="intro">Everything else that makes it yours.</p>
-    <div class="grid">
-      <div class="card">
-        <h3>Steering-wheel buttons</h3>
-        <ul class="list">
-          <li>"Learn" any button the head unit sends, then assign it:
-            <ul>
-              <li>Talk to KITT, Diagnostics</li>
-              <li>Next page, previous page, Drive page</li>
-              <li>Stream window, play/pause</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Start-up &amp; drivers</h3>
-        <ul class="list">
-          <li><b>Start-up routine:</b> on start, or on wake after 5+ minutes asleep, open a chosen app and/or resume audio.</li>
-          <li><b>Driver profiles:</b> personal settings per driver. Vehicle data (adapters, odometer, service, fuel) stays shared.</li>
-          <li><b>Default assistant:</b> set KITT as Android's assistant so the voice button opens it.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>Upkeep</h3>
-        <ul class="list">
-          <li><b>Backup and restore</b> all settings in one file. API keys are deliberately left out.</li>
-          <li><b>Updates:</b> checks GitHub for new releases, shows download progress and installs them. On Android 12 and up, updates after the first one install without a confirmation screen. Turn on <b>Beta updates</b> to try test releases first.</li>
-          <li><b>Safe mode:</b> if KITT crashes at start-up a few times in a row, it starts without web pages and extras so the head unit is never stuck, with Report and Back to normal buttons.</li>
-          <li><b>Search in KITT Config:</b> type a word and jump to that setting.</li>
-          <li><b>Report a problem:</b> one text report with recent crashes, the OBD connection log, your settings (keys removed) and the app's own log.</li>
+          <li>Maintains background playback across page swipes.</li>
+          <li>Smart audio-focus handoff with navigation and speech synthesis.</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="install">
-    <h2>Install <span class="tag">APK</span></h2>
-    <p class="intro">Neither edition is on the Play Store. Install straight from the APK: <a href="https://github.com/tdater/KITT-Launcher-releases/releases/latest" style="color:var(--amber)">KITT Launcher</a> or <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest" style="color:var(--amber)">KITT Launcher.2</a>.</p>
+    <h2>Install <span class="tag">APK DOWNLOADS</span></h2>
+    <p class="intro">All four editions are distributed directly via GitHub Releases. Free, no ads, no trackers.</p>
     <div class="grid">
       <div class="card">
-        <h3>First install</h3>
+        <h3>Installation Steps</h3>
         <ul class="list">
-          <li>On the head unit, open the latest release of your edition and download the <code>.apk</code> under Assets (or copy it over on a USB stick).</li>
-          <li>Open it, and allow your browser or file manager to install unknown apps when Android asks.</li>
-          <li>Press Home and choose <b>KITT Launcher</b> or <b>KITT Launcher.2</b>, then <b>Always</b>.</li>
+          <li>Download the <code>.apk</code> for your edition below directly onto your head unit or via USB drive:
+            <ul>
+              <li><a href="https://github.com/tdater/KITT-Launcher-releases/releases/latest" style="color:var(--amber)">KITT Launcher APK (Portrait)</a></li>
+              <li><a href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest" style="color:var(--amber)">KITT Launcher.2 APK (Landscape)</a></li>
+              <li><a href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest" style="color:var(--cyan)">KITT Holo Landscape APK</a></li>
+              <li><a href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest" style="color:#38bdf8">KITT Holo Portrait APK</a></li>
+            </ul>
+          </li>
+          <li>Tap to install and grant "Unknown Sources" permission.</li>
+          <li>Press the Home button, select your KITT edition, and choose <b>Always</b>.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>Updates &amp; keys</h3>
+        <h3>In-App Upgrades</h3>
         <ul class="list">
-          <li><b>Updates:</b> KITT Config → Updates finds and installs new versions. Each edition updates from its own download page.</li>
-          <li><b>Built it yourself, or installed a test build?</b> Android only updates an app with one signed by the same key. If Updates says the key is different, use Backup, uninstall once, and install the release APK. Updates work from then on.</li>
-          <li><b>AI:</b> KITT's answers need your own Gemini or Perplexity API key, entered in KITT Config.</li>
-          <li><b>OBD:</b> any ELM327-compatible Bluetooth or Wi-Fi adapter.</li>
+          <li>Each edition checks its own release repository automatically via KITT Config → Updates.</li>
+          <li>Seamless in-place updates without losing settings or custom PIDs.</li>
         </ul>
       </div>
     </div>
   </section>
 
   <section id="whats-new">
-    <h2>What's new <span class="tag">RELEASES</span></h2>
-    <p class="intro">Installed copies update from KITT Config → Updates. All releases: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a>.</p>
+    <h2>What's new <span class="tag cyan">VERSION 2.2.0</span></h2>
+    <p class="intro">In-app updates check GitHub automatically. Direct release pages: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a> · <a href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases" style="color:var(--cyan)">Holo Landscape</a> · <a href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases" style="color:#38bdf8">Holo Portrait</a>.</p>
     <div class="grid">
+      <div class="card wide cyan-card">
+        <h3 class="cyan-title">v2.2.0 · Four Dedicated Standalone Editions &amp; Entertainment Hub</h3>
+        <ul class="list cyan-list">
+          <li><b>Four Standalone App Editions:</b> KITT Launcher, KITT Launcher.2, KITT Holo Landscape, and KITT Holo Portrait now build and release independently with dedicated app IDs, tailored UI geometry, and isolated release updater channels.</li>
+          <li><b>3D Holographic Turntable &amp; Touch Rotation:</b> Smooth touch manual rotation and glide physics for Coupe and Truck wireframes across 72 camera angles.</li>
+          <li><b>Direct Vehicle PID Telemetry Callouts:</b> Live sensor badges pinned around the vehicle in 3D space with tap-to-expand telemetry cards (coolant, speed, revs, battery, tire pressures).</li>
+          <li><b>Entertainment Hub (renamed from Games):</b> Overhauled with Piradex live sports streaming, live TV list, free movies/shows, and retro arcade emulation.</li>
+          <li><b>Visual Brand Recognition:</b> High-contrast vector emblems and distinct cards for all streaming portals and games so drivers can identify destinations before tapping.</li>
+          <li><b>Seven Built-In Cockpit Driver Widgets:</b> Nav Quick Dispatcher, Parking Sentry &amp; Car Finder, Attitude Inclinometer, Cabin Sound SPL Meter, Dash Scratchpad, Unit Converter, and Vehicle Emergency Battery Sentry—wrapped in authentic film frames (Terminator, Matrix, RoboCop, Future).</li>
+          <li><b>16-Band Graphic Visualizer &amp; Music Hub:</b> Real-time 16-band audio visualizer with peak hold markers and a dedicated Music &amp; Radio hub with internet radio stations.</li>
+          <li><b>Audio-Focus Protection:</b> Fixed video playback stopping after &lt; 1s on Tubi and streaming services; robust background playback and memory protection.</li>
+        </ul>
+      </div>
+
       <div class="card wide">
-        <h3>Coming next: retro gauges and KITT Holo</h3>
+        <h3>v2.1.0</h3>
         <ul class="list">
-          <li><b>Seven new gauge faces</b> for every edition: Needle (an analog instrument with a red zone from your warning limit), Nixie tubes, 80s Skyline bars, a fighter-jet HUD tape, a CRT Scope trace, a neon Halo ring, and a Film HUD that turns into a Terminator reticle, RoboCop's visor, Matrix code or Back to the Future time circuits with the theme.</li>
-          <li><b>Style gallery:</b> Style shows your gauge live in every face; tap one, or switch to "All gauges" to restyle the dashboard in one go. <b>Peak hold</b> marks the highest value this drive on Needle and Halo.</li>
-          <li><b>Cluster layout</b> for the Gauges page: the first gauge large, the rest around it.</li>
-          <li><b>Nearest repair shop</b> on the Codes tab when there are stored codes (routing only; nothing is sent to the car).</li>
-          <li><b>KITT Holo</b>, a third edition with a redesigned cockpit and a spinning hologram of your car (see Which one?).</li>
+          <li><b>Holo Callouts:</b> Interactive callout pins around the vehicle with tap-to-expand telemetry cards.</li>
+          <li><b>Grid Stage:</b> Hologram grid staging and rounder truck wireframe geometry.</li>
         </ul>
       </div>
+
       <div class="card wide">
-        <h3>Next update: v1.9 for both editions</h3>
+        <h3>v2.0.2</h3>
         <ul class="list">
-          <li><b>Music library on the Media page:</b> a new Library tab lists the music apps on the head unit that share their library (Spotify, YouTube Music, USB players and others). Pick one, search it, or browse its playlists, artists and albums and tap to play, without opening the app. Apps that don't allow it show a message and an Open button instead.</li>
-          <li><b>Recently played:</b> the last songs, playlists and searches you started from KITT come back at the top of the Library, one tap to play again.</li>
-          <li><b>"Play" by voice:</b> "Hey KITT, play Nightcall on Spotify" searches that app's library and plays it. Leave out the app and KITT uses the one playing now or the one you used last.</li>
-          <li><b>Back from the radio screen:</b> some head units throw their stock radio screen over the launcher when an app starts audio or opens the mic. If that happens within a few seconds of KITT speaking, listening, or starting music, KITT brings itself back. Opening an app yourself is never undone. Turn it off under KITT Config → Microphone fix.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.8 · KITT Launcher.2 v1.8</h3>
-        <ul class="list">
-          <li><b>Offline "Hey KITT":</b> a small listener on the head unit hears you with no internet and no chimes, even over music. Quick commands run on their own: "KITT, pause music", "KITT, next song", "KITT, find gas", "KITT, where did I park", "KITT, show gauges".</li>
-          <li><b>KITT offline speech:</b> the mic understands full questions and commands with no signal and no Google recognizer, using a small speech model on the head unit (30 MB download under KITT Config → Speech input). With offline "Hey KITT" on too, voice works anywhere.</li>
-          <li><b>Answers with no signal:</b> KITT still answers the common questions from the car itself (engine temperature, battery, fuel, speed, fault codes, "is everything OK?"), instantly, with any warning first.</li>
-          <li><b>Safe mode:</b> if KITT ever crashes at start-up a few times in a row, it starts in safe mode so you're never stuck, with buttons to report the problem or go back to normal.</li>
-          <li><b>Last-drive recap:</b> one line when you set off: fault codes still showing, a weak battery, last time's grade.</li>
-          <li><b>Bigger buttons while driving:</b> volume controls, your top three apps, and a bigger rail and bottom bar with just the driving pages.</li>
-          <li><b>Search in KITT Config</b>, <b>beta updates</b>, and <b>offline map files</b> for dead zones.</li>
-          <li><b>Faster and steadier:</b> the home screen shows first on start-up; OBD adapters reconnect faster by remembering what worked; the offline voice frees its memory when idle and checks every download.</li>
-          <li><b>Fixes:</b> pages can no longer save files or open an installer without a tap; urgent alerts never wait on the offline voice; sign-ins and game launchers work again; controllers keep working after a restart and no button sticks.</li>
-          <li><b>One app, two editions:</b> KITT Launcher and KITT Launcher.2 now come from the same code, so every update reaches both at once. Both keep updating in place from KITT Config → Updates.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.7 · KITT Launcher.2 v1.5</h3>
-        <ul class="list">
-          <li><b>KITT neural (offline) voice:</b> free, natural voices that run on the head unit, with no API key and no internet once downloaded. Now the default; download one under KITT Config → Voice.</li>
-          <li><b>Games page rebuilt from RetroTV:</b> retro-game site tiles, favourites, continue playing, game mode, an on-screen touch pad, and controllers that work with every kind of web emulator.</li>
-          <li><b>Stream window home page:</b> free movie, TV, music and radio services in tiles (Fandango at Home added), favourites, continue watching and theater mode.</li>
-          <li><b>Film editions:</b> three per film theme (T-800, Liquid Metal, Future War; Visor, ED-209, Delta City; Digital Rain, Real World, Zion; 1985, 2015, 1885) and eight new film characters.</li>
-          <li><b>Fixes:</b> Bluetooth OBD adapters connect more reliably on head units (BLE scans that failed at once, BLE adapters entered by address, Classic adapters that connected only once); the browser is lighter beside the launcher's animations, and YouTube Music no longer stalls or reloads.</li>
-          <li><b>Safety and polish:</b> pages can no longer save files or open an installer without a tap; urgent alerts (overheating, a new fault) never wait on the offline voice, and a head unit that can't play it falls back instead of crashing; drivers with a Gemini key keep Gemini until an offline voice is downloaded; Google and other sign-ins and game launchers that hand off to another site work again; controllers keep working after the car restarts or a pad reconnects, and no button sticks.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.6 · KITT Launcher.2 v1.4</h3>
-        <ul class="list">
-          <li><b>New theme: Back to the Future</b>, with time circuits, a flux-capacitor scanner and DeLorean steel.</li>
-          <li><b>Terminator, RoboCop and The Matrix</b> go further: start-up sequences, targeting on the map, scrolling machine code, a visor sweep and film-styled alerts.</li>
-          <li><b>Film characters:</b> each film theme gives KITT that film's character voice and personality (original characters, not actor imitations).</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.5 · KITT Launcher.2 v1.3</h3>
-        <ul class="list">
-          <li><b>OBD Bluetooth on picky head units:</b> the Link tab shows what Android's Bluetooth looks like to apps, explains why a scan found nothing, lists adapters without a name, and lets you connect straight to an adapter's address (Classic or BLE).</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.4 · KITT Launcher.2 v1.2</h3>
-        <ul class="list">
-          <li><b>KITT rides along:</b> it comments on hard stops, revving a cold engine, long idling and full throttle, and grades every drive when you switch off. Report cards are on the Trips screen.</li>
-          <li><b>Low fuel:</b> KITT warns you and finds the nearest gas station with one tap, or say "find gas".</li>
-          <li><b>Parking spot:</b> saved when you switch off. Scan the QR code on the Trips screen to put it on your phone, or ask "where did I park?".</li>
-          <li><b>Speed limits</b> from OpenStreetMap on the map, with an optional warning when you stay over.</li>
-          <li><b>System check</b> in KITT Config: every permission and setting KITT needs, each with a fix button. KITT also tells you if another launcher has taken over.</li>
-          <li><b>Problem reports to your phone</b> with a QR code or the share sheet. No USB stick needed.</li>
-          <li><b>Pursuit mode:</b> a full-screen 1982-style dash. <b>Maps + KITT:</b> KITT's panel next to Google Maps or Waze.</li>
-          <li><b>KARR</b>, the evil-twin personality, and optional KITT <b>sound effects</b>.</li>
-          <li><b>Night theme</b> that switches at sunset, <b>big text</b> for AI answers, a <b>mini player</b> for the stream window, per-site <b>data saver</b>.</li>
-          <li><b>Weekly backup</b> to Downloads/KITT that restores into either edition, <b>GM tire pressures</b> (community-sourced) and <b>What's new</b> after each update.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.3 · KITT Launcher.2 v1.1</h3>
-        <ul class="list">
-          <li><b>"Hey KITT" no longer listens over your music.</b> It used to restart the microphone every few seconds even while music played, so some head units chimed or interrupted the music again and again. It now waits until nothing is playing; the steering-wheel voice button and the KITT button work any time.</li>
-        </ul>
-      </div>
-      <div class="card wide">
-        <h3>KITT Launcher v1.2 · KITT Launcher.2 v1.0</h3>
-        <ul class="list">
-          <li><b>AI page no longer freezes the launcher:</b> a stuck page (long Claude chats were the usual cause) is shut down and offers Reload, instead of freezing everything until the head unit fell back to its stock launcher.</li>
-          <li><b>Updates that actually install:</b> no download time limit, so slow phone hotspots work. The app shows download progress and every install result, and checks the APK first. On Android 12+, later updates skip the confirmation screen.</li>
-          <li><b>Lighter browser:</b> hidden pages pause and are unloaded when memory is short.</li>
-          <li><b>Lite mode</b> and a <b>Screen size</b> setting. On landscape screens, a side-rail layout.</li>
-          <li><b>Savage KITT</b>, the new default personality.</li>
-          <li><b>Freeze reports:</b> if the launcher ever stalls, Report a problem now shows where.</li>
-          <li><b>New: KITT Launcher.2 v1.0</b>, the 7"–10" landscape edition, with everything above. <a href="#editions" style="color:var(--amber)">What's different</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases/latest" style="color:var(--amber)">Download</a>.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>v1.1</h3>
-        <ul class="list">
-          <li><b>Map search:</b> the search box no longer closes the moment the on-screen keyboard opens on portrait screens.</li>
-          <li><b>Map search:</b> the keyboard closes when you press Search, so the results aren't hidden.</li>
-          <li><b>KITT:</b> says "1 code", not "1 codes".</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>v1.0</h3>
-        <ul class="list">
-          <li>First public release: KITT home screen and scanner light, 10 themes, OBD-II scanner, KITT AI co-pilot, map search with spoken directions, and the browser for streaming, AI chat and games.</li>
+          <li><b>Stability &amp; Safe Mode:</b> Silent restart tracking, Android termination logging, car/truck vehicle pills on Drive.</li>
         </ul>
       </div>
     </div>
@@ -1105,20 +904,22 @@
     <h2>Privacy and safety</h2>
     <ul class="list">
       <li><b>API keys</b> are encrypted on the device and never included in backups or problem reports.</li>
-      <li><b>No analytics or tracking.</b> The app only connects to the AI service you chose, Open-Meteo weather, the NHTSA VIN lookup, map tiles, OpenStreetMap search and routing (only when you search or navigate), and the sites you open.</li>
-      <li><b>The car is read-only.</b> No clearing codes, ECU changes or write commands unless you press the button for that exact action.</li>
+      <li><b>No analytics or tracking.</b> The app only connects to the AI service you chose, Open-Meteo weather, the NHTSA VIN lookup, map tiles, OpenStreetMap routing, and the sites you open.</li>
+      <li><b>The car is read-only.</b> No clearing codes, ECU changes, or write commands unless you press the button for that exact action.</li>
     </ul>
   </section>
 
-  <footer>KITT LAUNCHER · KITT LAUNCHER.2 · Android 7.0+ · Provided as-is, no support · © 2026 travisdater. All rights reserved.</footer>
+  <footer>KITT LAUNCHER · KITT LAUNCHER.2 · KITT HOLO LANDSCAPE · KITT HOLO PORTRAIT · Android 7.0+ · © 2026 travisdater. All rights reserved.</footer>
 </main>
+
 <dialog class="viewer" id="viewer">
   <form method="dialog"><button>Close ✕</button></form>
   <img alt="">
   <p></p>
 </dialog>
+
 <script>
-  // Clips play only while visible (and not at all for reduced motion); tap for full screen.
+  // Clips play only while visible; tap for full screen.
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clips = document.querySelectorAll('.clip video');
   if ('IntersectionObserver' in window && !still) {
@@ -1134,7 +935,7 @@
     v.controls = true; v.play().catch(() => {});
   }));
 
-  // Tap a screenshot to see it full size.
+  // Tap a screenshot to view full size.
   const viewer = document.getElementById('viewer');
   document.querySelectorAll('[data-full]').forEach((b) => b.addEventListener('click', () => {
     const img = b.querySelector('img');
