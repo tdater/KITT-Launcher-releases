@@ -101,8 +101,8 @@
     font: 700 26px/1.2 var(--display); text-transform: uppercase; letter-spacing: .06em;
     margin: 0 0 6px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   }
-  h2 .tag { font: 13px var(--mono); color: var(--red); letter-spacing: .1em; }
-  h2 .tag.cyan { color: var(--cyan); }
+  h2 .tag, h3 .tag { font: 13px var(--mono); color: var(--red); letter-spacing: .1em; }
+  h2 .tag.cyan, h3 .tag.cyan { color: var(--cyan); }
   .intro { color: var(--muted); max-width: 68ch; margin: 0 0 18px; }
 
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -280,11 +280,11 @@
       <a class="btn cyan" href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases/latest">KITT Holo Landscape</a>
       <a class="btn cyan" style="border-color:#38bdf8" href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases/latest">KITT Holo Portrait</a>
       <a class="btn ghost" href="#install">Install Guide</a>
-      <small>Latest: <b>v2.4.1</b> across all four editions. Free APKs. Android 7.0+. Open-source releases.</small>
+      <small>Latest: <b>v2.5.0</b> across all four editions, with the new Bridge theme. Beta: <b>v2.5.1-beta1</b> for units with Beta updates on. Free APKs. Android 7.0+. Open-source releases.</small>
     </div>
     <div class="readouts">
       <div class="readout cyan"><b>4</b><small>Editions</small></div>
-      <div class="readout"><b>11</b><small>Themes</small></div>
+      <div class="readout"><b>12</b><small>Themes</small></div>
       <div class="readout"><b>7</b><small>Driver Widgets</small></div>
       <div class="readout"><b>12</b><small>Maker Profiles</small></div>
     </div>
@@ -687,11 +687,11 @@
   </section>
 
   <section id="look">
-    <h2>The look <span class="tag">11 THEMES · 12 EDITIONS</span></h2>
+    <h2>The look <span class="tag">12 THEMES · BRIDGE COCKPIT</span></h2>
     <p class="intro">The scanner light never stops sweeping, and every screen wears the theme you pick.</p>
     <div class="grid">
       <div class="card wide">
-        <h3>11 Themes</h3>
+        <h3>12 Themes</h3>
         <div class="theme-strip">
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-kitt.webp" aria-label="Enlarge: KITT theme"><img src="screenshots/theme-kitt-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KITT theme"></button><figcaption>KITT</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-karr.webp" aria-label="Enlarge: KARR theme"><img src="screenshots/theme-karr-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the KARR theme"></button><figcaption>KARR</figcaption></figure>
@@ -705,6 +705,14 @@
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-colorado.webp" aria-label="Enlarge: The Matrix theme"><img src="screenshots/theme-colorado-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the The Matrix theme"></button><figcaption>The Matrix</figcaption></figure>
           <figure class="theme-shot"><button type="button" data-full="screenshots/theme-backtothefuture.webp" aria-label="Enlarge: Back to the Future theme"><img src="screenshots/theme-backtothefuture-thumb.webp" width="240" height="345" loading="lazy" alt="Drive page in the Back to the Future theme"></button><figcaption>Back to the Future</figcaption></figure>
         </div>
+      </div>
+      <div class="card wide cyan-card">
+        <h3 class="cyan-title">Bridge Theme &amp; Bridge Cockpit <span class="tag cyan">NEW IN v2.5.0</span></h3>
+        <ul class="list cyan-list">
+          <li><b>Bridge theme:</b> A starship bridge look with gunmetal consoles, cyan light strips, amber lamps and KITT's red scanner. It always draws the Bridge cockpit.</li>
+          <li><b>Bridge cockpit over any theme:</b> Turn on KITT Config → Theme → Bridge cockpit and every theme gets its own bridge variant in its own colours: chamfered console tops with a light strip, see-through glass panels and lit button underlines.</li>
+          <li><b>Starfield viewport:</b> Stars drift out from the centre behind the pages and speed up with your road speed (from OBD-II, or GPS when there's no OBD). It holds still when you're parked, in lite mode, or while a web page is on screen. The Matrix keeps its digital rain as its viewport.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -838,6 +846,7 @@
         <h3>In-App Upgrades</h3>
         <ul class="list">
           <li>Each edition checks its own release repository automatically via KITT Config → Updates.</li>
+          <li>Want to try a test build first? Turn on <b>Beta updates</b> in KITT Config → Updates to also be offered beta releases (like v2.5.1-beta1). The final release replaces a beta as usual.</li>
           <li>Seamless in-place updates without losing settings or custom PIDs.</li>
         </ul>
       </div>
@@ -845,12 +854,34 @@
   </section>
 
   <section id="whats-new">
-    <h2>What's new <span class="tag cyan">VERSION 2.4.1</span></h2>
+    <h2>What's new <span class="tag cyan">VERSION 2.5.0</span></h2>
     <p class="intro">In-app updates check GitHub automatically. Direct release pages: <a href="https://github.com/tdater/KITT-Launcher-releases/releases" style="color:var(--amber)">KITT Launcher</a> · <a href="https://github.com/tdater/KITT-Launcher.2-releases/releases" style="color:var(--amber)">KITT Launcher.2</a> · <a href="https://github.com/tdater/KITT-Holo-Landscape-releases/releases" style="color:var(--cyan)">Holo Landscape</a> · <a href="https://github.com/tdater/KITT-Holo-Portrait-releases/releases" style="color:#38bdf8">Holo Portrait</a>.</p>
     <div class="grid">
+      <div class="card wide">
+        <h3>v2.5.1-beta1 · Head Unit Voice Fixes <span class="tag">BETA</span></h3>
+        <p>A beta release for testing in the car. Only units with <b>Beta updates</b> turned on in KITT Config → Updates are offered it; everyone else stays on v2.5.0 until the final release.</p>
+        <ul class="list">
+          <li><b>Wake Word Pauses for Calls:</b> The wake word (both the recognizer and the offline spotter) stops listening during a phone or VoIP call and resumes when the call ends, so the microphone is free for Bluetooth hands-free calls on units that share one mic.</li>
+          <li><b>Voice Comes Back After a Cold Boot:</b> If the device text-to-speech engine fails to start at power-on, KITT retries it a few times over the first minute instead of staying silent until the app restarts.</li>
+          <li><b>One Stall Doesn't Mute the Voice:</b> A single on-device voice playback stall no longer turns that voice off for the rest of the drive. Two in a row still switch it off, and a clip that plays resets the count.</li>
+          <li><b>Steadier Speech Hand-off:</b> The short pause after KITT finishes speaking no longer gets in the way when speech is cancelled, so interrupting KITT is cleaner.</li>
+        </ul>
+      </div>
+
       <div class="card wide cyan-card">
-        <h3 class="cyan-title">v2.4.1 · Native Video Player &amp; Breathing Hologram</h3>
+        <h3 class="cyan-title">v2.5.0 · Bridge Theme &amp; Bridge Cockpit</h3>
         <ul class="list cyan-list">
+          <li><b>Bridge Theme:</b> A twelfth theme: a starship bridge with gunmetal consoles, cyan light strips, amber lamps and KITT's red scanner.</li>
+          <li><b>Bridge Cockpit for Every Theme:</b> A new setting (KITT Config → Theme → Bridge cockpit) draws the bridge over whichever theme you use: chamfered console tops with a light strip, see-through glass panels, lit button underlines and a starfield viewport behind the pages.</li>
+          <li><b>Speed-Linked Starfield:</b> The stars drift faster as you drive faster, using OBD-II speed or GPS. Parked, lite mode or a web page on screen keep it still. The Matrix keeps its rain.</li>
+          <li><b>Smooth on Big Portrait Screens:</b> The starfield redraws in its own layer, so the consoles aren't redrawn with every frame. This keeps tall screens like Holo Portrait smooth.</li>
+          <li><b>Every Edition Tested Before Release:</b> All four editions (KITT Launcher, KITT Launcher.2, Holo Landscape and Holo Portrait) are now opened page by page on an emulator shaped like their head unit before a release ships.</li>
+        </ul>
+      </div>
+
+      <div class="card wide">
+        <h3>v2.4.1 · Native Video Player &amp; Breathing Hologram</h3>
+        <ul class="list">
           <li><b>Native Video Player:</b> Direct video links (mp4, webm, mkv, HLS, DASH) open in a built-in Media3 player with big Play/Pause, &plusmn;10 s and tap-to-seek controls instead of a web page. If a stream won't play, Open in page hands it back to the browser. It only takes a link you tapped in the tab on screen, and never an ad redirect.</li>
           <li><b>Breathing Hologram:</b> The car and truck now glow with a slow breathing pulse: bloom on the glowing edges, a pool of light under the vehicle and a glowing tail lamp, tuned for every theme (KITT, Terminator, Matrix, Back to the Future, RoboCop and the rest). Off in lite mode.</li>
         </ul>
