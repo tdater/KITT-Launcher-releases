@@ -215,6 +215,14 @@
   .edition.two h3 span { color: var(--amber); }
   .edition.holo-land h3 span { color: var(--cyan); }
   .edition.holo-port h3 span { color: #38bdf8; }
+  /* KITT Fold (Galaxy Z Fold 8) */
+  h2 .tag.fold-tag { color: var(--green); }
+  .card.fold-card { border-color: #1f5f34; }
+  .card.fold-card h3 { color: var(--green); }
+  .btn.fold { border-color: var(--green); background: #0a2e15; box-shadow: 0 0 14px rgba(61,255,114,.3); }
+  .btn.fold:hover { background: #134a24; }
+  .btn.fold-soon { cursor: default; color: var(--muted); }
+  nav a.fold-nav:hover, nav a.fold-nav:focus-visible { border-color: var(--green); color: #fff; box-shadow: 0 0 0 1px var(--green); }
   .edition .fit { font: 13px var(--mono); color: var(--amber); letter-spacing: .08em; text-transform: uppercase; }
   .edition.holo-land .fit { color: var(--cyan); }
   .edition.holo-port .fit { color: #38bdf8; }
@@ -296,6 +304,7 @@
     <li><a href="#editions">Four Editions</a></li>
     <li><a href="#action">In action</a></li>
     <li><a href="#holo" class="cyan-nav">KITT Holo</a></li>
+    <li><a href="#fold" class="fold-nav">KITT Fold</a></li>
     <li><a href="#screens">Classic Screens</a></li>
     <li><a href="#entertainment">Entertainment</a></li>
     <li><a href="#widgets">Driver Widgets</a></li>
@@ -395,6 +404,82 @@
           <tr><th scope="row">Package Name</th><td><code>com.aiconsole.knightriderlauncher</code></td><td><code>com.aiconsole.kittlauncher2</code></td><td><code>com.aiconsole.kitthololandscape</code></td><td><code>com.aiconsole.kittholoportrait</code></td></tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <section id="fold">
+    <h2>KITT Fold <span class="tag fold-tag">GALAXY Z FOLD 8 · COMING SOON</span></h2>
+    <p class="intro">The KITT cockpit for your pocket. KITT Fold is a fifth, separate app that brings the KITT Holo cockpit, the themes and film themes, the scanner, the KITT voice assistant, the browser, media, widgets and the app drawer to the Samsung Galaxy Z Fold 8, laid out for both of its screens. The gauges read the phone instead of a car, so no OBD-II adapter is needed.</p>
+    <div class="grid">
+      <div class="card fold-card">
+        <h3>Cover Screen Cockpit</h3>
+        <p>Folded, the narrow cover screen shows a one-hand cockpit: the clock, a battery or speed readout, a three-column grid of favourite apps and a big KITT button. Prefer the full layout? Turn <b>Compact cover screen</b> off.</p>
+      </div>
+      <div class="card fold-card">
+        <h3>Inner Screen</h3>
+        <p>Open, the inner screen gets the side rail and slim dock from the head units, in either rotation. Folding and unfolding never restarts the launcher; it stays on the same page and the layout follows the screen.</p>
+      </div>
+      <div class="card fold-card">
+        <h3>Tabletop Dash</h3>
+        <p>Half-fold it on a table: the clock, a large speed or battery readout and KITT's voice bars sit above the hinge, and two rows of big buttons (Voice, Navigation, Music, Apps, Editions, Exit dash) sit below it. Nothing is drawn on the crease. With <b>Desk voice mode</b>, KITT answers in the top half with suggested commands below.</p>
+      </div>
+      <div class="card fold-card">
+        <h3>Book Split</h3>
+        <p>Hinge down the middle: the rail, pages and dock on the left, and a live panel of gauges, media or navigation on the right.</p>
+      </div>
+      <div class="card fold-card wide">
+        <h3>Phone Gauges</h3>
+        <p>Every gauge face from the head units, fed by the phone instead of the car:</p>
+        <ul class="list">
+          <li><b>Battery:</b> charge, temperature, voltage, charging state and power in or out in watts.</li>
+          <li><b>Heat:</b> how close the phone is to thermal throttling.</li>
+          <li><b>Load:</b> processor and graphics load where the phone reports them, memory and storage.</li>
+          <li><b>Motion and more:</b> GPS speed, data rate down and up, display refresh rate and uptime.</li>
+        </ul>
+        <p>Readings are taken only while the launcher is on screen, and none needs a permission beyond location for GPS speed. The film HUDs and Pursuit mode relabel their dials to match (BATT TEMP, CHARGE, CPU, GPU, MEMORY).</p>
+      </div>
+      <div class="card fold-card">
+        <h3>Made for a Foldable</h3>
+        <ul class="list">
+          <li><b>Fold animation:</b> a scanner power-up when you open the phone and a power-down when you close it, under a second, tap to skip.</li>
+          <li><b>Haptic scanner:</b> ticks at the ends of each sweep, a thud on a theme switch, quiet on calls and in Do Not Disturb.</li>
+          <li><b>Cover screen theme:</b> give the cover screen its own theme.</li>
+          <li><b>Pursuit pairs:</b> up to six app pairs that open side by side with one tap, where Android allows split screen.</li>
+        </ul>
+      </div>
+      <div class="card fold-card">
+        <h3>Desk and Car Extras</h3>
+        <ul class="list">
+          <li><b>Nightstand mode:</b> half-folded and charging, a dim clock, date and next alarm that shifts slightly each minute to spare the OLED.</li>
+          <li><b>KITT dock:</b> your first six home apps along the bottom of the inner screen, plus recent apps if you allow it.</li>
+          <li><b>Car Bluetooth:</b> pick your car, and when the phone connects to it KITT switches to the driving layout or offers to open the dash.</li>
+        </ul>
+      </div>
+      <div class="card fold-card">
+        <h3>Requirements</h3>
+        <ul class="list">
+          <li>Samsung Galaxy Z Fold 8. Other Galaxy Z Folds should work but are not tested.</li>
+          <li>Android 12 or newer.</li>
+          <li>Installs beside One UI Home and the other KITT editions. Nothing changes until you pick KITT Fold as your Home app.</li>
+          <li>Package name <code>com.aiconsole.kittfold</code>.</li>
+          <li>The AI features need your own Gemini or Perplexity API key, entered in KITT Config.</li>
+        </ul>
+      </div>
+      <div class="card fold-card">
+        <h3>What's Different From the Car Editions</h3>
+        <ul class="list">
+          <li>No OBD-II scanner or car diagnostics; a Phone data screen takes their place.</li>
+          <li>No scanner light over other apps, steering-wheel buttons, screensaver or driver profiles.</li>
+          <li>Problem reports go through the share sheet.</li>
+        </ul>
+      </div>
+      <div class="card fold-card wide">
+        <h3>Download</h3>
+        <p>KITT Fold has no public release yet. When the first one is out, the APK will be on its own GitHub Releases page, and <b>Launcher settings → Updates</b> in the app will check there and install new versions for you, with a <b>Beta updates</b> switch for pre-releases.</p>
+        <!-- PLACEHOLDER: replace this span with a live link once the first KITT Fold release exists:
+             <a class="btn fold" href="https://github.com/tdater/KITT-Fold-releases/releases/latest">Download KITT Fold</a> -->
+        <p><span class="btn ghost fold-soon" aria-disabled="true">Download coming soon</span></p>
+      </div>
     </div>
   </section>
 
